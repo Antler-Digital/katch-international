@@ -1,7 +1,11 @@
 module.exports = {
-  purge: ["./src/**/*.js", "./src/**/*.jsx", "./src/**/*.ts", "./src/**/*.tsx" ],
+  purge: ["./src/**/*.js", "./src/**/*.jsx", "./src/**/*.ts", "./src/**/*.tsx"],
   theme: {
     extend: {
+      colors: {
+        primary: "#000000",
+        secondary: "#FA064A"
+      },
       opacity: {
         "10": "0.1",
         "20": "0.2",

@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
-// import logo from "../images/site/seo-logo.svg"
+import logo from "../images/katch-meta.jpg"
 
 function SEO({ description, lang, meta, title, image, article, twitterUsername }) {
   const { site } = useStaticQuery(
@@ -25,7 +25,7 @@ function SEO({ description, lang, meta, title, image, article, twitterUsername }
   const metaTitle = title ? `${title} | ${site.siteMetadata.title}` : site.siteMetadata.title
 
 
-  const metaImage = ""
+  const metaImage = image ? image : `${site.siteMetadata.siteUrl}${logo}` // placeholder logo here
   return (
     <Helmet
       htmlAttributes={{
@@ -34,9 +34,9 @@ function SEO({ description, lang, meta, title, image, article, twitterUsername }
       title={title}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
     >
-      <noscript>Your browser does not support JavaScript! A London List works best with javascript ( and by best only ). </noscript>     
+      <noscript>Your browser does not support JavaScript! A London List works best with javascript ( and by best only ). </noscript>
 
-     <meta name="description" content={metaDescription} />
+      <meta name="description" content={metaDescription} />
       <meta name="image" content={metaImage} />
 
       {/* Facebook */}
