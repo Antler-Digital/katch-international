@@ -130,6 +130,7 @@ module.exports = {
       opacity: ['group-focus'],
       textColor: ['group-focus', 'active'],
       textDecoration: ['group-focus'],
+      width: ['group-hover'],
     }
   },
   plugins: [

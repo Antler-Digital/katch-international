@@ -1,8 +1,15 @@
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
+
 import Linked from '../elements/Linked'
 import UseBodyLock from '../../hooks/useBodyLock';
 // import { SocialIcons } from '../elements/SocialIcons';
+import { useStaticQuery, graphql } from 'gatsby';
+import { GatsbyImage } from 'gatsby-plugin-image';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars, faChevronDown, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { Transition } from '@headlessui/react';
+import { faFacebookF, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { SocialIcons } from '../elements/SocialIcons';
 
 
 const Nav = (props) => {
@@ -14,70 +21,192 @@ const Nav = (props) => {
     UseBodyLock(menuOpen)
 
 
+    const { contentfulSiteSettings } = useStaticQuery(graphql`
+    query NavBarQuery {
+        contentfulSiteSettings {
+            navBar {
+            ... on ContentfulPage {
+                id
+                slug
+                title
+            }
+            ... on ContentfulSubMenu {
+                id
+                header
+                menuItems {
+                    title
+                    slug
+                }
+            }
+            ... on ContentfulLink {
+                id
+                linkTo
+                text
+                }
+            }
+            siteName
+            navLogo {
+                gatsbyImageData(width: 100, layout: FIXED, placeholder: TRACED_SVG, quality: 90)
+            }
+        }
+        }
+    `)
+
+    const { navBar, navLogo } = contentfulSiteSettings
+
+    const [atTop, setAtTop] = React.useState(true)
+
+
+    const handleScroll = (e) => {
+        const scrollTop = e.target.documentElement.scrollTop
+        if (scrollTop > 150) {
+            return atTop && setAtTop(false)
+        } else if (scrollTop < 150) {
+            return setAtTop(true)
+        }
+    }
+
+    React.useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+
+        // return window.removeEventListener('scroll', handleScroll)
+    }, [])
 
     return (
         <>
-            <nav className="hidden md:flex py-4 flex max-w-screen-lg mx-auto font-thin px-2" >
-                <NavLinks className="flex w-2/5 justify-around self-center"  active={pathName} />
-                <Linked linkTo="/" className="w-1/5 text-center">
-                    Logo
-                    {/* <img className="w-16 mx-auto" src={Logo} alt="San Loyd | Freelance Developer &amp; Designer | Logo" /> */}
-                </Linked>
-                <NavLinks className="flex w-2/5 justify-around self-center"  active={pathName} />
-            </nav>
-
-            <div className="md:hidden flex relative">
-            <button onClick={() => setMenuOpen(!menuOpen)} className="pl-3 pt-3 text-3xl md:hidden absolute -mt-2" >
-                <i className="fa text-gray-700 fa-ellipsis-v"></i>
-                <i className="fa text-gray-800 fa-ellipsis-v"></i>
-                <i className="fa text-gray-900 fa-ellipsis-v"></i>
-            </button>
-            <Linked linkTo="/" className="md:hidden w-1/5 mx-auto mb-1 ">
-                    {/* <img className="w-12 mx-auto" src={Logo} alt="San Loyd | Freelance Developer &amp; Designer | Logo" /> */}
-                </Linked>
-
-            </div>
-           
-            {/* Mobile Nav */}
-            <div
-                className="md:hidden text-black w-full transition-all duration-700 absolute z-20 top-0 shadow-xl bg-highlight "
-                style={{ height: '100vh', marginTop: menuOpen ? "10vh" : "-100vh", marginLeft: menuOpen ? "0vw" : "-100vw", borderRadius: menuOpen ? "0px 0px 400px 0px" : "0px 0px 100px 0px" }}
-             />
-             
             <nav
-                className="md:hidden text-black bg-gray-100 w-full transition-all duration-700 delay-75 fixed z-30 top-0 shadow-lg font-thin"
-                style={{ height: '100vh', marginTop: menuOpen ? "0vh" : "-100vh", marginLeft: menuOpen ? "0vw" : "-100vw", borderRadius: "0px 0px 400px 0px" }}
+                className={` w-full fixed ${atTop ? "py-4" : "py-1 bg-black"} transition-all duration-300 px-2`} >
+                <div className="flex max-w-screen-lg mx-auto ">
 
-            >
-                {/* <img className="w-16 mt-6 mx-auto" src={Logo} alt="San Loyd | Freelance Developer &amp; Designer | Logo" /> */}
-                <div className="flex-col flex">
-                    <NavLinks className="mx-auto space-y-6 mt-6" itemClassName="mx-auto text-2xl w-full" active={pathName} />
+                    <Linked linkTo="/" className="">
+                        <GatsbyImage image={navLogo.gatsbyImageData} alt="Katch Logo" />
+                    </Linked>
+
+                    <div className="hidden md:flex space-x-4 text-sm ml-auto mt-2 uppercase">
+                        {
+                            navBar && navBar.map(item => {
+                                if (item.menuItems) {
+                                    return <DropDown key={item.id} items={item.menuItems} header={item.header} />
+                                }
+                                return <Linked
+                                    className="text-white cursor-pointer relative group"
+                                    linkTo={`${item.slug || item.linkTo}`}
+                                    key={item.id}
+                                    underline
+                                >
+                                    {item.title || item.text}
+                                </Linked>
+                            })
+                        }
+                    </div>
+                    <div className="md:hidden ml-auto flex  text-white pr-4 relative z-10">
+                        <button onClick={() => setMenuOpen(!menuOpen)} className="" >
+                            {menuOpen ? <FontAwesomeIcon icon={faPlus} className="transform rotate-45 text-xl" /> :
+                                <FontAwesomeIcon icon={faBars} className="text-xl" />}
+                        </button>
+
+                    </div>
+
                 </div>
-                {/* <SocialIcons itemClassName="text-gray-500 hover:text-gray-800" className="flex space-x-8 mt-4 mx-auto justify-center text-2xl" icons={mobileLinks} /> */}
-            </nav>
-            <div className="w-full text-center justify-center flex relative z-40">
-                <button onClick={() => setMenuOpen(false)} className="rounded-full mx-auto block w-16 transition-all duration-700 h-16 bg-gray-700 text-gray-100 p-5 fixed"
-                    style={{ bottom: menuOpen ? 20 : -100, opacity: menuOpen ? 1 : 0 }}>
-                    <i className="fa fa-times text-2xl"></i>
-                </button>
-            </div>
 
+
+                <ul style={{
+                    position: 'fixed',
+                    top: 0,
+                    left: !menuOpen ? "-100vw" : "0vw",
+                    height: "100vh"
+                }}
+                    className={`${menuOpen ? "opacity-100" : "opacity-0"} flex flex-col text-white px-4 py-8 transition-all duration-500 space-y-4 bg-secondary uppercase font-semibold w-4/5 min-w-xxs md:hidden`}>
+                    <li><h2 className="text-2xl text-black font-black">Katch <br /> International</h2></li>
+                    {
+                        navBar && navBar.map(item => {
+                            if (item.menuItems) {
+                                return <li className="">
+                                    {item.header}
+                                    <ul className=" ml-4 space-y-3 mt-4 mb-4">
+                                        {item.menuItems.map(item => <li key={item.title}>
+                                            <Linked linkTo={item.slug}>
+                                                {item.title}
+                                            </Linked>
+                                        </li>)}
+                                    </ul>
+                                </li>
+                            }
+                            return <Linked
+                                className="text-white cursor-pointer relative group"
+                                linkTo={`/${item.slug}`}
+                                key={item.id}
+                            >
+                                {item.title || item.text}
+                            </Linked>
+                        })
+                    }
+
+                    <li className="">
+                        <SocialIcons
+                            className="text-white space-x-2 flex mt-auto"
+                            // showText
+                            icons={[
+                                {
+                                    icon: faFacebookF,
+                                    linkTo: "https://www.facebook.com/KatchInternational",
+                                    text: "Follow our Facebook"
+                                },
+                                {
+                                    icon: faTwitter,
+                                    linkTo: "https://twitter.com/katchbabs",
+                                    text: "Follow our Twitter"
+                                },
+                                {
+                                    icon: faInstagram,
+                                    linkTo: "https://www.instagram.com/katch_int/",
+                                    text: "Follow our Instagram"
+                                },
+                            ]} />
+
+                    </li>
+
+
+
+                </ul>
+            </nav>
         </>
     )
 }
 
 
-const NavLinks = ({ links, active, className, itemClassName }) => {
-    return <ul className={className}>
-        {links && links.map(({ linkTo, page }) =>
-            <li key={linkTo + page} className={`w-1/3 hover:font-normal ${active === linkTo ? "font-normal" : ""} text-center relative ${itemClassName}`}>
-                <Linked linkTo={linkTo} >{page}  <div className={`block mx-auto w-4/5 border-b-4 ${active === linkTo ? "border-highlight" : "border-transparent"} transform -rotate-3`}></div> </Linked>
-            </li>)}
-    </ul>
+const DropDown = ({ items, header }) => {
+
+
+    const [showMenu, setShowMenu] = React.useState(false)
+
+    return <div className="text-white  relative"
+        onMouseEnter={() => setShowMenu(true)}
+        onMouseLeave={() => setShowMenu(false)}
+    >
+        <p>{header} <FontAwesomeIcon className="text-sm ml-1" icon={faChevronDown} /></p>
+
+        <Transition
+            show={showMenu}
+            enter="transition ease-out duration-100 transform  "
+            enterFrom="opacity-0 scale-95 hidden"
+            enterTo="opacity-100 scale-100 block"
+            leave="transition ease-in duration-75 transform"
+            leaveFrom="opacity-100 scale-100 block"
+            leaveTo="opacity-0 scale-95 hidden"
+        >
+            <ul
+                className={`absolute w-72 bg-black pb-4 px-4 pt-4 -ml-4 border-t-2 border-secondary mt-2 space-y-3`}>
+                {items.map(item => <li key={item}>
+                    <Linked linkTo={item.slug} className="relative group">
+                        {item.title}
+                        <span className="group-hover:w-full w-0 transition-all duration-500 absolute h-1 bg-secondary left-0 -bottom-1" />
+                    </Linked>
+                </li>)}
+            </ul>
+        </Transition>
+    </div>
 }
 
-Nav.propTypes = {
-
-}
 
 export default Nav

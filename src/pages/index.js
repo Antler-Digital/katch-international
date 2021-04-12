@@ -2,6 +2,7 @@ import React from "react"
 import Layout from "../components/layout/Layout"
 import SEO from "../components/SEO"
 import { graphql } from 'gatsby';
+import ThreeCardsSection from "../components/contentful/ThreeCardsSection";
 
 const IndexPage = ({ data: { allContentfulPage } }) => {
 
@@ -10,13 +11,26 @@ const IndexPage = ({ data: { allContentfulPage } }) => {
     metaDescription,
     metaImage,
     metaTitle,
-    title
-
+    title,
+    sections
   } = homePage
+
+  console.log(sections)
   return (
     <Layout>
       <SEO title={metaTitle || title} metaDescription={metaDescription} metaImage={metaImage.fixed.src} />
       {/* Content goes here */}
+      { sections && sections.map(section => {
+        console.log(section.internal?.type)
+        switch (section.internal?.type) {
+          case "ContentfulThreeCardsSection":
+            return <ThreeCardsSection {...section} />
+          default:
+            break;
+        }
+
+      })}
+
     </Layout>
   )
 }
@@ -38,6 +52,23 @@ query HomePageQuery {
       }
       metaDescription {
         text: metaDescription
+      }
+      sections {
+        ... on ContentfulThreeCardsSection {
+          ...ContentfulThreeCardsSectionFragment
+        }
+        ... on ContentfulHeroSection {
+          ...ContentfulHeroSectionFragment
+        }
+        ... on ContentfulCollectionSection {
+          ...ContentfulCollectionSectionFragment
+        }
+        ... on ContentfulCarouselSection {
+          ...ContentfulCarouselSectionFragment
+        }
+        ... on ContentfulSocialSection {
+          ...ContentfulSocialSectionFragment
+        }
       }
     }
   }

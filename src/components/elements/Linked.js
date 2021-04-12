@@ -1,8 +1,8 @@
 import React from "react"
 import { Link } from "gatsby"
 import { OutboundLink } from "gatsby-plugin-google-analytics"
-
-const Linked = ({ linkTo, children, style, className }) => {
+import { AnchorLink } from "gatsby-plugin-anchor-links";
+const Linked = ({ linkTo, children, style, className, underline = false }) => {
   const regex = RegExp("https?|wwww")
   const mailRegex = RegExp("mailto")
   const phoneRegex = RegExp("tel")
@@ -28,11 +28,14 @@ const Linked = ({ linkTo, children, style, className }) => {
       {children}
     </OutboundLink>
   ) : (
-    <Link to={linkTo} style={style} className={className}>
+    <AnchorLink to={linkTo} style={style} className={className}>
       {children}
-    </Link>
+      {underline && <Underline />}
+    </AnchorLink>
   )
 }
+
+export const Underline = () => <span className="group-hover:w-full w-0 transition-all duration-500 absolute h-1 bg-secondary left-0 bottom-2" />
 
 Linked.propTypes = {}
 

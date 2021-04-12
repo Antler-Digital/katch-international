@@ -7,7 +7,7 @@ import { faFacebookF, faInstagram, faTwitter } from '@fortawesome/free-brands-sv
 
 export const blackButtonClassName = "inline-block my-2 bg-primary px-4 text-white text-sm py-2 font-thin rounded hover:text-secondary hover:bg-white transition-bg duration-500"
 
-const linksToOtherKatch = [
+export const linksToOtherKatch = [
     {
         linkTo: "https://katchcommunications.com",
         text: "VISIT KATCH LONDON"
@@ -31,7 +31,7 @@ const Footer = props => {
 
                 <div className="col-span-1 h-full w-full">
                     <h4
-                        className="mb-4 tracking-tighter font-medium px-0 pt-0 pb-2 m-0 text-lg  leading-4 text-gray-800"
+                        className="mb-4  font-medium px-0 pt-0 pb-2 m-0 text-lg  leading-4 text-gray-800"
                     >
                         WE LIKE TO BE FOLLOWED
                 </h4>
@@ -110,7 +110,7 @@ const Footer = props => {
                 </div>
                 <div className="max-w-lg col-span-3 lg:col-span-1 mx-auto pt-8 lg:pt-0">
                     <h4
-                        className="mb-4 tracking-tighter font-medium px-0 pt-0 pb-2 m-0 text-lg  leading-4 text-gray-800"
+                        className="mb-4  font-medium px-0 pt-0 pb-2 m-0 text-lg  leading-4 text-gray-800"
                     >
                         KATCH US
                     </h4>
@@ -128,8 +128,10 @@ const Footer = props => {
                     </form>
                 </div>
             </div>
-            <h5 className="text-lg mt-2 font-thin opacity-25 text-center ">&copy; Katch International {new Date().getFullYear()}</h5>
-            <h6 className="text-base font-thin mt-2 opacity-25 hover:opacity-100"><Linked linkTo="https://antler.digital">Built by Antler Digital</Linked></h6>
+            <div className="max-w-screen-xl mx-auto flex justify-between mt-4 px-4">
+                <h5 className="mt-2 font-thin opacity-75 text-white text-sm ">&copy; Katch International {new Date().getFullYear()}</h5>
+                <h6 className="text-xs font-thin mt-2 opacity-50 text-right ml-auto text-white hover:opacity-100"><Linked linkTo="https://antler.digital">Built by Antler Digital</Linked></h6>
+            </div>
         </footer >
     )
 }
