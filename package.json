@@ -13,7 +13,7 @@
     "@fortawesome/react-fontawesome": "^0.1.11",
     "aos": "^2.3.4",
     "dotenv": "^8.2.0",
-    "gatsby": "^3.0.4",
+    "gatsby": "^3.2.1",
     "gatsby-image": "^3.0.0",
     "gatsby-plugin-alias-imports": "^1.0.5",
     "gatsby-plugin-anchor-links": "^1.1.1",
@@ -52,7 +52,7 @@
     "cssnano": "^4.1.10",
     "postcss": "^8.2.6",
     "prettier": "^2.1.2",
-    "tailwindcss": "^2.0.3"
+    "tailwindcss": "^2.1.1"
   },
   "keywords": [
     "gatsby"
