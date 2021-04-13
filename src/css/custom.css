@@ -1,51 +1,28 @@
 /* Add your custom css here */
 
-
 /* Example Article CSS */
 
-.page > h1, h2, h3 {
-    @apply mb-5;
+.prose-white h1 {
+  color: white;
 }
-
-.page > p {
-    @apply leading-loose text-xl mb-4;
+.prose-white h2 {
+  color: white;
 }
-
-.article p, .article h1, .article h2, .article h3, .article h4, .article h5, .article h6, article table {
-    @apply max-w-3xl mx-auto px-4;
+.prose-white h3 {
+  color: white;
 }
-
-.article p code {
-    @apply bg-gray-900 text-green-500 p-1 px-2 rounded-md mx-1;
+.prose-white h4 {
+  color: white;
 }
-.article table {
-    @apply max-w-3xl mx-auto my-6 bg-gray-100;
+.prose-white h5 {
+  color: white;
 }
-.article table td, th {
-    @apply px-4 py-2;
+.prose-white h6 {
+  color: white;
 }
-
-.article pre code {
-    @apply p-0 bg-transparent rounded-none;
+.prose-white p {
+  color: white;
 }
-
-.article h2 {
-    @apply text-2xl;
-}
-.article h3 {
-    @apply text-xl;
-}
-.article h4 {
-    @apply text-lg;
-}
-.article p {
-    @apply mb-8;
-}
-
-.article li > p {
-    @apply mb-2 pl-2;
-}
-
-.article {
-    @apply w-full;
+.prose-white li {
+  color: white;
 }

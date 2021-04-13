@@ -1,13 +1,10 @@
 import React from 'react'
 import { graphql } from 'gatsby';
 import Slider from "react-slick";
-import Markdown from 'markdown-to-jsx';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { GatsbyImage } from 'gatsby-plugin-image';
 import RightChevron from '../svgs/RightChevron';
 import LeftChevron from '../svgs/LeftChevron';
-import CallToAction from './CallToAction';
 import Slide from './Slide';
 
 
