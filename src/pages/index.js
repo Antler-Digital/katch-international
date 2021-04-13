@@ -3,6 +3,10 @@ import Layout from "../components/layout/Layout"
 import SEO from "../components/SEO"
 import { graphql } from 'gatsby';
 import ThreeCardsSection from "../components/contentful/ThreeCardsSection";
+import CarouselSection from '../components/contentful/CarouselSection';
+import HeroSection from '../components/contentful/HeroSection';
+import CollectionSection from '../components/contentful/CollectionSection';
+import SocialSection from '../components/contentful/SocialSection';
 
 const IndexPage = ({ data: { allContentfulPage } }) => {
 
@@ -14,17 +18,24 @@ const IndexPage = ({ data: { allContentfulPage } }) => {
     title,
     sections
   } = homePage
-
-  console.log(sections)
   return (
     <Layout>
       <SEO title={metaTitle || title} metaDescription={metaDescription} metaImage={metaImage.fixed.src} />
       {/* Content goes here */}
+
+
       { sections && sections.map(section => {
-        console.log(section.internal?.type)
         switch (section.internal?.type) {
           case "ContentfulThreeCardsSection":
             return <ThreeCardsSection {...section} />
+          case "ContentfulCarouselSection":
+            return <CarouselSection {...section} />
+          case "ContentfulHeroSection":
+            return <HeroSection {...section} />
+          case "ContentfulCollectionSection":
+            return <CollectionSection {...section} />
+          case "ContentfulSocialSection":
+            return <SocialSection {...section} />
           default:
             break;
         }

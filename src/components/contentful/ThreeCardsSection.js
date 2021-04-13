@@ -1,11 +1,13 @@
 import React from 'react'
 import { graphql } from 'gatsby';
+import { LinkedServiceCard } from './ServiceCard';
 
-function ThreeCardsSection() {
+
+function ThreeCardsSection({ cards }) {
   return (
-    <div>
-      ThreeCards
-    </div>
+    <section className="grid lg:grid-cols-3" >
+      { cards && cards.map(card => <LinkedServiceCard key={card.id} {...card} />)}
+    </section>
   )
 }
 

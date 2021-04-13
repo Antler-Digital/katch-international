@@ -93,7 +93,11 @@ module.exports = {
           google: [
             {
               family: "Open Sans",
-              variants: ["300", "400", "700"],
+              variants: ["300", "400", "600", "700"],
+            },
+            {
+              family: "Fjalla One",
+              variants: ["400"],
             },
           ],
         },

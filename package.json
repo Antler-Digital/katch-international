@@ -5,12 +5,14 @@
   "version": "0.1.0",
   "author": "Sam Loyd",
   "dependencies": {
+    "@contentful/rich-text-plain-text-renderer": "^14.1.2",
     "@contentful/rich-text-react-renderer": "^14.1.1",
     "@contentful/rich-text-types": "^14.1.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.31",
     "@fortawesome/free-brands-svg-icons": "^5.15.1",
     "@fortawesome/free-solid-svg-icons": "^5.15.0",
     "@fortawesome/react-fontawesome": "^0.1.11",
+    "@headlessui/react": "^0.3.2",
     "aos": "^2.3.4",
     "dotenv": "^8.2.0",
     "gatsby": "^3.2.1",
@@ -42,6 +44,8 @@
     "react-helmet": "^6.1.0",
     "react-hook-form": "^6.8.6",
     "react-share": "^4.3.1",
+    "react-slick": "^0.28.1",
+    "slick-carousel": "^1.8.1",
     "underscore": "^1.11.0"
   },
   "devDependencies": {

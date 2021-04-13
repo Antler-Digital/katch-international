@@ -20,6 +20,7 @@ module.exports = {
       },
       minHeight: {
         "800": "800px",
+        "600": "600px",
       },
       spacing: {
         "9": "2.25rem",
@@ -131,6 +132,10 @@ module.exports = {
       textColor: ['group-focus', 'active'],
       textDecoration: ['group-focus'],
       width: ['group-hover'],
+      fontSize: ['group-hover'],
+      scale: ['group-hover'],
+      inset: ['group-hover'],
+      height: ['group-hover'],
     }
   },
   plugins: [

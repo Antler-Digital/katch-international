@@ -1,11 +1,17 @@
 import React from 'react'
 import { graphql } from 'gatsby';
+import CallToAction from './CallToAction';
 
-function SocialSection() {
+function SocialSection({ header, callToAction }) {
   return (
-    <div>
-      ThreeCards
-    </div>
+    <section className="bg-primary py-12 lg:py-24 text-center">
+
+      <div className="text-center max-w-screen-lg mx-auto px-4">
+        {header && <h2 className="text-7xl mb-8 leading-normal text-white bg-secondary px-4 py-1 inline-block text-center">{header}</h2>}
+      </div>
+      {/* ADD IN INSTAGRAM FEED */}
+      { callToAction && <CallToAction className="" {...callToAction} />}
+    </section>
   )
 }
 

@@ -75,7 +75,7 @@ const Nav = (props) => {
     return (
         <>
             <nav
-                className={` w-full fixed ${atTop ? "py-4" : "py-1 bg-black"} transition-all duration-300 px-2`} >
+                className={` w-full fixed ${atTop ? "py-4" : "py-1 bg-black"} transition-all duration-300 px-2 z-10`} >
                 <div className="flex max-w-screen-lg mx-auto ">
 
                     <Linked linkTo="/" className="">
