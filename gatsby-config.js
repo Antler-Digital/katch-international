@@ -42,6 +42,7 @@ module.exports = {
     //     // other options
     //   },
     // },
+    'gatsby-plugin-image',
     {
       resolve: `gatsby-source-filesystem`,
       options: {
