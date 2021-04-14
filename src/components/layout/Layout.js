@@ -19,7 +19,7 @@ const Layout = ({ children }) => {
       <main className="bg-gray-100 leading-loose font-thin ">
         {children}
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   )
 }
