@@ -22,7 +22,6 @@ const PageTemplate = ({ data: { contentfulPage } }) => {
     sections
   } = page
 
-  console.log(title)
   return (
     <Layout>
       <SEO title={metaTitle || title} metaDescription={metaDescription} metaImage={metaImage?.fixed?.src} />
@@ -102,10 +101,6 @@ query PageTemplateQuery($id: String) {
     }
   }
 }
-
-
-
-
 `
 
 export default PageTemplate

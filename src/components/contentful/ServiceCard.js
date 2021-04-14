@@ -4,7 +4,7 @@ import CallToAction from './CallToAction';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import Linked from '../elements/Linked';
 
-function ServiceCard({ header, subHeader, link, backgroundImage, className }) {
+function ServiceCard({ header, subHeader, link, backgroundImage, className, showAsLink }) {
 
   const textShadow = { textShadow: 'rgba(0, 0, 0, 0.4) 0.08em 0.08em 0em' }
   return (
@@ -16,14 +16,14 @@ function ServiceCard({ header, subHeader, link, backgroundImage, className }) {
           {header}
         </h3>
         <h5 style={textShadow} className="group-hover:text-8xl text-xl duration-300 w-2 leading-tight">{subHeader} </h5>
-        {link && <CallToAction className="group-hover:text-lg text-xs opacity-0 group-hover:opacity-100 duration-300" {...link} />}
+        {link && <CallToAction deWrap={!showAsLink} className="group-hover:text-lg text-xs opacity-0 group-hover:opacity-100 duration-300" {...link} />}
       </div>
     </article>
   )
 }
 
 export const LinkedServiceCard = (props) => props.link?.linkTo ? <Linked linkTo={props.link.linkTo}>
-  <ServiceCard {...props} className="cursor-pointer" />
+  <ServiceCard {...props} className="cursor-pointer" showAsLink={false} />
 </Linked> : <ServiceCard {...props} />
 
 export default ServiceCard

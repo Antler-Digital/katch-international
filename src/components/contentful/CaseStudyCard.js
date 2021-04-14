@@ -25,6 +25,7 @@ const CaseStudyCard = ({ title, category, publishedDate, mainImage, logoWhite, s
 export const ContentfulCaseStudyCardFragment = graphql`
   fragment ContentfulCaseStudyCardFragment on ContentfulCaseStudy {
     title
+    id
     category
     publishedDate(fromNow: true)
     mainImage {

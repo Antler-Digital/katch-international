@@ -77,10 +77,9 @@ export default CollectionSection
 
 
 const CollectionWrapper = ({ className, items, limitTo = 1, CardComponent }) => {
-
   const itemsToRender = limitTo ? items.slice(0, limitTo) : items
   return <div className={className}>
-    {items && itemsToRender.map((item, index) => <CardComponent key={item.id + index} {...item} />)}
+    {items && itemsToRender.map((item, index) => <CardComponent key={item.id} {...item} />)}
   </div>
 }
 

@@ -3,11 +3,22 @@ import React from 'react'
 import Linked from '../elements/Linked'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
-export default function CallToAction({ displayAs, linkTo, text, className, style }) {
+export default function CallToAction({ displayAs, linkTo, text, className, style, deWrap = false }) {
   const buttonClass = "bg-secondary text-black px-3 uppercase py-3 hover:text-white"
   const linkClass = ""
+
+  if (deWrap) {
+    return <span style={style} className={`${displayAs === "Button" ? buttonClass : linkClass} ${className}`}
+    >
+      {text} <DoubleChevron />
+    </span>
+  }
   return (
-    <Linked style={style} linkTo={linkTo} className={`${displayAs === "Button" ? buttonClass : linkClass} ${className}`} >
+    <Linked
+
+      linkTo={linkTo}
+      className={`${displayAs === "Button" ? buttonClass : linkClass} ${className}`}
+    >
       { text} <DoubleChevron />
     </Linked>
   )

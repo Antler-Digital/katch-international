@@ -38,3 +38,7 @@ h5 {
 h6 {
   @apply text-lg font-bold;
 }
+
+.gatsby-image-wrapper > img {
+  margin-top: 0px;
+}
