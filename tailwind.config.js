@@ -21,6 +21,7 @@ module.exports = {
       minHeight: {
         "800": "800px",
         "600": "600px",
+        "400": "400px",
       },
       spacing: {
         "9": "2.25rem",

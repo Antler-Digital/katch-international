@@ -75,7 +75,7 @@ const Nav = (props) => {
     return (
         <>
             <nav
-                className={` w-full fixed ${atTop ? "py-4" : "py-1 bg-black"} transition-all duration-300 px-2 z-front`} >
+                className={` w-full fixed ${atTop ? "py-4" : "py-1 bg-black"} transition-all duration-300 px-4 lg:px-0 z-front`} >
                 <div className="flex max-w-screen-lg mx-auto ">
 
                     <Linked linkTo="/" className="">
@@ -90,7 +90,7 @@ const Nav = (props) => {
                                 }
                                 return <Linked
                                     className="text-white cursor-pointer relative group"
-                                    linkTo={`${item.slug || item.linkTo}`}
+                                    linkTo={`${item.slug ? `/${item.slug}` : item.linkTo}`}
                                     key={item.id}
                                     underline
                                 >
@@ -121,11 +121,11 @@ const Nav = (props) => {
                     {
                         navBar && navBar.map(item => {
                             if (item.menuItems) {
-                                return <li className="">
+                                return <li key={item.id} className="">
                                     {item.header}
                                     <ul className=" ml-4 space-y-3 mt-4 mb-4">
                                         {item.menuItems.map(item => <li key={item.title}>
-                                            <Linked linkTo={item.slug}>
+                                            <Linked linkTo={`/${item.slug}`}>
                                                 {item.title}
                                             </Linked>
                                         </li>)}
@@ -197,8 +197,8 @@ const DropDown = ({ items, header }) => {
         >
             <ul
                 className={`absolute w-72 bg-black pb-4 px-4 pt-4 -ml-4 border-t-2 border-secondary mt-2 space-y-3`}>
-                {items.map(item => <li key={item}>
-                    <Linked linkTo={item.slug} className="relative group">
+                {items.map(item => <li key={item.slug}>
+                    <Linked linkTo={`/${item.slug}`} className="relative group">
                         {item.title}
                         <span className="group-hover:w-full w-0 transition-all duration-500 absolute h-1 bg-secondary left-0 -bottom-1" />
                     </Linked>

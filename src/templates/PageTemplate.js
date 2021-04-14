@@ -9,6 +9,7 @@ import CollectionSection from '../components/contentful/CollectionSection';
 import SocialSection from '../components/contentful/SocialSection';
 import TwoColumnSection from '../components/contentful/TwoColumnSection';
 import TextSection from '../components/contentful/TextSection';
+import SpacerSection from '../components/contentful/SpacerSection';
 
 const PageTemplate = ({ data: { contentfulPage } }) => {
 
@@ -20,28 +21,32 @@ const PageTemplate = ({ data: { contentfulPage } }) => {
     title,
     sections
   } = page
+
+  console.log(title)
   return (
     <Layout>
       <SEO title={metaTitle || title} metaDescription={metaDescription} metaImage={metaImage?.fixed?.src} />
       {/* Content goes here */}
 
 
-      { sections && sections.map(section => {
+      { sections && sections.map((section, index) => {
         switch (section.internal?.type) {
           case "ContentfulThreeCardsSection":
-            return <ThreeCardsSection {...section} />
+            return <ThreeCardsSection key={`${section.id}` + index} {...section} />
           case "ContentfulCarouselSection":
-            return <CarouselSection {...section} />
+            return <CarouselSection key={`${section.id}` + index} {...section} />
           case "ContentfulHeroSection":
-            return <HeroSection {...section} />
+            return <HeroSection key={`${section.id}` + index} {...section} />
           case "ContentfulCollectionSection":
-            return <CollectionSection {...section} />
+            return <CollectionSection key={`${section.id}` + index} {...section} />
           case "ContentfulSocialSection":
-            return <SocialSection {...section} />
+            return <SocialSection key={`${section.id}` + index} {...section} />
           case "ContentfulTwoColumnSection":
-            return <TwoColumnSection {...section} />
+            return <TwoColumnSection key={`${section.id}` + index} {...section} />
           case "ContentfulTextSection":
-            return <TextSection {...section} />
+            return <TextSection key={`${section.id}` + index} {...section} />
+          case "ContentfulSpacerSection":
+            return <SpacerSection key={`${section.id}` + index} {...section} />
           default:
             break;
         }
@@ -90,6 +95,9 @@ query PageTemplateQuery($id: String) {
       }
       ... on ContentfulTextSection {
         ...ContentfulTextSectionFragment
+      }
+      ... on ContentfulSpacerSection {
+        ...ContentfulSpacerSectionFragment
       }
     }
   }

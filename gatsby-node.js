@@ -6,12 +6,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
 
 
-  // Testing for Comeet
-  const pageTemplate = path.resolve(`./src/templates/PageTemplate.js`)
+  const PageTemplate = path.resolve(`./src/templates/PageTemplate.js`)
+  const CaseStudyTemplate = path.resolve(`./src/templates/CaseStudyTemplate.js`)
+  const BlogPostTemplate = path.resolve(`./src/templates/BlogPostTemplate.js`)
 
   try {
 
-    const result = await graphql(`
+    const pages = await graphql(`
     query Pages {
       allContentfulPage {
         nodes {
@@ -22,12 +23,11 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     }
   `).then((result) => {
       result.data.allContentfulPage.nodes.forEach(({ slug, contentful_id }) => {
-        console.log("Creating page")
         createPage({
           path: slug,
-          component: slash(pageTemplate),
+          component: slash(PageTemplate),
           context: {
-            contentful_id,
+            id: contentful_id,
             slug
           },
         });
@@ -36,8 +36,61 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   } catch (e) {
     console.log("Error trying to create pages", e)
   }
-}
 
+  try {
+
+    const caseStudies = await graphql(`
+    query CaseStudies {
+      allContentfulCaseStudy {
+        nodes {
+          slug
+          contentful_id
+        }
+      }
+    }
+  `).then((result) => {
+      result.data.allContentfulCaseStudy.nodes.forEach(({ slug, contentful_id }) => {
+        createPage({
+          path: `projects/${slug}`,
+          component: slash(CaseStudyTemplate),
+          context: {
+            id: contentful_id,
+            slug
+          },
+        });
+      });
+    });
+  } catch (e) {
+    console.log("Error trying to create case studies", e)
+  }
+
+  // blog posts
+  try {
+    const blogPosts = await graphql(`
+    query BlogPosts {
+      allContentfulBlogPost {
+        nodes {
+          slug
+          contentful_id
+        }
+      }
+    }
+  `).then((result) => {
+      result.data.allContentfulBlogPost.nodes.forEach(({ slug, contentful_id }) => {
+        createPage({
+          path: `blog/${slug}`,
+          component: slash(BlogPostTemplate),
+          context: {
+            id: contentful_id,
+            slug
+          },
+        });
+      });
+    });
+  } catch (e) {
+    console.log("Error trying to create case studies", e)
+  }
+}
 // second instance to avoid having to use ES6 syntax in one file and node syntax (module.exports) in another
 function slugify(string) {
   const a = 'àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìłḿñńǹňôöòóœøōõőṕŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż·/_,:;'

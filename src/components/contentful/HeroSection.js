@@ -3,24 +3,24 @@ import { graphql } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import Markdown from 'markdown-to-jsx';
 
-function HeroSection({ backgroundImage, subHeader, header, textColour, showForm }) {
+function HeroSection({ backgroundImage, subHeader, header, textColour, showForm, headerClasses }) {
 
 
   const colorText = textColour === "White" ? "text-white" : textColour === "Pink" ? "text-secondary" : "text-black"
 
 
   return (
-    <section className="h-screen min-h-600 relative bg-gray-800">
+    <section className={`${backgroundImage ? "h-screen min-h-600" : "min-h-400"} relative bg-gradient-to-t from-black to-gray-800`}>
       <div className="h-full absolute top-0 z-10 w-full px-4 bg-black bg-opacity-25">
         <div className={`max-w-screen-xl mx-auto  w-full h-full `}>
-          <div className={`flex flex-col justify-center md:w-1/2 w-full h-full text-center md:text-left ${colorText} `}>
-            {header && <h1 className="text-7xl block leading-relaxed">{header}</h1>}
+          <div className={`flex flex-col justify-center ${showForm ? "md:w-1/2 md:text-left" : ""} w-full h-full text-center  ${colorText} `}>
+            {header && <h1 className={`${headerClasses ? headerClasses : "text-3xl lg:text-7xl block leading-relaxed"}`}>{header}</h1>}
             {subHeader && <Markdown
               options={{
                 overrides: {
                   strong: {
                     props: {
-                      className: 'text-6xl  leading-relaxed p-2 bg-secondary',
+                      className: 'text-2xl lg:text-4xl  leading-tight lg:leading-loose p-2 bg-secondary text-white',
                     },
                   },
                   h2: {
@@ -34,7 +34,7 @@ function HeroSection({ backgroundImage, subHeader, header, textColour, showForm 
           </div>
         </div>
       </div>
-      <GatsbyImage className="absolute h-full w-full" image={backgroundImage.gatsbyImageData} alt={backgroundImage.title} />
+      { backgroundImage ? <GatsbyImage className="absolute h-full w-full" image={backgroundImage.gatsbyImageData} alt={backgroundImage.title} /> : <div></div>}
 
 
     </section>

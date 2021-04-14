@@ -8,8 +8,9 @@ const CaseStudyCard = ({ title, category, publishedDate, mainImage, logoWhite, s
     <Linked className="mx-auto" linkTo={`/projects/${slug}`}>
       <article className="w-full h-full relative group">
         <GatsbyImage className="filter grayscale" image={mainImage.gatsbyImageData} alt={mainImage.title} />
+        <div className="bg-black w-full h-3 absolute bottom-0" />
+        <div className="bg-secondary group-hover:h-full w-full h-3 absolute bottom-0 bg-opacity-50 duration-300" />
 
-        <div className="bg-secondary group-hover:h-full w-full h-3 absolute bottom-0 bg-opacity-50 duration-300"></div>
 
         <div className="absolute w-full h-full flex items-center top-0 justify-center">
           <GatsbyImage className="" image={logoWhite.gatsbyImageData} alt={logoWhite.title} />
