@@ -7,19 +7,19 @@ import 'aos/dist/aos.css'
 const Layout = ({ children }) => {
 
   // Initialise the Animations for fade up and in
-  useEffect(() => {
-    AOS.init();
-  }, [])
+  // useEffect(() => {
+  //   AOS.init();
+  // }, [])
 
   return (
     <>
       <header className="bg-gray-100">
-        <Nav />
+        {/* <Nav /> */}
       </header>
       <main className="bg-gray-100 leading-loose font-thin ">
         {children}
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </>
   )
 }
