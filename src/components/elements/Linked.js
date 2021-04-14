@@ -1,5 +1,4 @@
 import React from "react"
-import { Link } from "gatsby"
 import { OutboundLink } from "gatsby-plugin-google-analytics"
 import { AnchorLink } from "gatsby-plugin-anchor-links";
 const Linked = ({ linkTo, children, style, className, underline = false }) => {

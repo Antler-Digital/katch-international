@@ -42,8 +42,8 @@ const CaseStudyTemplate = ({ data: { contentfulCaseStudy } }) => {
       <section className="grid grid-cols-1 md:grid-cols-2 max-w-screen-xl mx-auto py-6 md:py-12 lg:py-24 px-4">
         <div className="flex flex-col justify-center md:order-first order-last">
           <Carousel settings={settings} className="max-w-xxs md:max-w-md mx-auto">
-            {carouselImages && carouselImages.map(image => <div key={image} className="">
-              <GatsbyImage className="h-full max-w-xs mx-auto my-0" style={{ display: 'block' }} image={image.gatsbyImageData} alt={image.title} />
+            {carouselImages && carouselImages.map(image => <div key={image} className="max-w-xs w-full">
+              <GatsbyImage className="h-full w-full mx-auto my-0" style={{ display: 'block' }} image={image.gatsbyImageData} alt={image.title} />
             </div>)}
           </Carousel>
         </div>

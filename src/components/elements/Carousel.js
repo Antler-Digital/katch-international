@@ -7,7 +7,7 @@ import RightChevron from '../svgs/RightChevron';
 import LeftChevron from '../svgs/LeftChevron';
 
 
-function Carousel({ slides, settings = {}, className, children, theme = "dark" }) {
+function Carousel({ settings = {}, className, children, theme = "dark" }) {
 
   const defaultSettings = {
     dots: false,
@@ -21,9 +21,6 @@ function Carousel({ slides, settings = {}, className, children, theme = "dark" }
     prevArrow: <LeftArrow theme={theme} />,
     // cssEase: "ease-in"
   };
-
-  console.log(`${theme === "dark" ? "text-white" : "text-black"}`)
-
   const settingsToUse = { ...defaultSettings, ...settings }
   return (
     <Slider {...settingsToUse} className={className}>
