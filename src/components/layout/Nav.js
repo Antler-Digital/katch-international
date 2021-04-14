@@ -100,7 +100,10 @@ const Nav = (props) => {
                         }
                     </div>
                     <div className="md:hidden ml-auto flex  text-white pr-4 relative z-10">
-                        <button onClick={() => setMenuOpen(!menuOpen)} className="" >
+                        <button
+                            title="Menu Button"
+                            role="button"
+                            onClick={() => setMenuOpen(!menuOpen)} className="" >
                             {menuOpen ? <FontAwesomeIcon icon={faPlus} className="transform rotate-45 text-xl" /> :
                                 <FontAwesomeIcon icon={faBars} className="text-xl" />}
                         </button>
