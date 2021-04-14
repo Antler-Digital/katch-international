@@ -9,7 +9,7 @@ function ServiceCard({ header, subHeader, link, backgroundImage, className }) {
   const textShadow = { textShadow: 'rgba(0, 0, 0, 0.4) 0.08em 0.08em 0em' }
   return (
     <article className={`relative h-96 ${className}`}>
-      { backgroundImage && <GatsbyImage className="absolute top-0 h-full w-full" image={backgroundImage.gatsbyImageData} />}
+      { backgroundImage && <GatsbyImage className="absolute top-0 h-full w-full" image={backgroundImage.gatsbyImageData} alt={backgroundImage.title} />}
 
       <div className="absolute top-0 flex flex-col justify-center text-white p-4 hover:bg-secondary w-full h-full transition-colors duration-300 group">
         <h3 style={textShadow} className="text-6xl group-hover:text-xs w-2 duration-300">

@@ -1,5 +1,4 @@
-import React, { useEffect } from "react"
-import PropTypes from 'prop-types'
+import React from "react"
 import Nav from './Nav';
 import Footer from './Footer';
 import AOS from 'aos'
@@ -14,7 +13,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <header className="bg-gray-100">
-        {/* <Nav /> */}
+        <Nav />
       </header>
       <main className="bg-gray-100 leading-loose font-thin ">
         {children}
