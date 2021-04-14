@@ -23,14 +23,18 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     }
   `).then((result) => {
       result.data.allContentfulPage.nodes.forEach(({ slug, contentful_id }) => {
-        createPage({
-          path: slug,
-          component: slash(PageTemplate),
-          context: {
-            id: contentful_id,
-            slug
-          },
-        });
+
+        if (slug !== "/") {
+          createPage({
+            path: slug,
+            component: slash(PageTemplate),
+            context: {
+              id: contentful_id,
+              slug
+            },
+          });
+        }
+
       });
     });
   } catch (e) {
@@ -50,6 +54,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     }
   `).then((result) => {
       result.data.allContentfulCaseStudy.nodes.forEach(({ slug, contentful_id }) => {
+
         createPage({
           path: `projects/${slug}`,
           component: slash(CaseStudyTemplate),

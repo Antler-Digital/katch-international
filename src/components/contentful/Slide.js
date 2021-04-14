@@ -44,9 +44,9 @@ fragment ContentfulSlideFragment on ContentfulSlide {
     title
     gatsbyImageData(
       width: 1600
-      layout: FULL_WIDTH
       placeholder: BLURRED
       quality: 90
+      layout: FULL_WIDTH
     )
   }
   id
