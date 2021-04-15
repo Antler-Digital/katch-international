@@ -24,6 +24,7 @@ const {
 } = process.env;
 const isNetlifyProduction = NETLIFY_ENV === 'production';
 const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
+const isDev = getEnv() !== 'production'
 
 module.exports = {
   siteMetadata: {
@@ -42,6 +43,17 @@ module.exports = {
     //     // other options
     //   },
     // },
+    {
+      resolve: `gatsby-source-instagram`,
+      options: {
+        username: !isDev ? `1450358585` : "",
+        // access_token: "a valid access token",
+        // instagram_id: "your instagram_business_account id",
+        // paginate: 100,
+        // maxPosts: 1000,
+        // hashtags: true
+      },
+    },
     'gatsby-plugin-image',
     {
       resolve: `gatsby-source-filesystem`,
