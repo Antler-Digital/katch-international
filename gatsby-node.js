@@ -2,6 +2,44 @@ const path = require(`path`);
 const { slash } = require(`gatsby-core-utils`);
 
 
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions
+  // Handles the lack of Instagram Node
+  // make sure to 'implements' Node in order to solve any sorting or limit issues
+  const typeDefs = `
+    type InstaNode implements Node {
+      id: ID!
+      parent: Node
+      children: [Node!]!
+      internal: Internal!
+      type: String
+      username: String
+      likes: Int
+      caption: String
+      thumbnails: [InstaNodeThumbnails]
+      mediaType: String
+      preview: String
+      original: String
+      timestamp: Int
+      dimensions: InstaNodeDimensions
+      comments: Int
+      localFile: File
+    }
+
+    type InstaNodeThumbnails {
+      src: String
+      config_width: Int
+      config_height: Int
+    }
+
+    type InstaNodeDimensions {
+      height: Int
+      width: Int
+    }
+  `
+  createTypes(typeDefs)
+}
+
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
 

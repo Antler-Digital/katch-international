@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import Linked from './Linked';
 
-const InstagramFeed = ({ data }) => {
+const InstagramFeed = () => {
 
   const { allInstaNode } = useStaticQuery(graphql`
   query InstagramFeedQuery {
