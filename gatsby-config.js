@@ -48,11 +48,11 @@ module.exports = {
       resolve: `gatsby-source-instagram`,
       options: {
         username: !isDev ? `1450358585` : "",
-        // access_token: "a valid access token",
-        // instagram_id: "your instagram_business_account id",
-        // paginate: 100,
-        // maxPosts: 1000,
-        // hashtags: true
+        access_token: process.env.INSTAGRAM_ACCESS_TOKEN,
+        instagram_id: "17841401637572661",
+        paginate: 100,
+        maxPosts: 1000,
+        hashtags: false
       },
     },
     'gatsby-plugin-image',

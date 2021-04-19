@@ -42,7 +42,10 @@ const InstagramFeed = () => {
     <div sm={4} md={4} lg={4} key={node.id}>
       <div className="instafeed-post" style={{ lineHeight: 0 }}>
         <Linked linkTo={'http://instagram.com/p/' + node.id}>
-          <GatsbyImage image={node.localFile?.childImageSharp.gatsbyImageData} />
+          {node.localFile?.childImageSharp ?
+            <GatsbyImage image={node.localFile?.childImageSharp.gatsbyImageData} alt={node.caption} /> :
+            <img src={node.preview} width="350px" height="350px" alt={node.caption} />
+          }
         </Linked>
       </div>
     </div>
