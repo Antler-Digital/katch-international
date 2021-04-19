@@ -57,19 +57,11 @@ const Footer = props => {
                         ]} />
 
 
-                    {linksToOtherKatch.map(link => <div key={link.linkTo}>
-                        <Linked
 
-                            className={`${blackButtonClassName}`}
-                            linkTo={link.linkTo}
-                        >
-                            {link.text}
-                        </Linked>
-                    </div>)}
                 </div>
-                <div className="col-span-1 md:col-span-2 space-y-4">
-                    <div className="flex flex-col md:flex-row md:space-x-4 space-y-4">
-                        <iframe
+                <div className="col-span-1 md:col-span-2">
+                    <div className="flex flex-col sm:flex-row sm:space-x-12 space-y-6 sm:space-y-0 ">
+                        {/* <iframe
                             loading="lazy"
                             title="Google map Showing the location of the Dubai office"
                             className="w-full md:w-2/5 xl:w-1/2"
@@ -77,7 +69,7 @@ const Footer = props => {
                             allowFullScreen={false}
                             height="180"
                             frameBorder="0"
-                        />
+                        /> */}
                         <div className="flex flex-col justify-center">
                             <h4>Dubai Branch</h4>
                             <div className="text-sm text-white space-y-1">
@@ -88,17 +80,6 @@ const Footer = props => {
                                 <p>Email: info@katchthis.com</p>
                             </div>
                         </div>
-                    </div>
-                    <div className="flex flex-col md:flex-row md:space-x-4 space-y-4">
-                        <iframe
-                            loading="lazy"
-                            title="Google map Showing the location of the London office"
-                            className="w-full md:w-2/5 xl:w-1/2"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2485.7603197930894!2d-0.19218698391436734!3d51.4625568796278!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48760f7d25836479%3A0x639f26cdf488c91c!2sBluewater+House%2C+Smugglers+Way%2C+London+SW18+1ED%2C+UK!5e0!3m2!1sen!2sae!4v1546959768918" style={{ border: 0 }}
-                            allowFullScreen={false}
-                            height="180"
-                            frameBorder="0"
-                        />
                         <div className="flex flex-col justify-center">
                             <h4>London Branch</h4>
                             <div className="text-sm text-white space-y-1">
@@ -106,15 +87,27 @@ const Footer = props => {
                                 <p> London, SW3 2LY</p>
                                 <p>TEL: +44 20 8895 6383</p>
                                 <p>Email: info@katchthis.com</p>
-                                <p>Website: www.katchcommunications.com</p>
+                                <p>Website: <Linked linkTo="www.katchcommunications.com" >www.katchcommunications.com</Linked></p>
                             </div>
 
                         </div>
+                    </div>
+                    <div className="flex flex-col md:flex-row md:space-x-4 space-y-4">
+                        {/* <iframe
+                            loading="lazy"
+                            title="Google map Showing the location of the London office"
+                            className="w-full md:w-2/5 xl:w-1/2"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2485.7603197930894!2d-0.19218698391436734!3d51.4625568796278!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48760f7d25836479%3A0x639f26cdf488c91c!2sBluewater+House%2C+Smugglers+Way%2C+London+SW18+1ED%2C+UK!5e0!3m2!1sen!2sae!4v1546959768918" style={{ border: 0 }}
+                            allowFullScreen={false}
+                            height="180"
+                            frameBorder="0"
+                        /> */}
+
 
                     </div>
 
                 </div>
-                <div className="max-w-lg col-span-3 lg:col-span-1 mx-auto pt-8 lg:pt-0">
+                <div className="max-w-lg col-span-3 lg:col-span-1 pt-8 lg:pt-0">
                     <h4
                         className="mb-4  font-medium px-0 pt-0 pb-2 m-0 text-lg  leading-4 text-gray-800"
                     >
@@ -123,7 +116,7 @@ const Footer = props => {
                     <p className="text-white text-sm">
                         Job inquiries may be sent directly to <a className="text-gray-200" href="mailTo:recruitment@katchthis.com">recruitment@katchthis.com</a>. All job inquiries sent through this form will be rejected.
                     </p>
-                    <form
+                    {/* <form
                         className="w-full space-y-3 mt-4"
                         action="">
                         <input className="w-full" type="text" name="name" placeholder="Name" />
@@ -131,8 +124,20 @@ const Footer = props => {
                         <input className="w-full" type="email" name="email" placeholder="Email address" />
                         <textarea className="w-full" placeholder="Message" rows="4"></textarea>
                         <button type="submit" className="bg-white text-secondary hover:bg-black hover:text-white transition-bg duration-500 px-4 py-2">Submit</button>
-                    </form>
+                    </form> */}
                 </div>
+            </div>
+
+            <div className="max-w-screen-xl mx-auto flex md:flex-row flex-col sm:justify-center md:space-x-6 mt-4 sm:px-12 px-4">
+                {linksToOtherKatch.map(link => <div key={link.linkTo}>
+                    <Linked
+
+                        className={`${blackButtonClassName}`}
+                        linkTo={link.linkTo}
+                    >
+                        {link.text}
+                    </Linked>
+                </div>)}
             </div>
             <div className="max-w-screen-xl mx-auto flex justify-between mt-4 px-4">
                 <h5 className="mt-2 font-thin opacity-75 text-white text-sm ">&copy; Katch International {new Date().getFullYear()}</h5>

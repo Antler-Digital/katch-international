@@ -9,7 +9,7 @@ const BlogCard = ({ slug, mainImage, title, datePosted, body, category }) => {
   return (
     <Linked className="mx-auto" linkTo={`/blog/${slug}`}>
 
-      <article className="w-full h-full">
+      <article className="w-full h-full max-w-xs">
         <GatsbyImage image={mainImage.gatsbyImageData} alt={mainImage.title} />
         <div className="bg-white p-4 -mt-3">
           <h3 className="text-xl mb-2">{title}</h3>
