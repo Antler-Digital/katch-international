@@ -10,6 +10,7 @@ import SocialSection from '../components/contentful/SocialSection';
 import TwoColumnSection from '../components/contentful/TwoColumnSection';
 import TextSection from '../components/contentful/TextSection';
 import SpacerSection from '../components/contentful/SpacerSection';
+import MapSection from "../components/contentful/MapSection";
 
 const PageTemplate = ({ data: { contentfulPage } }) => {
 
@@ -29,6 +30,7 @@ const PageTemplate = ({ data: { contentfulPage } }) => {
 
 
       { sections && sections.map((section, index) => {
+        console.log(section.internal?.type)
         switch (section.internal?.type) {
           case "ContentfulThreeCardsSection":
             return <ThreeCardsSection key={`${section.id}` + index} {...section} />
@@ -46,6 +48,8 @@ const PageTemplate = ({ data: { contentfulPage } }) => {
             return <TextSection key={`${section.id}` + index} {...section} />
           case "ContentfulSpacerSection":
             return <SpacerSection key={`${section.id}` + index} {...section} />
+          case "ContentfulMapSection":
+            return <MapSection key={`${section.id}` + index} {...section} />
           default:
             break;
         }
@@ -97,6 +101,9 @@ query PageTemplateQuery($id: String) {
       }
       ... on ContentfulSpacerSection {
         ...ContentfulSpacerSectionFragment
+      }
+      ... on ContentfulMapSection {
+        ...ContentfulMapSectionFragment
       }
     }
   }

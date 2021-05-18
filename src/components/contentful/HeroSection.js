@@ -2,18 +2,27 @@ import React from 'react'
 import { graphql } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import Markdown from 'markdown-to-jsx';
+import { useHubspotForm } from '../../hooks/useHubspotForms';
 
-function HeroSection({ backgroundImage, subHeader, header, textColour, showForm, headerClasses }) {
+
+function HeroSection({ backgroundImage, subHeader, header, textColour, showForm=true, headerClasses }) {
 
 
   const colorText = textColour === "White" ? "text-white" : textColour === "Pink" ? "text-secondary" : "text-black"
 
 
+  const { loaded, error, formCreated } = useHubspotForm({
+    portalId: '4292192',
+    formId: '3ea11428-297e-4153-8c61-29892d48ec29',
+    target: '#hero-form'
+});
+
+
   return (
     <section className={`${backgroundImage ? "h-screen min-h-600" : "min-h-400"} relative bg-gradient-to-t from-black to-gray-800`}>
       <div className="h-full absolute top-0 z-10 w-full px-4 bg-black bg-opacity-25">
-        <div className={`max-w-screen-xl mx-auto  w-full h-full `}>
-          <div className={`flex flex-col justify-center ${showForm ? "md:w-1/2 md:text-left" : ""} w-full h-full text-center  ${colorText} `}>
+        <div className={`max-w-screen-xl mx-auto  w-full h-full  flex flex-wrap `}>
+          <div className={`flex flex-col justify-center ${showForm ? "w-full md:w-1/2 md:text-left mt-12 md:mt-0" : ""} w-full md:h-full text-center  ${colorText} `}>
             {header && <h1 className={`${headerClasses ? headerClasses : "text-3xl lg:text-7xl block leading-relaxed"}`}>{header}</h1>}
             {subHeader && <Markdown
               options={{
@@ -31,6 +40,12 @@ function HeroSection({ backgroundImage, subHeader, header, textColour, showForm,
                 },
               }}
             >{subHeader.subHeader}</Markdown>}
+          </div>
+          <div  className="flex items-center max-w-md mx-auto w-full md:w-1/2">
+
+            <div id="hero-form" className="bg-black w-full p-5 rounded-md border-secondary border-2">
+
+            </div>
           </div>
         </div>
       </div>
