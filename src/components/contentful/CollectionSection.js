@@ -27,9 +27,9 @@ function CollectionSection({ header, postType, showAll, totalToShow, contentfuli
     }
   `)
 
-  const clientsClasses = "grid lg:grid-cols-5 md:grid-cols-3  grid-cols-2"
+  const clientsClasses = "grid lg:grid-cols-10 md:grid-cols-8 grid-cols-4"
   const caseStudiesClasses = "grid lg:grid-cols-4 md:grid-cols-3  grid-cols-2 gap-4"
-  const blogPostsClasses = "grid md:grid-cols-3 sm:grid-cols-2 gap-4 "
+  const blogPostsClasses = "grid md:grid-cols-4 sm:grid-cols-2 gap-4"
 
   const renderCollection = () => {
     switch (postType) {

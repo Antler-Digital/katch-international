@@ -10,11 +10,14 @@ const BlogCard = ({ slug, mainImage, title, datePosted, body, category }) => {
     <Linked className="mx-auto" linkTo={`/blog/${slug}`}>
 
       <article className="w-full h-full max-w-xs">
+        <figure>
         <GatsbyImage image={mainImage.gatsbyImageData} alt={mainImage.title} />
-        <div className="bg-white p-4 -mt-3">
-          <h3 className="text-xl mb-2">{title}</h3>
-          <p className="text-sm  font-sans text-gray-500">{datePosted} | <span className="text-secondary">{category.join(", ")}</span></p>
-          <p className="text-sm font-sans text-gray-500 mt-2">{documentToPlainTextString(JSON.parse(body.raw)).slice(0, 155)}...</p>
+        </figure>
+      
+        <div className="text-left">
+          <h3 style={{minHeight:55}} className="text-lg uppercase mb-2 text-secondary">{title}</h3>
+          <p className="text-sm  font-sans text-white">{datePosted} | <span className="text-secondary">{category.join(", ")}</span></p>
+          <p className="text-sm font-sans text-white mt-2">{documentToPlainTextString(JSON.parse(body.raw)).slice(0, 140)}...</p>
         </div>
       </article>
     </Linked>
@@ -29,6 +32,7 @@ export const ContentfulBlogPostFragment = graphql`
     gatsbyImageData(
       layout: CONSTRAINED
       width: 350
+      height: 190
       quality: 90
       placeholder: BLURRED
     )
