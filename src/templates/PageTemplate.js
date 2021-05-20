@@ -30,7 +30,6 @@ const PageTemplate = ({ data: { contentfulPage } }) => {
 
 
       { sections && sections.map((section, index) => {
-        console.log(section.internal?.type)
         switch (section.internal?.type) {
           case "ContentfulThreeCardsSection":
             return <ThreeCardsSection key={`${section.id}` + index} {...section} />

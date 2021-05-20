@@ -72,7 +72,6 @@ const Nav = (props) => {
         // return window.removeEventListener('scroll', handleScroll)
     }, [])
 
-    console.log(navBar)
 
     return (
         <>

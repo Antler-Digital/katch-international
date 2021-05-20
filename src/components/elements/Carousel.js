@@ -1,8 +1,7 @@
 import React from 'react'
-import { graphql } from 'gatsby';
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import "../../css/slick.css";
+import "../../css/slick-theme.css";
 import RightChevron from '../svgs/RightChevron';
 import LeftChevron from '../svgs/LeftChevron';
 

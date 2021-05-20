@@ -6,9 +6,9 @@ import 'aos/dist/aos.css'
 const Layout = ({ children }) => {
 
   // Initialise the Animations for fade up and in
-  // useEffect(() => {
-  //   AOS.init();
-  // }, [])
+  React.useEffect(() => {
+    AOS.init();
+  }, [])
 
   return (
     <>

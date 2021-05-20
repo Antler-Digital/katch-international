@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby';
-import { GatsbyImage } from 'gatsby-plugin-image';
+import { GatsbyImage, StaticImage } from 'gatsby-plugin-image';
 import Linked from './Linked';
 
 const InstagramFeed = () => {
@@ -41,10 +41,11 @@ const InstagramFeed = () => {
   return allInstaNode && allInstaNode.edges.map(({ node }) => (
     <div sm={4} md={4} lg={4} key={node.id}>
       <div className="instafeed-post" style={{ lineHeight: 0 }}>
+        {console.log(node.preview)}
         <Linked linkTo={'http://instagram.com/p/' + node.id}>
           {node.localFile?.childImageSharp ?
             <GatsbyImage image={node.localFile?.childImageSharp.gatsbyImageData} alt={node.caption} /> :
-            <img src={node.preview} width="350px" height="350px" alt={node.caption} />
+            <StaticImage src={`${node.preview}`}  alt={node.caption} />
           }
         </Linked>
       </div>
