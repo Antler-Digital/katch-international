@@ -77,6 +77,14 @@ module.exports = {
     {
       resolve: `gatsby-plugin-postcss`
     },
+    {
+      resolve: "gatsby-plugin-hubspot",
+      options: {
+          trackingCode: "4292192",
+          respectDNT: true,
+          productionOnly: true,
+      },
+    },
     // Uncomment to add in contentful
     {
       resolve: `gatsby-source-contentful`,
