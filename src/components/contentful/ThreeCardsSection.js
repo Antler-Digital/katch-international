@@ -5,7 +5,7 @@ import { LinkedServiceCard } from './ServiceCard';
 
 function ThreeCardsSection({ cards }) {
   return (
-    <section className="grid grid-cols-1 lg:grid-cols-3" >
+    <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" >
       { cards && cards.map(card => <LinkedServiceCard key={card.id} {...card} />)}
     </section>
   )

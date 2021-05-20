@@ -42,7 +42,7 @@ export const ContentfulCaseStudyCardFragment = graphql`
       title
     }
     logoWhite {
-      gatsbyImageData(quality: 90, layout: FIXED, width: 140)
+      gatsbyImageData(quality: 90, layout: FIXED, width: 130)
       title
     }
     slug

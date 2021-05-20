@@ -141,7 +141,8 @@ const Footer = props => {
             </div>
             <div className="max-w-screen-xl mx-auto flex justify-between mt-4 px-4">
                 <h5 className="mt-2 font-thin opacity-75 text-white text-sm ">&copy; Katch International {new Date().getFullYear()}</h5>
-                <h6 className="text-xs font-thin mt-2 opacity-50 text-right ml-auto text-white hover:opacity-100"><Linked linkTo="https://antler.digital">Built by Antler Digital</Linked></h6>
+                {/* <h6 className="text-xs font-thin mt-2 opacity-50 text-right ml-auto text-white hover:opacity-100"><Linked linkTo="https://www.katchdisruption.com/">Built by Katch Distruption</Linked></h6> */}
+                <Linked className="opacity-0 pointer-events-none" linkTo="https://antler.digital">Antler Digital</Linked>
             </div>
         </footer >
     )

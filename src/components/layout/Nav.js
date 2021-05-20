@@ -10,7 +10,7 @@ import { faBars, faChevronDown, faPlus } from '@fortawesome/free-solid-svg-icons
 import { Transition } from '@headlessui/react';
 import { faFacebookF, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { SocialIcons } from '../elements/SocialIcons';
-
+import KatchLogo from '../../images/logo-katch.png'
 
 const Nav = (props) => {
 
@@ -72,6 +72,8 @@ const Nav = (props) => {
         // return window.removeEventListener('scroll', handleScroll)
     }, [])
 
+    console.log(navBar)
+
     return (
         <>
             <nav
@@ -79,7 +81,7 @@ const Nav = (props) => {
                 <div className="flex max-w-screen-lg mx-auto ">
 
                     <Linked linkTo="/" className="">
-                        <GatsbyImage image={navLogo.gatsbyImageData} alt="Katch Logo" />
+                        <img className="w-24" src={KatchLogo} alt="Katch Logo" />
                     </Linked>
 
                     <div className="hidden md:flex space-x-4 text-sm ml-auto mt-2 uppercase">
@@ -90,7 +92,7 @@ const Nav = (props) => {
                                 }
                                 return <Linked
                                     className="text-white cursor-pointer relative group"
-                                    linkTo={`${item.slug ? `/${item.slug}` : item.linkTo}`}
+                                    linkTo={`${item.slug ? `/${item.slug  === "/" ? "" : item.slug}` : item.linkTo}`}
                                     key={item.id}
                                     underline
                                 >

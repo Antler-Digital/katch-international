@@ -16,6 +16,7 @@ const Linked = ({ linkTo, children, style, className, underline = false }) => {
       </a>
     )
   }
+
   return outward ? (
     <OutboundLink
       style={style}

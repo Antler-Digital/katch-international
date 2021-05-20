@@ -23,6 +23,7 @@ export const ContentfulClientFragment = graphql`
   id
   name
   type
+  showAtTop
   logo {
     gatsbyImageData(
       layout: CONSTRAINED

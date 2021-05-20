@@ -19,7 +19,7 @@ function Carousel({ settings = {}, className, children, theme = "dark" }) {
     autoplaySpeed: 5000,
     nextArrow: <RightArrow theme={theme} />,
     prevArrow: <LeftArrow theme={theme} />,
-    // cssEase: "ease-in"
+    cssEase: "ease-in"
   };
   const settingsToUse = { ...defaultSettings, ...settings }
   return (

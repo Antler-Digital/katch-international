@@ -49,6 +49,7 @@ function CollectionSection({ header, postType, showAll, totalToShow, contentfuli
         />
       case "Clients":
         return <CollectionWrapper
+          order={true}
           className={clientsClasses}
           items={customItems ? customItems : clients.cards}
           limitTo={showAll ? false : totalToShow || false}
@@ -76,10 +77,16 @@ function CollectionSection({ header, postType, showAll, totalToShow, contentfuli
 export default CollectionSection
 
 
-const CollectionWrapper = ({ className, items, limitTo = 1, CardComponent }) => {
+const CollectionWrapper = ({ className, items, order, limitTo = 1, CardComponent }) => {
   const itemsToRender = limitTo ? items.slice(0, limitTo) : items
+
+
+  const ordered = itemsToRender.filter( item => item.showAtTop)
+  const rest = itemsToRender.filter( item => !item.showAtTop)
+
+  const arrayToRender = [...ordered, ...rest ]
   return <div className={className}>
-    {items && itemsToRender.map((item, index) => <CardComponent key={item.id} {...item} />)}
+    {arrayToRender && arrayToRender.map((item, index) => <CardComponent key={item.id} {...item} />)}
   </div>
 }
 

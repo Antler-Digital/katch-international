@@ -98,7 +98,7 @@ export default function HubspotForm() {
     <form
       data-form-id={formId}
       data-portal-id={portalId}
-      className="space-y-4"
+      className="space-y-4 mx-auto"
       onSubmit={handleSubmit(onSubmit)}>
       {/* register your input into the hook by invoking the "register" function */}
       <p>Enter your details below - we will be in touch shortly.</p>
