@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby';
 import { GatsbyImage, StaticImage } from 'gatsby-plugin-image';
 import Linked from './Linked';
-
+import { LazyLoadComponent } from 'react-lazy-load-image-component';
 const InstagramFeed = () => {
 
   const { allInstaNode } = useStaticQuery(graphql`
@@ -45,7 +45,9 @@ const InstagramFeed = () => {
         <Linked linkTo={'http://instagram.com/p/' + node.id}>
           {node.localFile?.childImageSharp ?
             <GatsbyImage image={node.localFile?.childImageSharp.gatsbyImageData} alt={node.caption} /> :
-            <StaticImage src={`${node.preview}`}  alt={node.caption} />
+            <LazyLoadComponent delayTime={1000} >
+              <img src={`${node.preview}`} height={350} width={350} alt={node.caption} />
+              </LazyLoadComponent>
           }
         </Linked>
       </div>

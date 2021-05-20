@@ -55,6 +55,7 @@ const BlogPostTemplate = ({ data: { contentfulBlogPost } }) => {
         headerClasses="text-3xl md:text-4xl lg:text-5xl block leading-relaxed"
         subHeader={{ subHeader: `## __by ${author} | ${datePosted} __` }}
         textColour="Pink"
+        showForm={false}
       />
 
       <section className="bg-gray-100 pb-12">

@@ -38,6 +38,7 @@ const CaseStudyTemplate = ({ data: { contentfulCaseStudy } }) => {
         header={"CASE STUDY"}
         subHeader={{ subHeader: `## __${title.toUpperCase()}__` }}
         textColour="Pink"
+        showForm={false}
       />
       <section className="grid grid-cols-1 md:grid-cols-2 max-w-screen-xl mx-auto py-6 md:py-12 lg:py-24 px-4">
         <div className="flex flex-col justify-center md:order-first order-last">
