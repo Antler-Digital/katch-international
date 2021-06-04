@@ -44,17 +44,17 @@ module.exports = {
     //     // other options
     //   },
     // },
-    {
-      resolve: `gatsby-source-instagram`,
-      options: {
-        username: !isDev ? `1450358585` : "",
-        access_token: process.env.INSTAGRAM_ACCESS_TOKEN,
-        instagram_id: "17841401637572661",
-        paginate: 100,
-        maxPosts: 1000,
-        hashtags: false
-      },
-    },
+    // {
+    //   resolve: `gatsby-source-instagram`,
+    //   options: {
+    //     username: !isDev ? `1450358585` : "",
+    //     access_token: process.env.INSTAGRAM_ACCESS_TOKEN,
+    //     instagram_id: "17841401637572661",
+    //     paginate: 100,
+    //     maxPosts: 1000,
+    //     hashtags: false
+    //   },
+    // },
     'gatsby-plugin-image',
     {
       resolve: `gatsby-source-filesystem`,

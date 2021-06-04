@@ -1,6 +1,5 @@
 import { graphql } from 'gatsby';
 import React from 'react'
-import CallToAction from './CallToAction';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import Linked from '../elements/Linked';
 

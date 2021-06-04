@@ -1,6 +1,5 @@
 import React from 'react'
-import { graphql, useStaticQuery } from 'gatsby';
-import { GatsbyImage, StaticImage } from 'gatsby-plugin-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import Linked from './Linked';
 const InstagramFeed = ({ posts }) => {
 

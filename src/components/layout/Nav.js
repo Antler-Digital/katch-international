@@ -4,7 +4,6 @@ import Linked from '../elements/Linked'
 import UseBodyLock from '../../hooks/useBodyLock';
 // import { SocialIcons } from '../elements/SocialIcons';
 import { useStaticQuery, graphql } from 'gatsby';
-import { GatsbyImage } from 'gatsby-plugin-image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faChevronDown, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Transition } from '@headlessui/react';

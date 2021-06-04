@@ -2,7 +2,6 @@ import React from 'react'
 import { graphql } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import Markdown from 'markdown-to-jsx';
-import { useHubspotForm } from '../../hooks/useHubspotForms';
 import HubspotForm from '../forms/HubspotForm';
 
 
