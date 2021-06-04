@@ -129,7 +129,7 @@ const Nav = (props) => {
                                     {item.header}
                                     <ul className=" ml-4 space-y-3 mt-4 mb-4">
                                         {item.menuItems.map(item => <li key={item.title}>
-                                            <Linked linkTo={`/${item.slug}`}>
+                                            <Linked linkTo={`${item.slug ? `/${item.slug  === "/" ? "" : item.slug}` : item.linkTo}`}>
                                                 {item.title}
                                             </Linked>
                                         </li>)}
@@ -138,7 +138,7 @@ const Nav = (props) => {
                             }
                             return <Linked
                                 className="text-white cursor-pointer relative group"
-                                linkTo={`/${item.slug}`}
+                                linkTo={`${item.slug ? `/${item.slug  === "/" ? "" : item.slug}` : item.linkTo}`}
                                 key={item.id}
                             >
                                 {item.title || item.text}

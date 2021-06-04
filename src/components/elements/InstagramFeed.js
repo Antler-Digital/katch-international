@@ -2,55 +2,55 @@ import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby';
 import { GatsbyImage, StaticImage } from 'gatsby-plugin-image';
 import Linked from './Linked';
-import { LazyLoadComponent } from 'react-lazy-load-image-component';
-const InstagramFeed = () => {
+const InstagramFeed = ({ posts }) => {
 
-  const { allInstaNode } = useStaticQuery(graphql`
-  query InstagramFeedQuery {
-    allInstaNode(limit: 9, sort: {fields: timestamp, order: DESC}) {
-      edges {
-        node {
-          id
-          likes
-          comments
-          mediaType
-          preview
-          original
-          timestamp
-          caption
-          thumbnails {
-            src
-          }
-          localFile {
-            childImageSharp {
-              gatsbyImageData(
-                quality: 90
-                layout: CONSTRAINED
-                width: 350
-                height: 350
-                placeholder: BLURRED
-              )
-            }
-          }
-        }
-      }
-    }
-  }
+  // const { allInstaNode } = useStaticQuery(graphql`
+  // query InstagramFeedQuery {
+  //   allInstaNode(limit: 9, sort: {fields: timestamp, order: DESC}) {
+  //     edges {
+  //       node {
+  //         id
+  //         likes
+  //         comments
+  //         mediaType
+  //         preview
+  //         original
+  //         timestamp
+  //         caption
+  //         thumbnails {
+  //           src
+  //         }
+  //         localFile {
+  //           childImageSharp {
+  //             gatsbyImageData(
+  //               quality: 90
+  //               layout: CONSTRAINED
+  //               width: 350
+  //               height: 350
+  //               placeholder: BLURRED
+  //             )
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
   
-  `)
-  return allInstaNode && allInstaNode.edges.map(({ node }) => (
-    <div sm={4} md={4} lg={4} key={node.id}>
-      <div className="instafeed-post" style={{ lineHeight: 0 }}>
-        {console.log(node.preview)}
-        <Linked linkTo={'http://instagram.com/p/' + node.id}>
-          {node.localFile?.childImageSharp ?
-            <GatsbyImage image={node.localFile?.childImageSharp.gatsbyImageData} alt={node.caption} /> :
-            <LazyLoadComponent delayTime={1000} >
-              <img src={`${node.preview}`} height={350} width={350} alt={node.caption} />
-              </LazyLoadComponent>
+  // `)
+  return posts && posts.map(({ image, caption, postLink }) => (
+    <div key={postLink} className="relative   ">
+      <div  style={{ lineHeight: 0 }}>
+        <Linked linkTo={postLink}>
+          {image && 
+            <GatsbyImage image={image.gatsbyImageData} alt={image.title} /> 
           }
         </Linked>
+        
+ 
       </div>
+      <div className="absolute top-0 h-full w-full group hover:">
+        { caption?.text && <p className="absolute top-[100%] p-4 bg-secondary leading-tight opacity-0 pointer-events-none group-hover:top-0 w-full py-8 transition-all duration-300 group-hover:opacity-100">{ caption.text} </p> }
+        </div>
     </div>
   ))
 }

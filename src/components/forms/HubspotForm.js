@@ -88,7 +88,7 @@ export default function HubspotForm() {
 
 
 
-  const inputClass = "pl-3 pr-2 focus:outline-none border-none focus:ring-4 !ring-secondary "
+  const inputClass = "pl-3 pr-2 focus:outline-none border-none focus:ring-4 !ring-secondary text-primary "
   return (
     formSubmitted.submitted ? <div>
       {formSubmitted.success ? 
@@ -96,13 +96,13 @@ export default function HubspotForm() {
       : <p>Something went wrong. Please try again later or call us directly.</p>}
     </div> : 
     <form
-      data-form-id={formId}
-      data-portal-id={portalId}
-      className="space-y-4 mx-auto"
+      // data-form-id={formId}
+      // data-portal-id={portalId}
+      className="space-y-4 block relative mx-auto "
       onSubmit={handleSubmit(onSubmit)}>
       {/* register your input into the hook by invoking the "register" function */}
       <p>Enter your details below - we will be in touch shortly.</p>
-      <div className="space-x-4 flex">
+      <div className="space-y-4 sm:space-y-0 sm:space-x-4 flex flex-col sm:flex-row w-full">
         <input className={`${inputClass}`} type="text" placeholder="First" {...register("firstname", { required: true })} />
         <input className={`${inputClass}`} type="text" placeholder="Last" {...register("lastname")} />
       </div>

@@ -41,10 +41,13 @@ const CaseStudyTemplate = ({ data: { contentfulCaseStudy } }) => {
         showForm={false}
       />
       <section className="grid grid-cols-1 md:grid-cols-2 max-w-screen-xl mx-auto py-6 md:py-12 lg:py-24 px-4">
-        <div className="flex flex-col justify-center md:order-first order-last">
-          <Carousel settings={settings} className="max-w-xxs md:max-w-md mx-auto">
-            {carouselImages && carouselImages.map(image => <div key={image} className="max-w-xs w-full">
+        <div className="flex flex-col justify-center md:order-first order-last ">
+          <Carousel settings={settings} className="max-w-[90vw] md:max-w-md w-full mx-auto h-full">
+            {carouselImages && carouselImages.map(image => <div key={image.title} className="w-full min-w-[200px] h-full flex">
+              <div className="max-w-xs md:max-w-xs lg:max-w-sm mx-auto min-h-[400px] md:min-h-[700px] flex items-center">
               <GatsbyImage className="h-full w-full mx-auto my-0" style={{ display: 'block' }} image={image.gatsbyImageData} alt={image.title} />
+              </div>
+             
             </div>)}
           </Carousel>
         </div>
@@ -60,8 +63,8 @@ const CaseStudyTemplate = ({ data: { contentfulCaseStudy } }) => {
 }
 
 
-const RightArrow = (props) => <RightChevron {...props} className={`text-black hover:text-secondary cursor-pointer -mt-4 -right-10  md:right-10 lg:-right-5  z-front absolute top-1/2 transform scale-75 md:scale-100`} />
-const LeftArrow = (props) => <LeftChevron {...props} className={`text-black hover:text-secondary cursor-pointer -mt-4 -left-10  md:left-10 lg:-left-10  z-front absolute top-1/2 transform scale-75 md:scale-100`} />
+const RightArrow = (props) => <RightChevron {...props} className={`text-secondary sm:text-black hover:text-secondary cursor-pointer -mt-4 right-0 sm:-right-10  md:right-10 lg:-right-5  z-front absolute top-1/2 transform scale-75 md:scale-100`} />
+const LeftArrow = (props) => <LeftChevron {...props} className={`text-secondary sm:text-black hover:text-secondary cursor-pointer -mt-4 left-0 sm:-left-10  md:left-10 lg:-left-10  z-front absolute top-1/2 transform scale-75 md:scale-100`} />
 
 
 export const CaseStudyQuery = graphql`
