@@ -39,7 +39,7 @@ function HeroSection({ backgroundImage, subHeader, header, textColour, showForm 
         </div>
       </div>}
       <div className="h-full absolute top-0 z-10 w-full sm:px-4 bg-black bg-opacity-25" />
-      { backgroundImage ? <GatsbyImage className="absolute h-full w-full top-0" image={backgroundImage.gatsbyImageData} alt={backgroundImage.title} /> : <div></div>}
+      { backgroundImage ? <GatsbyImage className="absolute h-full w-full top-0" style={{position: 'absolute'}} image={backgroundImage.gatsbyImageData} alt={backgroundImage.title} /> : <div></div>}
 
 
     </section>
