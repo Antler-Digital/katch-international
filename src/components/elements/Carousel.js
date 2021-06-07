@@ -31,5 +31,5 @@ function Carousel({ settings = {}, className, children, theme = "dark" }) {
 export default Carousel
 
 
-const RightArrow = (props) => <RightChevron {...props} className={`${props.theme === "dark" ? "text-white" : "text-black"} hover:text-secondary cursor-pointer -mt-4 right-12 sm:right-12 md:right-24 lg:right-20 xl:right-20 z-front absolute top-1/2`} />
-const LeftArrow = (props) => <LeftChevron {...props} className={`${props.theme === "dark" ? "text-white" : "text-black"} hover:text-secondary cursor-pointer -mt-4 left-12 sm:left-12 md:left-24 lg:left-20 xl:left-20 z-front absolute top-1/2`} />
+const RightArrow = (props) => <RightChevron {...props} className={`${props.theme === "dark" ? "text-white" : "text-black"} hover:text-secondary cursor-pointer -mt-4 right-2 sm:right-12 md:right-24 lg:right-20 xl:right-20 z-front absolute top-1/2`} />
+const LeftArrow = (props) => <LeftChevron {...props} className={`${props.theme === "dark" ? "text-white" : "text-black"} hover:text-secondary cursor-pointer -mt-4 left-2 sm:left-12 md:left-24 lg:left-20 xl:left-20 z-front absolute top-1/2`} />

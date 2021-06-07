@@ -5,16 +5,16 @@ import Markdown from 'markdown-to-jsx';
 import HubspotForm from '../forms/HubspotForm';
 
 
-function HeroSection({ backgroundImage, subHeader, header, textColour, showForm = true, headerClasses }) {
+function HeroSection({ backgroundImage, subHeader, header, textColour, showForm = true, headerClasses, centerHeading}) {
 
 
   const colorText = textColour === "White" ? "text-white" : textColour === "Pink" ? "text-secondary" : "text-black"
 
   return (
-    <section className={`${backgroundImage ? "h-full md:h-screen min-h-600" : "min-h-400"} overflow-hidden relative bg-gradient-to-t from-black to-gray-800 `}>
+    <section className={`${backgroundImage ? "h-full md:h-screen min-h-[600px]" : "min-h-[300px] md:min-h-[400px]"} overflow-hidden relative bg-gradient-to-t from-black to-gray-800 max-h-[900px] ${(centerHeading || !showForm) && 'flex items-center'}`}>
       <div className={`max-w-screen-xl mx-auto  w-full h-full  flex flex-wrap relative z-20`}>
         <div className={`flex flex-col justify-center ${showForm ? "w-full md:w-1/2 md:text-left mt-24 mb-16 md:mt-0" : ""} w-full md:h-full text-center px-2  ${colorText} `}>
-          {header && <h1 className={`${headerClasses ? headerClasses : "text-3xl lg:text-7xl block leading-relaxed"}`}>{header}</h1>}
+          {header && <h1 className={`${headerClasses ? headerClasses : "text-3xl sm:text-6xl lg:text-7xl block leading-relaxed"}`}>{header}</h1>}
           {subHeader && <Markdown
             options={{
               overrides: {

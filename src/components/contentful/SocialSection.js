@@ -10,7 +10,7 @@ function SocialSection({ header, callToAction, contentfulid, posts }) {
       <div className="text-center max-w-screen-lg mx-auto px-4">
         {header && <h2 className="text-7xl mb-8 leading-normal text-white bg-secondary px-4 py-1 inline-block text-center">{header}</h2>}
       </div>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 max-w-screen-lg mx-auto px-4">
+      <div className="grid sm:grid-cols-3 lg:grid-cols-3 max-w-screen-lg mx-auto px-4">
         <InstagramFeed posts={posts} />
       </div>
       { callToAction && <CallToAction className="mt-12 relative z-10" {...callToAction} />}

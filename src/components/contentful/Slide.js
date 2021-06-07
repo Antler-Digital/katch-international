@@ -16,7 +16,7 @@ function Slide({ body, header, image, callToAction }) {
     <section className="min-h-600 relative">
       <GatsbyImage className="min-h-600 h-screen" image={image.gatsbyImageData} alt={image.title} />
       <div className="w-full h-full absolute top-0 z-front">
-        <div data-aos="fade-in" className="w-full md:w-1/2 xl:w-1/3 md:ml-auto text-white flex h-full items-center justify-center text-center md:text-left md:justify-start">
+        <div data-aos="fade-in" className="w-full md:w-1/2 xl:w-1/3 md:ml-auto text-white flex h-full items-center justify-center text-center md:text-left md:justify-start px-4 md:px-0">
           <div className="max-w-sm" >
             {header && <h2>{header}</h2>}
             {body && <Markdown

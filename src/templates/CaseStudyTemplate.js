@@ -39,10 +39,11 @@ const CaseStudyTemplate = ({ data: { contentfulCaseStudy } }) => {
         subHeader={{ subHeader: `## __${title.toUpperCase()}__` }}
         textColour="Pink"
         showForm={false}
+        centerHeading={true}
       />
-      <section className="grid grid-cols-1 md:grid-cols-2 max-w-screen-xl mx-auto py-6 md:py-12 lg:py-24 px-4">
+      <section className="grid grid-cols-1 md:grid-cols-2 max-w-screen-xl mx-auto py-6 md:py-12 lg:py-24 px-4 gap-y-10">
         <div className="flex flex-col justify-center md:order-first order-last ">
-          <Carousel settings={settings} className="max-w-[90vw] md:max-w-md w-full mx-auto h-full">
+          <Carousel settings={settings} className="max-w-[90vw] md:max-w-md w-full mx-auto ">
             {carouselImages && carouselImages.map(image => <div key={image.title} className="w-full min-w-[200px] h-full flex">
               <div className="max-w-xs md:max-w-xs lg:max-w-sm mx-auto min-h-[400px] md:min-h-[700px] flex items-center">
               <GatsbyImage className="h-full w-full mx-auto my-0" style={{ display: 'block' }} image={image.gatsbyImageData} alt={image.title} />

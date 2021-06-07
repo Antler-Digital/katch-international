@@ -27,9 +27,9 @@ export const ContentfulClientFragment = graphql`
   logo {
     gatsbyImageData(
       layout: CONSTRAINED
-      width: 150
+      width: 100
       placeholder: TRACED_SVG
-      quality: 90
+      quality: 60
     )
     title
     file {
