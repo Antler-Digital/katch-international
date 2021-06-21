@@ -122,22 +122,19 @@ module.exports = {
       zIndex: {
         "front": 99999,
         "back": -99999
-      }
-    }
-  },
-  variants: {
-    extend: {
-      backgroundColor: ['group-focus', 'active'],
-      borderColor: ['group-focus'],
-      boxShadow: ['group-focus'],
-      opacity: ['group-focus'],
-      textColor: ['group-focus', 'active'],
-      textDecoration: ['group-focus'],
-      width: ['group-hover'],
-      fontSize: ['group-hover'],
-      scale: ['group-hover'],
-      inset: ['group-hover'],
-      height: ['group-hover'],
+      },
+      typography: theme => ({
+        white: {
+          css: {
+            a: {
+              color: theme('colors.white'),
+              '&:hover': {
+                color: theme('colors.secondary')
+              }
+            }
+          }
+        }
+      })
     }
   },
   plugins: [

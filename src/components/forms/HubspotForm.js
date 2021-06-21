@@ -22,7 +22,15 @@ export default function HubspotForm() {
   const pageName = isBrowser ? document.title : null;
 
   const onSubmit = async data => {
-    console.log(data)
+
+    if (data.company !== "") {
+        return setFormSubmitted({
+          success: true,
+          message: "Thanks for submitting.",
+          submitted: true
+        })
+    }
+
     const finalData = {
       submittedAt: Date.now(),
       fields: [
@@ -58,9 +66,6 @@ export default function HubspotForm() {
       },
     }
 
-    console.log(finalData)
-
-
 
     const url = `https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/${formId}`
 
@@ -82,7 +87,6 @@ export default function HubspotForm() {
         submitted: true
       })
     }
-    console.log(response)
   }
 
 
@@ -90,7 +94,7 @@ export default function HubspotForm() {
 
   const inputClass = "pl-3 pr-2 focus:outline-none border-none focus:ring-4 !ring-secondary text-primary "
   return (
-    formSubmitted.submitted ? <div>
+    formSubmitted.submitted ? <div className="min-h-[400px]">
       {formSubmitted.success ? 
       <p>{formSubmitted.inlineMessage || 'Thank you for submitting the form we will be in touch soon.'}</p> 
       : <p>Something went wrong. Please try again later or call us directly.</p>}
@@ -98,10 +102,12 @@ export default function HubspotForm() {
     <form
       // data-form-id={formId}
       // data-portal-id={portalId}
-      className="space-y-4 block relative mx-auto "
+      className="space-y-4 block relative mx-auto min-h-[400px]"
       onSubmit={handleSubmit(onSubmit)}>
       {/* register your input into the hook by invoking the "register" function */}
       <p>Enter your details below - we will be in touch shortly.</p>
+      <input className="hidden" {...register("company")} />
+      <label htmlFor="company" className="hidden">Don't fill this out if human.</label>
       <div className="space-y-4 sm:space-y-0 sm:space-x-4 flex flex-col sm:flex-row w-full">
         <input className={`${inputClass}`} type="text" placeholder="First" {...register("firstname", { required: true })} />
         <input className={`${inputClass}`} type="text" placeholder="Last" {...register("lastname")} />
