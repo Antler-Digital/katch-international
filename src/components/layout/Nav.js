@@ -102,7 +102,7 @@ const Nav = (props) => {
 						<Linked linkTo="https://www.instagram.com/katch_int/" >
 							<FontAwesomeIcon className={`text-xl text-white hover:text-secondary`} icon={faInstagram} />
 						</Linked>
-						<Linked linkTo="mailto:info@katchthis.com" className="hover:bg-primary text-white hover:text-secondary bg-secondary px-2 py-2 -mt-2 h-9 rounded-full">
+						<Linked linkTo="mailto:info@katchthis.com" className="hover:bg-primary text-white hover:text-secondary bg-secondary px-2 py-2 -mt-2 h-9 w-9 rounded-full">
 							<FontAwesomeIcon className={` text-xl `} icon={faEnvelope} />
 						</Linked>
 					</div>

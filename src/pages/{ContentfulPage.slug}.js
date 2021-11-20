@@ -30,6 +30,7 @@ const PageTemplate = ({ data: { contentfulPage } }) => {
         metaDescription={metaDescription}
         metaImage={metaImage?.gatsbyImageData?.images?.fallback?.src}
       />
+      {metaTitle && <h1 className="opacity-0 absolute">{metaTitle}</h1>}
       {sections && sections.map((section, index) => {
         switch (section.internal?.type) {
           case "ContentfulThreeCardsSection":
