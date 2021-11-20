@@ -16,9 +16,7 @@ query HomePageQuery {
     slug
     metaTitle
     metaImage {
-      fixed(width: 400) {
-        src
-      }
+      gatsbyImageData(width: 400, layout: FIXED)
       title
     }
     metaDescription {

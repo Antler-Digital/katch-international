@@ -49,7 +49,11 @@ const BlogPostTemplate = ({ data: { contentfulBlogPost } }) => {
 
   return (
     <Layout>
-      <SEO title={metaTitle || title} metaDescription={metaDescription} metaImage={metaImage?.fixed?.src} />
+      <SEO
+        title={metaTitle || title}
+        metaDescription={metaDescription}
+        metaImage={metaImage?.gatsbyImageData?.images?.fallback?.src}
+      />
       <HeroSection
         header={title}
         headerClasses="text-3xl md:text-4xl lg:text-5xl block leading-relaxed"
@@ -82,9 +86,7 @@ query BlogPostQuery($id: String) {
     slug
     metaTitle
     metaImage {
-      fixed(width: 400) {
-        src
-      }
+      gatsbyImageData(width: 400, layout: FIXED)
       title
     }
     metaDescription {

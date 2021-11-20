@@ -4,24 +4,13 @@ import ClientCard from './ClientCard';
 import BlogCard from './BlogCard';
 import CaseStudyCard from './CaseStudyCard';
 
-function CollectionSection({ header, postType, showAll, totalToShow, contentfulid, customItems = false, lightTheme = false }) {
+function CollectionSection({ header, postType, showAll, totalToShow, contentfulid, customItems = false, lightTheme = false, items }) {
 
-
-  const { blogPosts, caseStudies, clients } = useStaticQuery(graphql`
+  const { blogPosts } = useStaticQuery(graphql`
       query Collections {
-        caseStudies: allContentfulCaseStudy(sort: {fields: publishedDate, order: ASC}) {
-          cards: nodes {
-          ...ContentfulCaseStudyCardFragment
-        }
-      }
       blogPosts: allContentfulBlogPost(sort: {fields: datePosted, order: DESC}) {
         cards: nodes {
           ...ContentfulBlogPostFragment
-        }
-      }
-      clients: allContentfulClient {
-        cards: nodes {
-          ...ContentfulClientFragment
         }
       }
     }
@@ -43,7 +32,7 @@ function CollectionSection({ header, postType, showAll, totalToShow, contentfuli
       case "Case Studies":
         return <CollectionWrapper
           className={caseStudiesClasses}
-          items={customItems ? customItems : caseStudies.cards}
+          items={customItems ? customItems : items}
           limitTo={showAll ? false : totalToShow || false}
           CardComponent={(props) => <CaseStudyCard {...props} />}
         />
@@ -51,7 +40,7 @@ function CollectionSection({ header, postType, showAll, totalToShow, contentfuli
         return <CollectionWrapper
           order={true}
           className={clientsClasses}
-          items={customItems ? customItems : clients.cards}
+          items={customItems ? customItems : items}
           limitTo={showAll ? false : totalToShow || false}
           CardComponent={(props) => <ClientCard {...props} />}
         />
@@ -81,10 +70,10 @@ const CollectionWrapper = ({ className, items, order, limitTo = 1, CardComponent
   const itemsToRender = limitTo ? items.slice(0, limitTo) : items
 
 
-  const ordered = itemsToRender.filter( item => item.showAtTop)
-  const rest = itemsToRender.filter( item => !item.showAtTop)
+  const ordered = itemsToRender.filter(item => item.showAtTop)
+  const rest = itemsToRender.filter(item => !item.showAtTop)
 
-  const arrayToRender = [...ordered, ...rest ]
+  const arrayToRender = [...ordered, ...rest]
   return <div className={className}>
     {arrayToRender && arrayToRender.map((item, index) => <CardComponent key={item.id} {...item} />)}
   </div>
@@ -100,6 +89,17 @@ export const ContentfulCollectionSectionFragment = graphql`
       contentfulid
       postType
       showAll
+      items {
+        # ... on ContentfulBlogPost {
+        #   ...ContentfulBlogPostCardFragment
+        # }
+        ... on ContentfulCaseStudy {
+          ...ContentfulCaseStudyCardFragment
+        }
+        ... on ContentfulClient {
+          ...ContentfulClientFragment
+        }
+      }
       totalToShow
   }
 

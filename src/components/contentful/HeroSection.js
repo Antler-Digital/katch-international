@@ -41,7 +41,7 @@ function HeroSection({ backgroundImage, subHeader, header, textColour, showForm 
       {showForm && <div
         data-aos="fade-left"
         data-aos-duration="1000"
-        className="relative z-20 md:absolute right-0 bottom-0 py-12 md:py-16 xl:py-24 flex items-center max-w-md md:max-w-lg xl:max-w-xl mx-auto w-full md:w-1/2 bg-black text-white ">
+        className="relative z-20 md:absolute right-0 bottom-0 py-8 md:py-12 xl:py-16 flex items-center max-w-md md:max-w-lg xl:max-w-[450px] mx-auto w-full md:w-1/2 bg-black text-white ">
         <div className="px-4 mx-auto">
           <HubspotForm />
         </div>

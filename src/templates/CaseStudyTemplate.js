@@ -33,7 +33,11 @@ const CaseStudyTemplate = ({ data: { contentfulCaseStudy } }) => {
 
   return (
     <Layout>
-      <SEO title={metaTitle || title} metaDescription={metaDescription} metaImage={metaImage?.fixed?.src} />
+      <SEO 
+        title={metaTitle || title} 
+        metaDescription={metaDescription}     
+        metaImage={metaImage?.gatsbyImageData?.images?.fallback?.src}
+      />
       <HeroSection
         header={"CASE STUDY"}
         subHeader={{ subHeader: `## __${title.toUpperCase()}__` }}
@@ -76,9 +80,7 @@ query CaseStudyQuery($id: String) {
     slug
     metaTitle
     metaImage {
-      fixed(width: 400) {
-        src
-      }
+      gatsbyImageData(width: 400, layout: FIXED)
       title
     }
     metaDescription {

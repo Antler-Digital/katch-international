@@ -25,11 +25,12 @@ const PageTemplate = ({ data: { contentfulPage } }) => {
 
   return (
     <Layout>
-      <SEO title={metaTitle || title} metaDescription={metaDescription} metaImage={metaImage?.fixed?.src} />
-      {/* Content goes here */}
-
-
-      { sections && sections.map((section, index) => {
+      <SEO
+        title={metaTitle || title}
+        metaDescription={metaDescription}
+        metaImage={metaImage?.gatsbyImageData?.images?.fallback?.src}
+      />
+      {sections && sections.map((section, index) => {
         switch (section.internal?.type) {
           case "ContentfulThreeCardsSection":
             return <ThreeCardsSection key={`${section.id}` + index} {...section} />
@@ -68,9 +69,7 @@ query PageTemplateQuery($id: String) {
     slug
     metaTitle
     metaImage {
-      fixed(width: 400) {
-        src
-      }
+      gatsbyImageData(width: 400, layout: FIXED)
       title
     }
     metaDescription {
