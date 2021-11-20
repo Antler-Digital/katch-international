@@ -37,7 +37,7 @@ export const ContentfulServiceCardFragment = graphql`
       gatsbyImageData(
         width: 400
         placeholder: BLURRED
-        quality: 90
+        quality: 80
         layout: FULL_WIDTH
       )
     }

@@ -61,9 +61,9 @@ const PageTemplate = ({ data: { contentfulPage } }) => {
 }
 
 
-export const PageTemplateQuery = graphql`
-query PageTemplateQuery($id: String) {
-  contentfulPage(contentful_id: {eq: $id}) {
+export const PagesQuery = graphql`
+query ($id: String) {
+  contentfulPage(id: { eq: $id }) {
     id
     title
     slug

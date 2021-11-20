@@ -1,15 +1,15 @@
 import React from "react"
-import Layout from "../components/layout/Layout"
-import SEO from "../components/SEO"
+import Layout from "../../components/layout/Layout"
+import SEO from "../../components/SEO"
 import { graphql } from 'gatsby';
-import HeroSection from '../components/contentful/HeroSection';
-import CollectionSection from '../components/contentful/CollectionSection';
+import HeroSection from '../../components/contentful/HeroSection';
+import CollectionSection from '../../components/contentful/CollectionSection';
 import { GatsbyImage } from 'gatsby-plugin-image';
-import Carousel from '../components/elements/Carousel';
+import Carousel from '../../components/elements/Carousel';
 import { renderRichText } from "gatsby-source-contentful/rich-text"
-import RichTextOptions from '../components/rich-text/RichTextOptions';
-import RightChevron from '../components/svgs/RightChevron';
-import LeftChevron from '../components/svgs/LeftChevron';
+import RichTextOptions from '../../components/rich-text/RichTextOptions';
+import RightChevron from '../../components/svgs/RightChevron';
+import LeftChevron from '../../components/svgs/LeftChevron';
 
 const CaseStudyTemplate = ({ data: { contentfulCaseStudy } }) => {
 
@@ -74,13 +74,13 @@ const LeftArrow = (props) => <LeftChevron {...props} className={`text-secondary 
 
 export const CaseStudyQuery = graphql`
 query CaseStudyQuery($id: String) {
-  contentfulCaseStudy(contentful_id: {eq: $id}) {
+  contentfulCaseStudy(id: {eq: $id}) {
     id
     title
     slug
     metaTitle
     metaImage {
-      gatsbyImageData(width: 400, layout: FIXED)
+      gatsbyImageData(width: 248, layout: FIXED)
       title
     }
     metaDescription {

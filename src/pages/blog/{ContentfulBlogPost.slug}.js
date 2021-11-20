@@ -1,14 +1,13 @@
 import React from "react"
-import Layout from "../components/layout/Layout"
-import SEO from "../components/SEO"
+import Layout from "../../components/layout/Layout"
+import SEO from "../../components/SEO"
 import { graphql } from 'gatsby';
-import HeroSection from '../components/contentful/HeroSection';
-import { renderRichText } from "gatsby-source-contentful/rich-text"
-import RichTextOptions from '../components/rich-text/RichTextOptions';
+import HeroSection from '../../components/contentful/HeroSection';
+import RichTextOptions from '../../components/rich-text/RichTextOptions';
 import { GatsbyImage } from "gatsby-plugin-image";
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS } from "@contentful/rich-text-types"
-import Video from "../components/contentful/Video";
+import Video from "../../components/contentful/Video";
 
 const BlogPostTemplate = ({ data: { contentfulBlogPost } }) => {
 
@@ -81,12 +80,12 @@ const BlogPostTemplate = ({ data: { contentfulBlogPost } }) => {
 
 export const BlogPostQuery = graphql`
 query BlogPostQuery($id: String) {
-  contentfulBlogPost(contentful_id: {eq: $id}) {
+  contentfulBlogPost(id: {eq: $id}) {
     title
     slug
     metaTitle
     metaImage {
-      gatsbyImageData(width: 400, layout: FIXED)
+      gatsbyImageData(width: 248, layout: FIXED)
       title
     }
     metaDescription {
