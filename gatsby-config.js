@@ -37,7 +37,7 @@ console.log('process.env.CONTENTFUL_ACCESS_TOKEN', process.env.CONTENTFUL_ACCESS
 console.log('process.env.GATSBY_IS_PREVIEW', process.env.GATSBY_IS_PREVIEW)
 
 // handle the preview environments
-if (process.env.GATSBY_IS_PREVIEW) {
+if (process.env.CONTENTFUL_HOST) {
   console.log('is setting host')
   contentfulConfig.host = 'preview.contentful.com';
   contentfulConfig.accessToken = process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN;
