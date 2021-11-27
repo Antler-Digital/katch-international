@@ -27,10 +27,10 @@ const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
 const isDev = getEnv() !== 'production'
 
 const contentfulConfig = {
-    spaceId: `b08ueidkuu92`,
-    // Learn about environment variables: https://gatsby.dev/env-vars
-    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-  }
+  spaceId: `b08ueidkuu92`,
+  // Learn about environment variables: https://gatsby.dev/env-vars
+  accessToken: process.env.CONTENTFUL_HOST ? process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN : process.env.CONTENTFUL_ACCESS_TOKEN,
+}
 // handle the preview environments
 if (process.env.CONTENTFUL_HOST) {
   contentfulConfig.host = process.env.CONTENTFUL_HOST;
@@ -45,7 +45,7 @@ module.exports = {
     siteUrl
   },
   plugins: [
-    
+
     // {
     //   resolve: `gatsby-plugin-google-analytics`,
     //   options: {
@@ -91,9 +91,9 @@ module.exports = {
     {
       resolve: "gatsby-plugin-hubspot",
       options: {
-          trackingCode: "4292192",
-          respectDNT: true,
-          productionOnly: true,
+        trackingCode: "4292192",
+        respectDNT: true,
+        productionOnly: true,
       },
     },
     // Uncomment to add in contentful
