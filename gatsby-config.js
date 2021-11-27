@@ -26,14 +26,14 @@ const isNetlifyProduction = NETLIFY_ENV === 'production';
 const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
 const isDev = getEnv() !== 'production'
 
-const contentfulConfig = {
+let contentfulConfig = {
   spaceId: process.env.CONTENTFUL_SPACE_ID,
   // Learn about environment variables: https://gatsby.dev/env-vars
-  accessToken: process.env.CONTENTFUL_HOST ? process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN : process.env.CONTENTFUL_ACCESS_TOKEN,
+  accessToken: process.env.GATSBY_IS_PREVIEW ? process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN : process.env.CONTENTFUL_ACCESS_TOKEN,
 }
 // handle the preview environments
-if (process.env.CONTENTFUL_HOST) {
-  contentfulConfig.host = process.env.CONTENTFUL_HOST;
+if (process.env.GATSBY_IS_PREVIEW) {
+  contentfulConfig.host = 'preview.contentful.com';
 }
 
 
