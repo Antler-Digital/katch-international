@@ -31,18 +31,12 @@ let contentfulConfig = {
   // Learn about environment variables: https://gatsby.dev/env-vars
   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
 }
-console.log('process.env.CONTENTFUL_HOST', process.env.CONTENTFUL_HOST)
-console.log('CONTENTFUL_PREVIEW_ACCESS_TOKEN', process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN)
-console.log('process.env.CONTENTFUL_ACCESS_TOKEN', process.env.CONTENTFUL_ACCESS_TOKEN)
-console.log('process.env.GATSBY_IS_PREVIEW', process.env.GATSBY_IS_PREVIEW)
-
 // handle the preview environments
 if (process.env.CONTENTFUL_HOST) {
-  console.log('is setting host')
   contentfulConfig.host = 'preview.contentful.com';
   contentfulConfig.accessToken = process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN;
 }
-console.log('contentfulConfig', contentfulConfig)
+
 module.exports = {
   siteMetadata: {
     title: `Katch`,
