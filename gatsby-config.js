@@ -29,20 +29,20 @@ const isDev = getEnv() !== 'production'
 let contentfulConfig = {
   spaceId: process.env.CONTENTFUL_SPACE_ID,
   // Learn about environment variables: https://gatsby.dev/env-vars
-  accessToken: process.env.GATSBY_IS_PREVIEW ? process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN : process.env.CONTENTFUL_ACCESS_TOKEN,
-  // host: process.env.GATSBY_IS_PREVIEW ? 'preview.contentful.com' : 'cdn.contentful.com'
+  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
 }
 console.log('process.env.CONTENTFUL_HOST', process.env.CONTENTFUL_HOST)
 console.log('CONTENTFUL_PREVIEW_ACCESS_TOKEN', process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN)
 console.log('process.env.CONTENTFUL_ACCESS_TOKEN', process.env.CONTENTFUL_ACCESS_TOKEN)
 console.log('process.env.GATSBY_IS_PREVIEW', process.env.GATSBY_IS_PREVIEW)
-console.log('contentfulConfig', contentfulConfig)
+
 // handle the preview environments
 if (process.env.GATSBY_IS_PREVIEW) {
   console.log('is setting host')
   contentfulConfig.host = 'preview.contentful.com';
+  contentfulConfig.accessToken = process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN;
 }
-
+console.log('contentfulConfig', contentfulConfig)
 module.exports = {
   siteMetadata: {
     title: `Katch`,
