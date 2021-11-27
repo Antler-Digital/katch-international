@@ -31,8 +31,10 @@ let contentfulConfig = {
   // Learn about environment variables: https://gatsby.dev/env-vars
   accessToken: process.env.GATSBY_IS_PREVIEW ? process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN : process.env.CONTENTFUL_ACCESS_TOKEN,
 }
+console.log('contentfulConfig', contentfulConfig)
 // handle the preview environments
 if (process.env.GATSBY_IS_PREVIEW) {
+  console.log('is Preview', process.env.GATSBY_IS_PREVIEW)
   contentfulConfig.host = 'preview.contentful.com';
 }
 
