@@ -39,9 +39,6 @@ console.log('contentfulConfig1', contentfulConfig)
 //   contentfulConfig.host = 'preview.contentful.com';
 // }
 
-console.log('contentfulConfig1', contentfulConfig)
-
-
 module.exports = {
   siteMetadata: {
     title: `Katch`,
