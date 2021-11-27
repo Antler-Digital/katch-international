@@ -27,7 +27,7 @@ const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
 const isDev = getEnv() !== 'production'
 
 const contentfulConfig = {
-  spaceId: `b08ueidkuu92`,
+  spaceId: process.env.CONTENTFUL_SPACE_ID,
   // Learn about environment variables: https://gatsby.dev/env-vars
   accessToken: process.env.CONTENTFUL_HOST ? process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN : process.env.CONTENTFUL_ACCESS_TOKEN,
 }
