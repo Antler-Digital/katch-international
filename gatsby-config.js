@@ -30,13 +30,16 @@ let contentfulConfig = {
   spaceId: process.env.CONTENTFUL_SPACE_ID,
   // Learn about environment variables: https://gatsby.dev/env-vars
   accessToken: process.env.GATSBY_IS_PREVIEW ? process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN : process.env.CONTENTFUL_ACCESS_TOKEN,
+  host: process.env.GATSBY_IS_PREVIEW ? 'preview.contentful.com' : 'cdn.contentful.com'
 }
-console.log('contentfulConfig', contentfulConfig)
+console.log('contentfulConfig1', contentfulConfig)
 // handle the preview environments
-if (process.env.GATSBY_IS_PREVIEW) {
-  console.log('is Preview', process.env.GATSBY_IS_PREVIEW)
-  contentfulConfig.host = 'preview.contentful.com';
-}
+// if (process.env.GATSBY_IS_PREVIEW) {
+//   console.log('is Preview', process.env.GATSBY_IS_PREVIEW)
+//   contentfulConfig.host = 'preview.contentful.com';
+// }
+
+console.log('contentfulConfig1', contentfulConfig)
 
 
 module.exports = {
