@@ -26,6 +26,16 @@ const isNetlifyProduction = NETLIFY_ENV === 'production';
 const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
 const isDev = getEnv() !== 'production'
 
+const contentfulConfig = {
+    spaceId: `b08ueidkuu92`,
+    // Learn about environment variables: https://gatsby.dev/env-vars
+    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+  }
+// handle the preview environments
+if (process.env.CONTENTFUL_HOST) {
+  contentfulConfig.host = process.env.CONTENTFUL_HOST;
+}
+
 
 module.exports = {
   siteMetadata: {
@@ -89,11 +99,7 @@ module.exports = {
     // Uncomment to add in contentful
     {
       resolve: `gatsby-source-contentful`,
-      options: {
-        spaceId: `b08ueidkuu92`,
-        // Learn about environment variables: https://gatsby.dev/env-vars
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-      },
+      options: contentfulConfig
     },
     {
       resolve: `gatsby-plugin-alias-imports`,
