@@ -32,7 +32,10 @@ let contentfulConfig = {
   accessToken: process.env.GATSBY_IS_PREVIEW ? process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN : process.env.CONTENTFUL_ACCESS_TOKEN,
   host: process.env.GATSBY_IS_PREVIEW ? 'preview.contentful.com' : 'cdn.contentful.com'
 }
-console.log('contentfulConfig1', contentfulConfig)
+console.log('process.env.CONTENTFUL_HOST', process.env.CONTENTFUL_HOST)
+console.log('CONTENTFUL_PREVIEW_ACCESS_TOKEN', process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN)
+console.log('process.env.CONTENTFUL_ACCESS_TOKEN', process.env.CONTENTFUL_ACCESS_TOKEN)
+console.log('process.env.GATSBY_IS_PREVIEW', process.env.GATSBY_IS_PREVIEW)
 // handle the preview environments
 // if (process.env.GATSBY_IS_PREVIEW) {
 //   console.log('is Preview', process.env.GATSBY_IS_PREVIEW)
