@@ -27,12 +27,26 @@ export const ContentfulCaseStudyCardFragment = graphql`
     title
     id
     category
+    internal {
+      type
+    }
     publishedDate(fromNow: true)
     mainImage {
       gatsbyImageData(
         quality: 90
         width: 220
         height: 220
+        cropFocus: CENTER
+        layout: CONSTRAINED
+        placeholder: BLURRED
+      )
+      title
+    }
+    sqrImage: mainImage {
+      gatsbyImageData(
+        quality: 90
+        width: 600
+        height: 600
         cropFocus: CENTER
         layout: CONSTRAINED
         placeholder: BLURRED

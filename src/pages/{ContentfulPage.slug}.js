@@ -11,6 +11,7 @@ import TwoColumnSection from '../components/contentful/TwoColumnSection';
 import TextSection from '../components/contentful/TextSection';
 import SpacerSection from '../components/contentful/SpacerSection';
 import MapSection from "../components/contentful/MapSection";
+import VideoSection from "../components/contentful/VideoSection";
 
 const PageTemplate = ({ data: { contentfulPage } }) => {
 
@@ -22,6 +23,8 @@ const PageTemplate = ({ data: { contentfulPage } }) => {
     title,
     sections
   } = page
+
+  console.log(sections)
 
   return (
     <Layout>
@@ -51,6 +54,8 @@ const PageTemplate = ({ data: { contentfulPage } }) => {
             return <SpacerSection key={`${section.id}` + index} {...section} />
           case "ContentfulMapSection":
             return <MapSection key={`${section.id}` + index} {...section} />
+          case "ContentfulVideo":
+            return <VideoSection key={`${section.id}` + index} {...section} />
           default:
             break;
         }
@@ -80,18 +85,18 @@ query ($id: String) {
       ... on ContentfulThreeCardsSection {
         ...ContentfulThreeCardsSectionFragment
       }
-      ... on ContentfulHeroSection {
-        ...ContentfulHeroSectionFragment
-      }
+      # ... on ContentfulHeroSection {
+      #   ...ContentfulHeroSectionFragment
+      # }
       ... on ContentfulCollectionSection {
         ...ContentfulCollectionSectionFragment
       }
       ... on ContentfulCarouselSection {
         ...ContentfulCarouselSectionFragment
       }
-      ... on ContentfulSocialSection {
-        ...ContentfulSocialSectionFragment
-      }
+      # ... on ContentfulSocialSection {
+      #   ...ContentfulSocialSectionFragment
+      # }
       ... on ContentfulTwoColumnSection {
         ...ContentfulTwoColumnSectionFragment
       }
@@ -103,6 +108,9 @@ query ($id: String) {
       }
       ... on ContentfulMapSection {
         ...ContentfulMapSectionFragment
+      }
+      ... on ContentfulVideo {
+        ...ContentfulVideoFragment
       }
     }
   }

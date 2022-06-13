@@ -51,10 +51,10 @@ function CollectionSection({ header, postType, showAll, totalToShow, contentfuli
 
 
   return (
-    <section id={contentfulid} className={`${lightTheme ? "bg-gray-100" : "bg-primary"} py-12 lg:py-24`}>
+    <section id={contentfulid} className={`bg-gray-100 py-12 lg:py-24`}>
 
       <div className="text-center max-w-screen-lg mx-auto px-4">
-        {header && <h2 className="text-4xl md:text-6xl xl:text-7xl mb-8 leading-normal text-white bg-secondary px-4 py-1 inline-block text-center">{header}</h2>}
+        {header && <h2 className="text-4xl md:text-6xl xl:text-7xl mb-8 leading-normal text-black  px-4 py-1 inline-block text-center">{header}</h2>}
         {renderCollection()}
       </div>
 
