@@ -29,14 +29,14 @@ const Nav = (props) => {
                 slug
                 title
             }
-            ... on ContentfulSubMenu {
-                id
-                header
-                menuItems {
-                    title
-                    slug
-                }
-            }
+            # ... on ContentfulSubMenu {
+            #     id
+            #     header
+            #     menuItems {
+            #         title
+            #         slug
+            #     }
+            # }
             ... on ContentfulLink {
                 id
                 linkTo
@@ -75,7 +75,7 @@ const Nav = (props) => {
 	return (
 		<>
 			<nav
-				className={` w-full fixed ${atTop ? "py-4" : "py-1 bg-black"} transition-all duration-300 px-4 lg:px-0 z-front`} >
+				className={` w-full fixed ${atTop ? "py-4" : "hidden"} transition-all duration-300 px-4 lg:px-0 z-front`} >
 				<div className="flex max-w-screen-lg mx-auto ">
 
 					<Linked linkTo="/" className="">
@@ -112,45 +112,56 @@ const Nav = (props) => {
 				</div>
 
 
-				<ul style={{
-					position: 'fixed',
-					top: 0,
-					left: !menuOpen ? "-100vw" : "0vw",
-					height: "100vh"
-				}}
-					className={`${menuOpen ? "opacity-100" : "opacity-0"} flex flex-col text-white px-4 py-8 transition-all duration-500 space-y-4 bg-secondary uppercase font-semibold w-4/5 min-w-xxs md:hidden`}>
-					<li>
-						<h2 className="text-2xl text-black font-black">Katch <br /> International</h2>
-					</li>
-					{
-						navBar && navBar.map(item => {
-							if (item.menuItems) {
-								return <li key={item.id} className="">
-									{item.header}
-									<ul className=" ml-4 space-y-3 mt-4 mb-4">
-										{item.menuItems.map(item => <li key={item.title}>
-											<Linked linkTo={`${item.slug ? `/${item.slug === "/" ? "" : item.slug}` : item.linkTo}`}>
-												{item.title}
-											</Linked>
-										</li>)}
-									</ul>
-								</li>
-							}
-							return <Linked
-								className="text-white cursor-pointer relative group"
-								linkTo={`${item.slug ? `/${item.slug === "/" ? "" : item.slug}` : item.linkTo}`}
-								key={item.id}
-							>
-								{item.title || item.text}
-							</Linked>
-						})
-					}
-						<Linked linkTo="mailto:info@katchthis.com" className="text-white px-2 py-1 flex items-center space-x-4 rounded-full">
-							<FontAwesomeIcon className={` text-xl h-9 w-9 mr-4`} icon={faEnvelope} />
-							Email us today
-						</Linked>
 
-					<li className="">
+			</nav>
+
+			<nav className=' w-full fixed z-front'>
+				<button onClick={() => setMenuOpen(!menuOpen)} className={`${!atTop ? 'block' : 'hidden'} ${!menuOpen ? "hover:text-secondary " : ""} relative z-[9999] ml-auto mr-6 mt-6 text-white duration-300 hover:animate-pulse`}>
+					<svg width="37" height="20" viewBox="0 0 37 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M10 2C10 0.895508 10.8955 0 12 0H35C35.6133 0 36.1621 0.276367 36.5293 0.711426C36.8232 1.05957 37 1.50928 37 2C37 3.10449 36.1045 4 35 4H12C10.8955 4 10 3.10449 10 2ZM0 10C0 8.89551 0.895508 8 2 8H25C26.1045 8 27 8.89551 27 10C27 11.1045 26.1045 12 25 12H2C0.895508 12 0 11.1045 0 10ZM24 16C22.8955 16 22 16.8955 22 18C22 18.5522 22.2236 19.0522 22.5859 19.4141C22.9473 19.7764 23.4473 20 24 20H35C36.1045 20 37 19.1045 37 18C37 16.8955 36.1045 16 35 16H24Z" fill="currentColor" />
+					</svg>
+				</button>
+
+				<div style={{
+						position: 'fixed',
+						top: 0,
+						left: !menuOpen ? "-100vw" : "0vw",
+					}}  className={` ${menuOpen ? "opacity-100" : "opacity-0"}  bg-secondary transition-all duration-500   w-full h-screen`}>
+					<ul 
+						className={` z-[999] flex flex-col h-full max-w-4xl mx-auto justify-center text-white px-4 py-8 space-y-4 uppercase font-semibolda `}>
+						{ 
+							navBar && navBar.map(item => {
+								if (item.menuItems) {
+									return <li key={item.id} className="">
+										{item.header}
+										<ul className=" text-6xl space-y-3 mt-4 mb-4">
+											{item.menuItems.map(item => <li key={item.title}>
+												<Linked linkTo={`${item.slug ? `/${item.slug === "/" ? "" : item.slug}` : item.linkTo}`}>
+													{item.title}
+												</Linked>
+											</li>)}
+										</ul>
+									</li>
+								}
+								// remove the current page 
+								if (item.slug === pathName) {
+									return ""
+								}
+								return <Linked
+									className="text-white cursor-pointer relative group text-5xl leading-tight"
+									linkTo={`${item.slug ? `/${item.slug === "/" ? "" : item.slug}` : item.linkTo}`}
+									key={item.id}
+								>
+									{item.title || item.text}
+								</Linked>
+							})
+						}
+					<hr className="border-white max-w-[500px]" />
+					<Linked linkTo="mailto:info@katchthis.com" className="text-white  py-1 flex items-center space-x-4 rounded-full">
+						INFO@KATCHTHIS.COM
+					</Linked>
+
+					<li>
 						<SocialIcons
 							className="text-white space-x-2 flex mt-auto"
 							// showText
@@ -171,13 +182,12 @@ const Nav = (props) => {
 									text: "Follow our Instagram"
 								},
 							]} />
-
 					</li>
-
-
-
 				</ul>
-			</nav>
+			</div>
+
+
+		</nav>
 		</>
 	)
 }
