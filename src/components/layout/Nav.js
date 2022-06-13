@@ -98,13 +98,6 @@ const Nav = (props) => {
 								</Linked>
 							})
 						}
-
-						<Linked linkTo="https://www.instagram.com/katch_int/" >
-							<FontAwesomeIcon className={`text-xl text-white hover:text-secondary`} icon={faInstagram} />
-						</Linked>
-						<Linked linkTo="mailto:info@katchthis.com" className="hover:bg-primary text-white hover:text-secondary bg-secondary px-2 py-2 -mt-2 h-9 w-9 rounded-full flex items-center justify-center">
-							<FontAwesomeIcon className={` text-xl  `} icon={faEnvelope} />
-						</Linked>
 					</div>
 					<div className="md:hidden ml-auto flex  text-white pr-4 relative z-10">
 						<button
