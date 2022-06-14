@@ -7,7 +7,7 @@ import LargeDesktopVideo from '../../videos/Katch_1920x1080.mp4'
 
 const LocalVideo = () => {
   return (
-    <div className='-mt-12'>
+    <div className=''>
       <video className='h-full w-full aspect-3 absolute top-0 right-0 object-cover' autoplay="autoplay" muted>
         <source src={LargeDesktopVideo}  type="video/mp4" />
         {/* <source src={SmallDesktopVideo} type="video/mp4" />

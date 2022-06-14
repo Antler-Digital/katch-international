@@ -1,15 +1,20 @@
 import { graphql } from 'gatsby'
 import React from 'react'
+import useSnapToNext from '../../hooks/useSnapToNext'
 import LocalVideo from './LocalVideo'
 import Video from './Video'
 
 const VideoSection = ({ name, type, videoId, video, placeholder }) => {
+  
 
-  const VideoComponent = () => type === 'youtube' ? (<Video videoSrcURL={`https://www.youtube.com/embed/${videoId}`} />) : (<LocalVideo />) 
+  const containerRef = React.useRef(null)
+
+  useSnapToNext(containerRef)
+
+  const VideoComponent = () => type === 'youtube' ? (<Video videoSrcURL={`https://www.youtube.com/embed/${videoId}`} />) : (<LocalVideo />)
   return (
-    <section className={`h-screen w-full`}>
-      <h1>VideoSection</h1>
-     <VideoComponent />
+    <section ref={containerRef} className={`h-screen w-full`}>
+      <VideoComponent />
     </section>
   )
 }

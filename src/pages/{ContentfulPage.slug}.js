@@ -12,6 +12,35 @@ import TextSection from '../components/contentful/TextSection';
 import SpacerSection from '../components/contentful/SpacerSection';
 import MapSection from "../components/contentful/MapSection";
 import VideoSection from "../components/contentful/VideoSection";
+import useScrollSnap from "../hooks/useScrollSnap";
+
+
+const SectionSwitcher = (section, index) => {
+  switch (section.internal?.type) {
+    case "ContentfulThreeCardsSection":
+      return <ThreeCardsSection key={`${section.id}` + index} {...section} />
+    case "ContentfulCarouselSection":
+      return <CarouselSection key={`${section.id}` + index} {...section} />
+    case "ContentfulHeroSection":
+      return <HeroSection key={`${section.id}` + index} {...section} />
+    case "ContentfulCollectionSection":
+      return <CollectionSection key={`${section.id}` + index} {...section} />
+    case "ContentfulSocialSection":
+      return <SocialSection key={`${section.id}` + index} {...section} />
+    case "ContentfulTwoColumnSection":
+      return <TwoColumnSection key={`${section.id}` + index} {...section} />
+    case "ContentfulTextSection":
+      return <TextSection key={`${section.id}` + index} {...section} />
+    case "ContentfulSpacerSection":
+      return <SpacerSection key={`${section.id}` + index} {...section} />
+    case "ContentfulMapSection":
+      return <MapSection key={`${section.id}` + index} {...section} />
+    case "ContentfulVideo":
+      return <VideoSection key={`${section.id}` + index} {...section} />
+    default:
+      break;
+  }
+}
 
 const PageTemplate = ({ data: { contentfulPage } }) => {
 
@@ -24,7 +53,9 @@ const PageTemplate = ({ data: { contentfulPage } }) => {
     sections
   } = page
 
-  console.log(sections)
+
+  const snapSections = sections.slice(0, 2)
+  const restSections = sections.slice(2)
 
   return (
     <Layout>
@@ -34,34 +65,12 @@ const PageTemplate = ({ data: { contentfulPage } }) => {
         metaImage={metaImage?.gatsbyImageData?.images?.fallback?.src}
       />
       {metaTitle && <h1 className="opacity-0 absolute">{metaTitle}</h1>}
-      {sections && sections.map((section, index) => {
-        switch (section.internal?.type) {
-          case "ContentfulThreeCardsSection":
-            return <ThreeCardsSection key={`${section.id}` + index} {...section} />
-          case "ContentfulCarouselSection":
-            return <CarouselSection key={`${section.id}` + index} {...section} />
-          case "ContentfulHeroSection":
-            return <HeroSection key={`${section.id}` + index} {...section} />
-          case "ContentfulCollectionSection":
-            return <CollectionSection key={`${section.id}` + index} {...section} />
-          case "ContentfulSocialSection":
-            return <SocialSection key={`${section.id}` + index} {...section} />
-          case "ContentfulTwoColumnSection":
-            return <TwoColumnSection key={`${section.id}` + index} {...section} />
-          case "ContentfulTextSection":
-            return <TextSection key={`${section.id}` + index} {...section} />
-          case "ContentfulSpacerSection":
-            return <SpacerSection key={`${section.id}` + index} {...section} />
-          case "ContentfulMapSection":
-            return <MapSection key={`${section.id}` + index} {...section} />
-          case "ContentfulVideo":
-            return <VideoSection key={`${section.id}` + index} {...section} />
-          default:
-            break;
-        }
 
-      })}
+      <div  >
+        {snapSections && snapSections.map((section, index) => SectionSwitcher(section, index))}
+      </div>
 
+      {restSections && restSections.map((section, index) => SectionSwitcher(section, index))}
     </Layout>
   )
 }
