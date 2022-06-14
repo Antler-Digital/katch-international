@@ -10,6 +10,27 @@ import { Transition } from '@headlessui/react';
 import { faFacebookF, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { SocialIcons } from '../elements/SocialIcons';
 import KatchLogo from '../../images/logo-katch.png'
+import { motion, AnimatePresence } from "framer-motion"
+
+
+const itemVariant = {
+	hidden: { opacity: 0, x: -50 },
+	show: { opacity: 1, ease: "easeInOut", x: 0, }
+}
+
+const ulVariant = {
+	hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+			duration: .3,
+      staggerChildren: .3,
+			delayChildren: .3
+    }
+  }
+}
+
+
 
 const Nav = (props) => {
 
@@ -121,73 +142,84 @@ const Nav = (props) => {
 						<path fill-rule="evenodd" clip-rule="evenodd" d="M10 2C10 0.895508 10.8955 0 12 0H35C35.6133 0 36.1621 0.276367 36.5293 0.711426C36.8232 1.05957 37 1.50928 37 2C37 3.10449 36.1045 4 35 4H12C10.8955 4 10 3.10449 10 2ZM0 10C0 8.89551 0.895508 8 2 8H25C26.1045 8 27 8.89551 27 10C27 11.1045 26.1045 12 25 12H2C0.895508 12 0 11.1045 0 10ZM24 16C22.8955 16 22 16.8955 22 18C22 18.5522 22.2236 19.0522 22.5859 19.4141C22.9473 19.7764 23.4473 20 24 20H35C36.1045 20 37 19.1045 37 18C37 16.8955 36.1045 16 35 16H24Z" fill="currentColor" />
 					</svg>
 				</button>
-
-				<div style={{
-						position: 'fixed',
-						top: 0,
-						left: !menuOpen ? "-100vw" : "0vw",
-					}}  className={` ${menuOpen ? "opacity-100" : "opacity-0"}  bg-secondary transition-all duration-500   w-full h-screen`}>
-					<ul 
-						className={` z-[999] flex flex-col h-full max-w-4xl mx-auto justify-center text-white px-4 py-8 space-y-4 uppercase font-semibolda `}>
-						{ 
-							navBar && navBar.map(item => {
-								if (item.menuItems) {
-									return <li key={item.id} className="">
-										{item.header}
-										<ul className=" text-6xl space-y-3 mt-4 mb-4">
-											{item.menuItems.map(item => <li key={item.title}>
-												<Linked linkTo={`${item.slug ? `/${item.slug === "/" ? "" : item.slug}` : item.linkTo}`}>
-													{item.title}
-												</Linked>
-											</li>)}
-										</ul>
-									</li>
+				<AnimatePresence>
+					{menuOpen && (
+						<motion.div
+							key="modal"
+							initial={{ opacity: 0 }}
+							animate={{
+								opacity: 1, transition: {
+									staggerChildren: 0.5
 								}
-								// remove the current page 
-								if (item.slug === pathName) {
-									return ""
+							}}
+							exit={{ opacity: 0 }}
+							className={`bg-secondary   w-full h-screen fixed top-0`}
+						>
+							<motion.ul variants={ulVariant} initial="hidden" animate="show"
+								className={` z-[999] flex flex-col h-full max-w-4xl mx-auto justify-center text-white px-4 py-8 space-y-4 uppercase `}>
+								{
+									navBar && navBar.map(item => {
+										if (item.menuItems) {
+											return <motion.li variants={itemVariant} key={item.id} className="">
+												{item.header}
+												<ul className=" text-6xl space-y-3 mt-4 mb-4">
+													{item.menuItems.map(item => <li key={item.title}>
+														<Linked linkTo={`${item.slug ? `/${item.slug === "/" ? "" : item.slug}` : item.linkTo}`}>
+															{item.title}
+														</Linked>
+													</li>)}
+												</ul>
+											</motion.li>
+										}
+										// remove the current page 
+										if (item.slug === pathName) {
+											return ""
+										}
+										return <motion.li key={item.id} variants={itemVariant}>
+											<Linked
+												className="text-white cursor-pointer relative group text-5xl leading-tight"
+												linkTo={`${item.slug ? `/${item.slug === "/" ? "" : item.slug}` : item.linkTo}`}
+												key={item.id}
+											>
+												{item.title || item.text}
+											</Linked>
+										</motion.li>
+									})
 								}
-								return <Linked
-									className="text-white cursor-pointer relative group text-5xl leading-tight"
-									linkTo={`${item.slug ? `/${item.slug === "/" ? "" : item.slug}` : item.linkTo}`}
-									key={item.id}
-								>
-									{item.title || item.text}
+								
+								<motion.li animate={{ opacity: 1, y: 0, transition: { duration: .4, delay: 1.5, ease: 'easeInOut' }}} initial={{ opacity: 0, y: 50   }} className="block">
+								<hr className="border-white max-w-[500px]" />
+								<Linked linkTo="mailto:info@katchthis.com" className="text-white  py-1 flex items-center space-x-4 rounded-full">
+									INFO@KATCHTHIS.COM
 								</Linked>
-							})
-						}
-					<hr className="border-white max-w-[500px]" />
-					<Linked linkTo="mailto:info@katchthis.com" className="text-white  py-1 flex items-center space-x-4 rounded-full">
-						INFO@KATCHTHIS.COM
-					</Linked>
 
-					<li>
-						<SocialIcons
-							className="text-white space-x-2 flex mt-auto"
-							// showText
-							icons={[
-								{
-									icon: faFacebookF,
-									linkTo: "https://www.facebook.com/KatchInternational",
-									text: "Follow our Facebook"
-								},
-								{
-									icon: faTwitter,
-									linkTo: "https://twitter.com/katchbabs",
-									text: "Follow our Twitter"
-								},
-								{
-									icon: faInstagram,
-									linkTo: "https://www.instagram.com/katch_int/",
-									text: "Follow our Instagram"
-								},
-							]} />
-					</li>
-				</ul>
-			</div>
+									<SocialIcons
+										className="text-white space-x-2 flex mt-auto"
+										// showText
+										icons={[
+											{
+												icon: faFacebookF,
+												linkTo: "https://www.facebook.com/KatchInternational",
+												text: "Follow our Facebook"
+											},
+											{
+												icon: faTwitter,
+												linkTo: "https://twitter.com/katchbabs",
+												text: "Follow our Twitter"
+											},
+											{
+												icon: faInstagram,
+												linkTo: "https://www.instagram.com/katch_int/",
+												text: "Follow our Instagram"
+											},
+										]} />
+								</motion.li>
+							</motion.ul>
 
+						</motion.div>)}
 
-		</nav>
+				</AnimatePresence>
+			</nav>
 		</>
 	)
 }
