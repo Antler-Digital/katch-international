@@ -100,7 +100,7 @@ const Footer = props => {
                         KATCH US
                     </h4>
                     <p className="text-white text-sm">
-                        Job inquiries may be sent directly to <a className="text-gray-200 hover:text-primary" href="mailto:recruitment@katchthis.com">recruitment@katchthis.com</a>. All job inquiries sent through this form will be rejected.
+                        Job inquiries may be sent directly to <a className="text-gray-200 hover:text-primary" href="mailto:recruitment@katchthis.com">recruitment@katchthis.com</a>.
                     </p>
                 </div>
             </div>

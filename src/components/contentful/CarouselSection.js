@@ -25,7 +25,7 @@ function CarouselSection({ slides }) {
   };
 
   return (
-    <div className="h-screen min-h-600 relative overflow-hidden " >
+    <div className="min-h-600 relative overflow-hidden " >
       <Carousel settings={settings} className="" >
         {slides && slides.map((slide, index) => {
 

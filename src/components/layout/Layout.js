@@ -7,7 +7,10 @@ const Layout = ({ children }) => {
 
   // Initialise the Animations for fade up and in
   React.useEffect(() => {
-    AOS.init();
+    AOS.init({
+      once: true,
+      easing: 'ease-in-out'
+    });
   }, [])
 
   return (

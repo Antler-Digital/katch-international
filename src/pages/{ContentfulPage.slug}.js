@@ -12,7 +12,7 @@ import TextSection from '../components/contentful/TextSection';
 import SpacerSection from '../components/contentful/SpacerSection';
 import MapSection from "../components/contentful/MapSection";
 import VideoSection from "../components/contentful/VideoSection";
-import useScrollSnap from "../hooks/useScrollSnap";
+import useCustomSection from "../hooks/useCustomSection";
 
 
 const SectionSwitcher = (section, index) => {
@@ -50,12 +50,16 @@ const PageTemplate = ({ data: { contentfulPage } }) => {
     metaImage,
     metaTitle,
     title,
-    sections
+    slug,
+    sections,
+    extraImages
   } = page
 
 
   const snapSections = sections.slice(0, 2)
   const restSections = sections.slice(2)
+
+  const customSection = useCustomSection(slug, { extraImages })
 
   return (
     <Layout>
@@ -71,6 +75,8 @@ const PageTemplate = ({ data: { contentfulPage } }) => {
       </div>
 
       {restSections && restSections.map((section, index) => SectionSwitcher(section, index))}
+
+      {customSection}
     </Layout>
   )
 }
@@ -89,6 +95,11 @@ query ($id: String) {
     }
     metaDescription {
       text: metaDescription
+    }
+    extraImages {
+      gatsbyImageData(width: 1200, layout: FULL_WIDTH,         placeholder: BLURRED
+ quality: 80)
+      title
     }
     sections {
       ... on ContentfulThreeCardsSection {

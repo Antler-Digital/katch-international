@@ -137,7 +137,7 @@ const Nav = (props) => {
 			</nav>
 
 			<nav className=' w-full fixed z-front'>
-				<button onClick={() => setMenuOpen(!menuOpen)} className={`${!atTop ? 'block' : 'hidden'} ${!menuOpen ? "hover:text-secondary " : ""} relative z-[9999] ml-auto mr-6 mt-6 text-white duration-300 hover:animate-pulse`}>
+				<button onClick={() => setMenuOpen(!menuOpen)} className={`${!atTop ? 'block' : 'hidden'} ${!menuOpen ? "hover:text-white " : "text-white"} relative z-[9999] ml-auto mr-6 mt-6 text-secondary duration-300 hover:animate-pulse`}>
 					<svg width="37" height="20" viewBox="0 0 37 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 						<path fill-rule="evenodd" clip-rule="evenodd" d="M10 2C10 0.895508 10.8955 0 12 0H35C35.6133 0 36.1621 0.276367 36.5293 0.711426C36.8232 1.05957 37 1.50928 37 2C37 3.10449 36.1045 4 35 4H12C10.8955 4 10 3.10449 10 2ZM0 10C0 8.89551 0.895508 8 2 8H25C26.1045 8 27 8.89551 27 10C27 11.1045 26.1045 12 25 12H2C0.895508 12 0 11.1045 0 10ZM24 16C22.8955 16 22 16.8955 22 18C22 18.5522 22.2236 19.0522 22.5859 19.4141C22.9473 19.7764 23.4473 20 24 20H35C36.1045 20 37 19.1045 37 18C37 16.8955 36.1045 16 35 16H24Z" fill="currentColor" />
 					</svg>
