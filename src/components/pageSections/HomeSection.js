@@ -6,8 +6,6 @@ import React from 'react'
 
 const HomeSection = ({ extraImages }) => {
 
-  console.log(extraImages)
-
   const leftImage = extraImages[0];
   const rightImage = extraImages[1];
 

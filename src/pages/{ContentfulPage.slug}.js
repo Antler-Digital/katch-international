@@ -70,7 +70,7 @@ const PageTemplate = ({ data: { contentfulPage } }) => {
       />
       {metaTitle && <h1 className="opacity-0 absolute">{metaTitle}</h1>}
 
-      <div  >
+      <div>
         {snapSections && snapSections.map((section, index) => SectionSwitcher(section, index))}
       </div>
 
@@ -105,9 +105,9 @@ query ($id: String) {
       ... on ContentfulThreeCardsSection {
         ...ContentfulThreeCardsSectionFragment
       }
-      # ... on ContentfulHeroSection {
-      #   ...ContentfulHeroSectionFragment
-      # }
+      ... on ContentfulHeroSection {
+        ...ContentfulHeroSectionFragment
+      }
       ... on ContentfulCollectionSection {
         ...ContentfulCollectionSectionFragment
       }
