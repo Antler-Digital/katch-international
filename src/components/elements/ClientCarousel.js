@@ -3,11 +3,6 @@ import { motion } from "framer-motion"
 import LeftChevron from "../svgs/LeftChevron"
 import RightChevron from "../svgs/RightChevron"
 
-const containerVariants = {
-  whileHover: {},
-  whileBlur: {},
-}
-
 const keyframesEven = [
   ["0%", -2 * (100 / 3) + "%"],
   [-1 * (100 / 3) + "%", -2 * (100 / 3) + "%", -1 * (100 / 3) + "%", "0%"],
@@ -63,45 +58,36 @@ const oddCollectionVariants = {
   }),
 }
 
-const ClientCollectionWrapper = ({
-  className,
-  items,
-  order,
-  limitTo = 1,
-  CardComponent,
-}) => {
+const ClientCarousel = ({ arrayToRender, isHover, CardComponent, showAll }) => {
   const [index, setIndex] = React.useState(0)
-  const [isHover, setIsHover] = React.useState(false)
 
-  const evenAnimate = isHover
-    ? evenCollectionVariants.whileHover(index)
-    : evenCollectionVariants.whileBlur
-  const oddAnimate = isHover
-    ? oddCollectionVariants.whileHover(index)
-    : oddCollectionVariants.whileBlur
+  React.useEffect(() => {
+    if (showAll) {
+      setIndex(0)
+    }
+  }, [showAll])
 
-  const itemsToRender = limitTo ? items.slice(0, limitTo) : items
-
-  const ordered = itemsToRender.filter((item) => item.showAtTop)
-  const rest = itemsToRender.filter((item) => !item.showAtTop)
-
-  const arrayToRender = [...ordered, ...rest]
+  const evenAnimate =
+    isHover || showAll
+      ? evenCollectionVariants.whileHover(index)
+      : evenCollectionVariants.whileBlur
+  const oddAnimate =
+    isHover || showAll
+      ? oddCollectionVariants.whileHover(index)
+      : oddCollectionVariants.whileBlur
 
   return (
-    <motion.div
-      variants={containerVariants}
-      onMouseEnter={() => setIsHover(true)}
-      onMouseLeave={() => setIsHover(false)}
-      className="flex items-center justify-center group"
-    >
+    <>
       <button
         type="button"
-        className="invisible opacity-0 group-hover:visible group-hover:opacity-100 duration-200 transition-all"
+        className={`${
+          showAll ? "" : "group-hover:visible group-hover:opacity-100"
+        } invisible opacity-0 duration-200 transition-all`}
         onClick={() => setIndex((prev) => (prev === 0 ? 2 : prev - 1))}
       >
-        <LeftChevron className="mr-16" />
+        <LeftChevron className="sm:mr-16" />
       </button>
-      <div className="flex flex-col overflow-x-hidden max-w-[864px]">
+      <div className="flex flex-col overflow-x-hidden max-w-[288px] sm:max-w-[576px] lg:max-w-[864px]">
         {Array(3)
           .fill(0)
           .map((_, i) => {
@@ -128,13 +114,15 @@ const ClientCollectionWrapper = ({
       </div>
       <button
         type="button"
-        className="invisible opacity-0 group-hover:visible group-hover:opacity-100 duration-200 transition-all"
+        className={`${
+          showAll ? "" : "group-hover:visible group-hover:opacity-100"
+        } invisible opacity-0 duration-200 transition-all`}
         onClick={() => setIndex((prev) => (prev === 2 ? 0 : prev + 1))}
       >
-        <RightChevron className="ml-16" />
+        <RightChevron className="sm:ml-16" />
       </button>
-    </motion.div>
+    </>
   )
 }
 
-export default ClientCollectionWrapper
+export default ClientCarousel

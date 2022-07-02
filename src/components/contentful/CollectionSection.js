@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from "gatsby"
 import ClientCard from "./ClientCard"
 import BlogCard from "./BlogCard"
 import CaseStudyCard from "./CaseStudyCard"
-import ClientCollectionWrapper from "./ClientCollectionWrapper"
+import ClientCollectionWrapper from "../elements/ClientCollectionWrapper"
 
 function CollectionSection({
   header,
