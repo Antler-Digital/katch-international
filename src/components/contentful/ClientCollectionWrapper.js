@@ -8,6 +8,18 @@ const containerVariants = {
   whileBlur: {},
 }
 
+const keyframesEven = [
+  ["0%", -2 * (100 / 3) + "%"],
+  [-1 * (100 / 3) + "%", -2 * (100 / 3) + "%", -1 * (100 / 3) + "%", "0%"],
+  [-2 * (100 / 3) + "%", -1 * (100 / 3) + "%", "0%"],
+]
+
+const keyframesOdd = [
+  [-2 * (100 / 3) + "%", "0%"],
+  [-1 * (100 / 3) + "%", "0%", -1 * (100 / 3) + "%", -2 * (100 / 3) + "%"],
+  ["0%", -1 * (100 / 3) + "%", -2 * (100 / 3) + "%"],
+]
+
 const evenCollectionVariants = {
   whileHover: (index) => ({
     x: -index * (100 / 3) + "%",
@@ -17,10 +29,18 @@ const evenCollectionVariants = {
       damping: 30,
     },
   }),
-  whileBlur: {
-    x: ["0%", -2 * (100 / 3) + "%"],
-    transition: { duration: 30, type: "tween", yoyo: Infinity, ease: "linear" },
-  },
+  whileBlur: (index) => ({
+    x: keyframesEven[index],
+    transition: {
+      duration: 30,
+      type: "tween",
+      repeat: Infinity,
+      ease: "linear",
+    },
+    initial: {
+      x: -index * (100 / 3) + "%",
+    },
+  }),
 }
 
 const oddCollectionVariants = {
@@ -32,10 +52,15 @@ const oddCollectionVariants = {
       damping: 30,
     },
   }),
-  whileBlur: {
-    x: [-2 * (100 / 3) + "%", "0%"],
-    transition: { duration: 30, type: "tween", yoyo: Infinity, ease: "linear" },
-  },
+  whileBlur: (index) => ({
+    x: keyframesOdd[index],
+    transition: {
+      duration: 30,
+      type: "tween",
+      repeat: Infinity,
+      ease: "linear",
+    },
+  }),
 }
 
 const ClientCollectionWrapper = ({
