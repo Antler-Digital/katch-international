@@ -3,10 +3,7 @@ import { graphql, useStaticQuery } from "gatsby"
 import ClientCard from "./ClientCard"
 import BlogCard from "./BlogCard"
 import CaseStudyCard from "./CaseStudyCard"
-import { motion } from "framer-motion"
-import LeftChevron from "../svgs/LeftChevron"
-import RightChevron from "../svgs/RightChevron"
-import { AnimatePresence, useCycle } from "framer-motion"
+import ClientCollectionWrapper from "./ClientCollectionWrapper"
 
 function CollectionSection({
   header,
@@ -105,114 +102,6 @@ const CollectionWrapper = ({
         arrayToRender.map((item, index) => (
           <CardComponent key={item.id} {...item} />
         ))}
-    </div>
-  )
-}
-
-const ClientCollectionWrapper = ({
-  className,
-  items,
-  order,
-  limitTo = 1,
-  CardComponent,
-}) => {
-  const [index, setIndex] = React.useState(0)
-  const itemsToRender = limitTo ? items.slice(0, limitTo) : items
-
-  const ordered = itemsToRender.filter((item) => item.showAtTop)
-  const rest = itemsToRender.filter((item) => !item.showAtTop)
-
-  const arrayToRender = [...ordered, ...rest]
-
-  return (
-    <div className="flex items-center justify-center">
-      <button
-        type="button"
-        onClick={() => setIndex((prev) => (prev === 0 ? 2 : prev - 1))}
-      >
-        <LeftChevron className="mr-16" />
-      </button>
-      <div className="flex overflow-hidden">
-        {Array(3)
-          .fill(0)
-          .map((_, i) => {
-            return (
-              i === index && (
-                <div>
-                  <motion.div
-                    className={"flex overflow-hidden"}
-                    key={i}
-                    initial={{ x: "100%" }}
-                    animate={{ x: 0 }}
-                    exit={{ x: "-100%" }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 200,
-                      damping: 30,
-                    }}
-                    layout
-                  >
-                    {arrayToRender &&
-                      i === index &&
-                      arrayToRender
-                        .slice(index * 9, (index + 1) * 9)
-                        .map((item) => (
-                          <CardComponent key={item.id} {...item} />
-                        ))}
-                  </motion.div>
-                  <motion.div
-                    className={"flex overflow-hidden"}
-                    key={i}
-                    initial={{ x: "-100%" }}
-                    animate={{ x: 0 }}
-                    exit={{ x: "100%" }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 200,
-                      damping: 30,
-                    }}
-                    layout
-                  >
-                    {arrayToRender &&
-                      i === index &&
-                      arrayToRender
-                        .slice(index * 9 + 9 * 3, (index + 1) * 9 + 9 * 3)
-                        .map((item) => (
-                          <CardComponent key={item.id} {...item} />
-                        ))}
-                  </motion.div>
-                  <motion.div
-                    className={"flex items-center overflow-hidden"}
-                    key={i}
-                    initial={{ x: "100%" }}
-                    animate={{ x: 0 }}
-                    exit={{ x: "-100%" }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 200,
-                      damping: 30,
-                    }}
-                    layout
-                  >
-                    {arrayToRender &&
-                      i === index &&
-                      arrayToRender
-                        .slice(index * 9 + 9 * 6, (index + 1) * 9 + 9 * 6)
-                        .map((item) => (
-                          <CardComponent key={item.id} {...item} />
-                        ))}
-                  </motion.div>
-                </div>
-              )
-            )
-          })}
-      </div>
-      <button
-        type="button"
-        onClick={() => setIndex((prev) => (prev === 2 ? 0 : prev + 1))}
-      >
-        <RightChevron className="ml-16" />
-      </button>
     </div>
   )
 }
