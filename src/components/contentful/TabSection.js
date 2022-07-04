@@ -17,7 +17,7 @@ const TabSection = ({ sections }) => {
                     type="button"
                     className={`${
                       selected ? "text-secondary" : "text-primary"
-                    } focus:ring-0 ring-transparent focus:border-none  uppercase`}
+                    } focus:ring-0 ring-transparent focus:border-none  uppercase text-sm sm:text-lg`}
                   >
                     {header}
                   </button>
@@ -29,7 +29,10 @@ const TabSection = ({ sections }) => {
         <Tab.Panels className={"mt-12"}>
           {sections.map(({ text }, index) => {
             return (
-              <Tab.Panel key={`panel-${index}`} className="text-base">
+              <Tab.Panel
+                key={`panel-${index}`}
+                className="text-base text-justify"
+              >
                 {renderRichText(text, RichTextOptions)}
               </Tab.Panel>
             )

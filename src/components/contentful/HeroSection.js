@@ -2,8 +2,11 @@ import { graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 
+import Carousel from "../../components/elements/Carousel"
+
 function HeroSection({
   backgroundImage,
+  carouselImages,
   subHeader,
   header,
   textColour,
@@ -17,14 +20,13 @@ function HeroSection({
       : textColour === "Pink"
       ? "text-secondary"
       : "text-black"
+
   return (
     <>
       <section
         className={`${
           backgroundImage ? "h-[500px]" : "min-h-[300px] md:min-h-[400px]"
-        }  relative ${
-          (centerHeading || !showForm) && "flex items-center container"
-        }`}
+        }  relative ${(centerHeading || !showForm) && "flex items-center"}`}
       >
         <div
           className={`container mx-auto  w-full h-full flex flex-wrap relative px-4 z-20`}
@@ -41,15 +43,74 @@ function HeroSection({
             )}
           </div>
         </div>
-
         <div className="h-full absolute top-0 z-10 w-full sm:px-4 bg-black bg-opacity-25" />
-        {backgroundImage && (
+        {backgroundImage && !carouselImages && (
           <GatsbyImage
             className="absolute h-full w-full top-0"
             style={{ position: "absolute" }}
             image={backgroundImage.gatsbyImageData}
             alt={backgroundImage.title}
           />
+        )}
+
+        {(carouselImages || backgroundImage) && (
+          <div className="absolute h-full w-full top-0 z-10">
+            {carouselImages && !backgroundImage && (
+              <Carousel
+                settings={{
+                  prevArrow: false,
+                  nextArrow: false,
+                  autoplay: true,
+                  arrows: false,
+                }}
+                className="w-full"
+              >
+                {carouselImages &&
+                  carouselImages.map((image) => (
+                    <GatsbyImage
+                      className="h-full w-full mx-auto top-0"
+                      style={{ display: "absolute" }}
+                      image={image.gatsbyImageData}
+                      alt={image.title}
+                    />
+                  ))}
+              </Carousel>
+            )}
+
+            {carouselImages && backgroundImage && (
+              <div className=" absolute h-full w-full top-0 grid grid-cols-5">
+                <div className="col-span-3">
+                  <GatsbyImage
+                    className="absolute h-full w-3/5 top-0 col-span-3"
+                    style={{ position: "block" }}
+                    image={backgroundImage.gatsbyImageData}
+                    alt={backgroundImage.title}
+                  />
+                </div>
+                <div className="col-span-2 h-full">
+                  <Carousel
+                    settings={{
+                      prevArrow: false,
+                      nextArrow: false,
+                      autoplay: true,
+                      arrows: false,
+                    }}
+                    className="w-full h-full"
+                  >
+                    {carouselImages &&
+                      carouselImages.map((image) => (
+                        <GatsbyImage
+                          className="h-full w-full mx-auto top-0"
+                          style={{ display: "block" }}
+                          image={image.gatsbyImageData}
+                          alt={image.title}
+                        />
+                      ))}
+                  </Carousel>
+                </div>
+              </div>
+            )}
+          </div>
         )}
       </section>
     </>
