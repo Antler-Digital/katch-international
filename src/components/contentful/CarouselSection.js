@@ -1,46 +1,76 @@
-import React from 'react'
-import { graphql } from 'gatsby';
-import Slide from './Slide';
-import Carousel from '../elements/Carousel';
-import CaseStudySlide from './CaseStudySlide';
-
+import React from "react"
+import { graphql } from "gatsby"
+import Slide from "./Slide"
+import Carousel from "../elements/Carousel"
+import CaseStudySlide from "./CaseStudySlide"
 
 function CarouselSection({ slides }) {
-  const [activeSlide, setActiveSlide ] = React.useState(0);
+  const [activeSlide, setActiveSlide] = React.useState(0)
+  const [slidesToShow, setSlidesToShow] = React.useState(3)
+
+  React.useEffect(() => {
+    if (window) {
+      const resizeHandler = () => {
+        if (window.innerWidth < 768) {
+          setSlidesToShow(1)
+        } else {
+          setSlidesToShow(3)
+        }
+      }
+      window.addEventListener("resize", resizeHandler)
+      resizeHandler()
+      return () => {
+        window.removeEventListener("resize", resizeHandler)
+      }
+    }
+  }, [])
 
   const settings = {
     dots: false,
     infinite: true,
-    slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
     speed: 500,
     autoplaySpeed: 8000,
-    slidesToShow: 3,
+    slidesToShow,
     centerMode: true,
-    centerPadding: '10px',
-    beforeChange: (_slide, newSlide) => setActiveSlide(newSlide)
-    
+    centerPadding: "10px",
+    beforeChange: (_slide, newSlide) => setActiveSlide(newSlide),
+
     // cssEase: "ease-in"
-  };
+  }
 
   return (
-    <div className="min-h-600 relative overflow-hidden " >
-      <Carousel settings={settings} className="" >
-        {slides && slides.map((slide, index) => {
-
-          if (slide.internal.type === 'ContentfulSlide') {
-            return <Slide key={slide.id} {...slide} isActive={activeSlide === index} />
-          }
-          return <CaseStudySlide key={slide.id} {...slide} isActive={activeSlide === index}/>
-        })}
+    <div className="min-h-600 relative overflow-hidden pb-16">
+      <Carousel
+        settings={settings}
+        className="max-w-screen-2xl mx-auto overflow-hidden"
+      >
+        {slides &&
+          slides.map((slide, index) => {
+            if (slide.internal.type === "ContentfulSlide") {
+              return (
+                <Slide
+                  key={slide.id}
+                  {...slide}
+                  isActive={activeSlide === index}
+                />
+              )
+            }
+            return (
+              <CaseStudySlide
+                key={slide.id}
+                {...slide}
+                isActive={activeSlide === index}
+              />
+            )
+          })}
       </Carousel>
     </div>
   )
 }
 
 export default CarouselSection
-
 
 export const ContentfulCarouselSectionFragment = graphql`
   fragment ContentfulCarouselSectionFragment on ContentfulCarouselSection {
@@ -54,5 +84,4 @@ export const ContentfulCarouselSectionFragment = graphql`
       ...ContentfulCaseStudyCardFragment
     }
   }
-
 `

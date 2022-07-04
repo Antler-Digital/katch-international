@@ -1,16 +1,20 @@
-import React from 'react'
-import { graphql } from 'gatsby';
+import React from "react"
+import { graphql } from "gatsby"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
-import RichTextOptions from '../rich-text/RichTextOptions';
-
+import RichTextOptions from "../rich-text/RichTextOptions"
 
 function TextSection({ text, align }) {
-
-
-  const textAlign = align === "Left" ? "text-left" : align === "Right" ? "text-right" : "text-center"
+  const textAlign =
+    align === "Left"
+      ? "text-left"
+      : align === "Right"
+      ? "text-right"
+      : "text-center"
   return (
-    <section className="bg-gray-100  text-black py-4" >
-      <div className={`mx-auto px-4 max-w-screen-xl prose prose-black ${textAlign}`}>
+    <section className="mt-44 bg-gray-100  text-black py-4">
+      <div
+        className={`mx-auto px-4 max-w-screen-xl prose prose-black ${textAlign}`}
+      >
         {renderRichText(text, RichTextOptions)}
       </div>
     </section>
@@ -19,8 +23,7 @@ function TextSection({ text, align }) {
 
 export default TextSection
 
-
-export const ContentfulTextSectionFragment = graphql`
+export const ContentfulTabSectionFragment = graphql`
   fragment ContentfulTextSectionFragment on ContentfulTextSection {
     text {
       raw
@@ -30,5 +33,4 @@ export const ContentfulTextSectionFragment = graphql`
       type
     }
   }
-
 `

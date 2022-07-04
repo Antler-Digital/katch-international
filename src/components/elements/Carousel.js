@@ -1,13 +1,11 @@
-import React from 'react'
-import Slider from "react-slick";
-import "../../css/slick.css";
-import "../../css/slick-theme.css";
-import RightChevron from '../svgs/RightChevron';
-import LeftChevron from '../svgs/LeftChevron';
-
+import React from "react"
+import Slider from "react-slick"
+import "../../css/slick.css"
+import "../../css/slick-theme.css"
+import RightChevron from "../svgs/RightChevron"
+import LeftChevron from "../svgs/LeftChevron"
 
 function Carousel({ settings = {}, className, children, theme = "dark" }) {
-
   const defaultSettings = {
     dots: false,
     infinite: true,
@@ -18,18 +16,31 @@ function Carousel({ settings = {}, className, children, theme = "dark" }) {
     autoplaySpeed: 5000,
     nextArrow: <RightArrow theme={theme} />,
     prevArrow: <LeftArrow theme={theme} />,
-    cssEase: "ease-in"
-  };
+    cssEase: "ease-in",
+  }
   const settingsToUse = { ...defaultSettings, ...settings }
   return (
     <Slider {...settingsToUse} className={className}>
-      { children}
+      {children}
     </Slider>
   )
 }
 
 export default Carousel
 
-
-const RightArrow = (props) => <RightChevron {...props} className={`${props.theme === "dark" ? "text-white" : "text-black"} hover:text-secondary cursor-pointer -mt-4 right-2 sm:right-12 md:right-24 lg:right-20 xl:right-20 z-front absolute top-1/2`} />
-const LeftArrow = (props) => <LeftChevron {...props} className={`${props.theme === "dark" ? "text-white" : "text-black"} hover:text-secondary cursor-pointer -mt-4 left-2 sm:left-12 md:left-24 lg:left-20 xl:left-20 z-front absolute top-1/2`} />
+const RightArrow = (props) => (
+  <RightChevron
+    {...props}
+    className={`${
+      props.theme === "dark" ? "text-white" : "text-black"
+    } hover:text-secondary cursor-pointer -mt-4 right-2 sm:right-12 md:right-24 lg:right-20 xl:right-20 z-10 absolute top-1/2`}
+  />
+)
+const LeftArrow = (props) => (
+  <LeftChevron
+    {...props}
+    className={`${
+      props.theme === "dark" ? "text-white" : "text-black"
+    } hover:text-secondary cursor-pointer -mt-4 left-2 sm:left-12 md:left-24 lg:left-20 xl:left-20 z-10 absolute top-1/2`}
+  />
+)
