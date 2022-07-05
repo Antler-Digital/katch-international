@@ -7,8 +7,11 @@ import SpacerSection from "../../components/contentful/SpacerSection"
 import TabSection from "../../components/contentful/TabSection"
 import Layout from "../../components/layout/Layout"
 import SEO from "../../components/SEO"
+import ChangeCaseStudy from "../../components/elements/ChangeCaseStudy"
 
-const CaseStudyTemplate = ({ data: { contentfulCaseStudy } }) => {
+const CaseStudyTemplate = ({
+  data: { contentfulCaseStudy, allContentfulCaseStudy },
+}) => {
   const page = contentfulCaseStudy
   const {
     metaDescription,
@@ -23,6 +26,14 @@ const CaseStudyTemplate = ({ data: { contentfulCaseStudy } }) => {
     theSolution,
     theResults,
   } = page
+
+  const caseStudies = allContentfulCaseStudy.nodes
+  const currentCaseStudy = caseStudies.findIndex(
+    (caseStudy) => caseStudy.id === page.id
+  )
+  const prevCaseStudy =
+    caseStudies[currentCaseStudy - 1] || caseStudies[caseStudies.length - 1]
+  const nextCaseStudy = caseStudies[currentCaseStudy + 1] || caseStudies[0]
 
   return (
     <Layout>
@@ -71,14 +82,10 @@ const CaseStudyTemplate = ({ data: { contentfulCaseStudy } }) => {
         </div>
       </section>
 
-      {related && (
-        <CollectionSection
-          customItems={related}
-          lightTheme={true}
-          postType="Case Studies"
-          header="Related Case Studies"
-        />
-      )}
+      <ChangeCaseStudy
+        prevCaseStudy={prevCaseStudy}
+        nextCaseStudy={nextCaseStudy}
+      />
     </Layout>
   )
 }
@@ -140,6 +147,20 @@ export const CaseStudyQuery = graphql`
       }
       related {
         ...ContentfulCaseStudyCardFragment
+      }
+    }
+    allContentfulCaseStudy {
+      nodes {
+        slug
+        mainImage {
+          gatsbyImageData(
+            width: 1200
+            height: 500
+            layout: FULL_WIDTH
+            quality: 90
+            placeholder: BLURRED
+          )
+        }
       }
     }
   }
