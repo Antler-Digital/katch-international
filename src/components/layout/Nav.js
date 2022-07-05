@@ -82,14 +82,18 @@ const Nav = (props) => {
   `)
 
   const { navBar, navLogo } = contentfulSiteSettings
+  const location = typeof window !== "undefined" && window.location.pathname
+  const isHome = location === "/"
 
-  const [atTop, setAtTop] = React.useState(true)
+  const [atTop, setAtTop] = React.useState(isHome ? true : false)
+
+  console.log(location)
 
   const handleScroll = (e) => {
     const scrollTop = e.target.documentElement.scrollTop
     if (scrollTop > 150) {
       return atTop && setAtTop(false)
-    } else if (scrollTop < 150) {
+    } else if (scrollTop < 150 && isHome) {
       return setAtTop(true)
     }
   }
