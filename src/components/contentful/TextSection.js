@@ -9,11 +9,11 @@ function TextSection({ text, align }) {
       ? "text-left"
       : align === "Right"
       ? "text-right"
-      : "text-center"
+      : "text-justify"
   return (
-    <section className="mt-44 bg-gray-100  text-black py-4">
+    <section className="bg-gray-100  text-black py-4">
       <div
-        className={`mx-auto px-4 max-w-screen-xl prose prose-black ${textAlign}`}
+        className={`max-w-screen-2xl mx-auto px-6 ${textAlign} text-base space-y-4`}
       >
         {renderRichText(text, RichTextOptions)}
       </div>

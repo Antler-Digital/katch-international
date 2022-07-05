@@ -83,9 +83,12 @@ const Nav = (props) => {
 
   const { navBar, navLogo } = contentfulSiteSettings
   const location = typeof window !== "undefined" && window.location.pathname
-  const isHome = location === "/"
+  const isProject = location.includes("project")
+  const isContactUs = location.includes("contact-us")
 
-  const [atTop, setAtTop] = React.useState(isHome ? true : false)
+  const [atTop, setAtTop] = React.useState(
+    isProject || isContactUs ? false : true
+  )
 
   console.log(location)
 
@@ -93,7 +96,7 @@ const Nav = (props) => {
     const scrollTop = e.target.documentElement.scrollTop
     if (scrollTop > 150) {
       return atTop && setAtTop(false)
-    } else if (scrollTop < 150 && isHome) {
+    } else if (scrollTop < 150 && !isProject && !isContactUs) {
       return setAtTop(true)
     }
   }
@@ -111,7 +114,7 @@ const Nav = (props) => {
           atTop ? "py-4" : "hidden"
         } transition-all duration-300 lg:px-0 z-front`}
       >
-        <div className="flex container mx-auto px-4">
+        <div className="flex max-w-screen-2xl mx-auto px-4">
           <Linked linkTo="/" className="">
             <img className="w-24" src={KatchLogo} alt="Katch Logo" />
           </Linked>

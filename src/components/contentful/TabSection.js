@@ -6,7 +6,7 @@ import RichTextOptions from "../rich-text/RichTextOptions"
 
 const TabSection = ({ sections }) => {
   return (
-    <div className="container mx-auto px-6">
+    <div className="max-w-screen-2xl mx-auto px-6">
       <Tab.Group>
         <Tab.List className={"flex justify-start gap-8 font-bold"}>
           {sections.map(({ header }, index) => {
@@ -31,7 +31,7 @@ const TabSection = ({ sections }) => {
             return (
               <Tab.Panel
                 key={`panel-${index}`}
-                className="text-base text-justify"
+                className="text-base text-justify space-y-4"
               >
                 {renderRichText(text, RichTextOptions)}
               </Tab.Panel>

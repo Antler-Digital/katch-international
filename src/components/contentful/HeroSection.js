@@ -31,14 +31,17 @@ function HeroSection({
         }  relative ${(centerHeading || !showForm) && "flex items-center"}`}
       >
         <div
-          className={`container mx-auto  w-full h-full flex flex-wrap relative px-4 z-20`}
+          className={`max-w-screen-2xl mx-auto  w-full h-full flex flex-wrap relative px-4 z-20`}
         >
           <div className={` w-full md:h-full text-left ${colorText}`}>
             {header && (
               <h1
                 className={`-bottom-[68px] md:-bottom-[81px] lg:-bottom-[179px] absolute text-6xl md:text-7xl lg:text-[160px] font-bold block`}
               >
-                {header.split(" ").map((t) => (
+                {[
+                  header.slice(0, header.lastIndexOf(" ")),
+                  header.slice(header.lastIndexOf(" ") + 1),
+                ].map((t) => (
                   <span className="block last:text-black">{t}</span>
                 ))}
               </h1>
@@ -48,7 +51,7 @@ function HeroSection({
         <div className="h-full absolute top-0 z-10 w-full sm:px-4 bg-black bg-opacity-25" />
         {backgroundImage && !carouselImages && (
           <GatsbyImage
-            className="absolute h-full w-full top-0"
+            className="absolute h-full w-full top-0 "
             style={{ position: "absolute" }}
             image={backgroundImage.gatsbyImageData}
             alt={backgroundImage.title}
