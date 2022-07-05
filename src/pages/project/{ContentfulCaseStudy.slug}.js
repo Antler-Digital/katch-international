@@ -43,7 +43,7 @@ const CaseStudyTemplate = ({ data: { contentfulCaseStudy } }) => {
 
       <SpacerSection size={"Medium"} backgroundColour="Black" />
 
-      <section className="flex flex-col md:flex-row w-full container mx-auto py-6 md:py-12 lg:py-24 gap-y-10 gap-x-12">
+      <section className="flex flex-col md:flex-row w-full max-w-screen-2xl mx-auto py-6 md:py-12 lg:py-24 gap-y-10 gap-x-12">
         <div className="md:w-[70%]">
           <TabSection
             sections={[
@@ -53,7 +53,7 @@ const CaseStudyTemplate = ({ data: { contentfulCaseStudy } }) => {
             ]}
           />
         </div>
-        <div className="md:w-[40%] flex flex-row md:flex-col lg:flex-row justify-between lg:justify-start gap-x-8 container mx-auto px-6">
+        <div className="md:w-[40%] flex flex-row md:flex-col lg:flex-row justify-between lg:justify-start gap-x-8 max-w-screen-2xl mx-auto px-6">
           <div className="shrink">
             <h5 className="uppercase mb-12 text-sm sm:text-base">
               The Service

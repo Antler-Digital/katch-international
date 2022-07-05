@@ -16,12 +16,14 @@ const RichTextOptions = {
     // [BLOCKS.HEADING_2]: (node, children) => <h3>{children}</h3>,
     // [BLOCKS.HEADING_3]: (node, children) => <h4>{children}</h4>,
     [BLOCKS.PARAGRAPH]: (node, children) => (
-      <p className="font-sans my-4">{children}</p>
+      <p className="font-sans">{children}</p>
     ),
     // [BLOCKS.QUOTE]: (node, children) => <Quote>{children}</Quote>,
     // [BLOCKS.HR]: () => <Hr />,
     // [BLOCKS.LIST_ITEM]: (node, children) => <li className="md:pl-2">{children}</li>,
-    // [BLOCKS.UL_LIST]: (node, children) => <ul className="list-disc  ">{children}</ul>,
+    [BLOCKS.UL_LIST]: (node, children) => (
+      <ul className="list-disc space-y-4">{children}</ul>
+    ),
     [BLOCKS.OL_LIST]: (node, children) => <ol className="list-">{children}</ol>,
     [INLINES.HYPERLINK]: (node, children) => {
       const cleanLink = node.data.uri.replace(
