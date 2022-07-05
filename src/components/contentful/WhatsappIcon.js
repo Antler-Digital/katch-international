@@ -3,7 +3,6 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import { graphql } from "gatsby"
 
 const WhatsappIcon = ({ icon }) => {
-  console.log(icon)
   return (
     <button type="button" className="">
       <GatsbyImage
