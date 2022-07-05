@@ -40,8 +40,12 @@ const ClientViewAll = ({ arrayToRender, CardComponent, showAll }) => {
       {items &&
         items.map((item, index) => {
           return (
-            <motion.div className="h-24 w-24" variants={elementVariants}>
-              <CardComponent key={item.id} {...item} />
+            <motion.div
+              key={item.id}
+              className="h-24 w-24"
+              variants={elementVariants}
+            >
+              <CardComponent {...item} />
             </motion.div>
           )
         })}

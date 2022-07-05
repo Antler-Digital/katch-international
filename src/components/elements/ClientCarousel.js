@@ -104,8 +104,8 @@ const ClientCarousel = ({ arrayToRender, isHover, CardComponent, showAll }) => {
                   arrayToRender
                     .slice(i * 9 * 3, (1 + i) * 9 * 3)
                     .map((item) => (
-                      <div className="h-24 w-24">
-                        <CardComponent key={item.id} {...item} />
+                      <div className="h-24 w-24" key={item.id}>
+                        <CardComponent {...item} />
                       </div>
                     ))}
               </motion.div>

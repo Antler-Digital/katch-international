@@ -16,6 +16,7 @@ import useCustomSection from "../hooks/useCustomSection"
 import TabSection from "../components/contentful/TabSection"
 import HubspotForm from "../components/forms/HubspotForm"
 import FullScreenImage from "../components/contentful/FullScreenImage"
+import WhatsappIcon from "../components/contentful/WhatsappIcon"
 
 export const SectionSwitcher = (section, pageType, index) => {
   const isServicePage = pageType.includes("Service Page")
@@ -81,6 +82,8 @@ export const SectionSwitcher = (section, pageType, index) => {
       )
     case "ContentfulFullScreenImage":
       return <FullScreenImage key={`${section.id}` + index} {...section} />
+    case "ContentfulWhatsappIcon":
+      return <WhatsappIcon key={`${section.id}` + index} {...section} />
     default:
       break
   }
@@ -179,9 +182,9 @@ export const PagesQuery = graphql`
         ... on ContentfulSpacerSection {
           ...ContentfulSpacerSectionFragment
         }
-        #... on ContentfulMapSection {
+        # ... on ContentfulMapSection {
         #  ...ContentfulMapSectionFragment
-        #}
+        # }
         ... on ContentfulVideo {
           ...ContentfulVideoFragment
         }
@@ -190,6 +193,9 @@ export const PagesQuery = graphql`
         }
         ... on ContentfulContactForm {
           ...ContentfulContactFormFragment
+        }
+        ... on ContentfulWhatsappIcon {
+          ...ContentfulWhatsappIconFragment
         }
       }
     }

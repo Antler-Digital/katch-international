@@ -90,8 +90,6 @@ const Nav = (props) => {
     isProject || isContactUs ? false : true
   )
 
-  console.log(location)
-
   const handleScroll = (e) => {
     const scrollTop = e.target.documentElement.scrollTop
     if (scrollTop > 150) {
