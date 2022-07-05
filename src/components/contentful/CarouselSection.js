@@ -6,24 +6,6 @@ import CaseStudySlide from "./CaseStudySlide"
 
 function CarouselSection({ slides }) {
   const [activeSlide, setActiveSlide] = React.useState(0)
-  const [slidesToShow, setSlidesToShow] = React.useState(3)
-
-  React.useEffect(() => {
-    if (window) {
-      const resizeHandler = () => {
-        if (window.innerWidth < 768) {
-          setSlidesToShow(1)
-        } else {
-          setSlidesToShow(3)
-        }
-      }
-      window.addEventListener("resize", resizeHandler)
-      resizeHandler()
-      return () => {
-        window.removeEventListener("resize", resizeHandler)
-      }
-    }
-  }, [])
 
   const settings = {
     dots: false,
@@ -32,10 +14,19 @@ function CarouselSection({ slides }) {
     autoplay: true,
     speed: 500,
     autoplaySpeed: 8000,
-    slidesToShow,
+    slidesToShow: 3,
     centerMode: true,
     centerPadding: "10px",
     beforeChange: (_slide, newSlide) => setActiveSlide(newSlide),
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          centerPadding: "50px",
+          slidesToShow: 1,
+        },
+      },
+    ],
 
     // cssEase: "ease-in"
   }

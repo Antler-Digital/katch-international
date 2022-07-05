@@ -17,7 +17,7 @@ const CaseStudySlide = ({ title, sqrImage, slug, isActive }) => {
         alt={sqrImage.title}
         image={sqrImage.gatsbyImageData}
       />
-      <h3 className="absolute bottom-20 w-4/5 text-white leading-tight text-3xl lg:text-7xl uppercase">
+      <h3 className="absolute bottom-20 w-4/5 text-white leading-tight text-3xl lg:text-6xl uppercase">
         {title}
       </h3>
       <AnimatePresence>

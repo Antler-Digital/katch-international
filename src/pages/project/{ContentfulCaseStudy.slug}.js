@@ -1,16 +1,12 @@
 import { graphql } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 
 import CollectionSection from "../../components/contentful/CollectionSection"
 import HeroSection from "../../components/contentful/HeroSection"
+import SpacerSection from "../../components/contentful/SpacerSection"
 import TabSection from "../../components/contentful/TabSection"
-import Carousel from "../../components/elements/Carousel"
 import Layout from "../../components/layout/Layout"
 import SEO from "../../components/SEO"
-import LeftChevron from "../../components/svgs/LeftChevron"
-import RightChevron from "../../components/svgs/RightChevron"
-import SpacerSection from "../../components/contentful/SpacerSection"
 
 const CaseStudyTemplate = ({ data: { contentfulCaseStudy } }) => {
   const page = contentfulCaseStudy
@@ -20,9 +16,8 @@ const CaseStudyTemplate = ({ data: { contentfulCaseStudy } }) => {
     metaTitle,
     title,
     related,
-    body,
+    mainImage,
     carouselImages,
-    logoBlack,
     category,
     theChallenge,
     theSolution,
@@ -42,14 +37,14 @@ const CaseStudyTemplate = ({ data: { contentfulCaseStudy } }) => {
         textColour="White"
         showForm={false}
         centerHeading={true}
-        backgroundImage={carouselImages[0]}
-        carouselImages={carouselImages.slice(1)}
+        backgroundImage={mainImage}
+        carouselImages={carouselImages}
       />
 
       <SpacerSection size={"Medium"} backgroundColour="Black" />
 
-      <section className="flex w-full container mx-auto py-6 md:py-12 lg:py-24 gap-y-10 gap-x-12">
-        <div className="w-[70%]">
+      <section className="flex flex-col md:flex-row w-full container mx-auto py-6 md:py-12 lg:py-24 gap-y-10 gap-x-12">
+        <div className="md:w-[70%]">
           <TabSection
             sections={[
               { header: "The Challenge", text: theChallenge },
@@ -58,18 +53,18 @@ const CaseStudyTemplate = ({ data: { contentfulCaseStudy } }) => {
             ]}
           />
         </div>
-        <div className="w-[40%] flex justify-between gap-x-8">
-          <div className="grow">
+        <div className="md:w-[40%] flex flex-row md:flex-col lg:flex-row justify-between lg:justify-start gap-x-8 container mx-auto px-6">
+          <div className="shrink">
             <h5 className="uppercase mb-12 text-sm sm:text-base">
               The Service
             </h5>
-            <div className="grid-cols-2 grid">
+            <div className="grid grid-cols-2 md:grid-cols-1 xl:grid-cols-2">
               {category.map((category) => (
                 <p className="text-base font-thin font-sans mt-1">{category}</p>
               ))}
             </div>
           </div>
-          <div className="w-[30%]">
+          <div className="shrink md:mt-12 lg:mt-0">
             <h5 className="uppercase mb-12 text-sm sm:text-base">The Client</h5>
             <p className="text-base font-thin font-sans mt-1">{title}</p>
           </div>
@@ -107,10 +102,19 @@ export const CaseStudyQuery = graphql`
       body {
         raw
       }
+      mainImage {
+        gatsbyImageData(
+          width: 1200
+          height: 500
+          layout: FULL_WIDTH
+          quality: 90
+          placeholder: BLURRED
+        )
+      }
       carouselImages {
         gatsbyImageData(
-          layout: CONSTRAINED
-          width: 350
+          layout: FULL_WIDTH
+          width: 800
           quality: 90
           placeholder: BLURRED
         )

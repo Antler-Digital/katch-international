@@ -16,7 +16,7 @@ function HeroSection({
 }) {
   const colorText =
     textColour === "White"
-      ? "text-white"
+      ? "text-gray-100"
       : textColour === "Pink"
       ? "text-secondary"
       : "text-black"
@@ -25,7 +25,9 @@ function HeroSection({
     <>
       <section
         className={`${
-          backgroundImage ? "h-[500px]" : "min-h-[300px] md:min-h-[400px]"
+          backgroundImage || carouselImages
+            ? "h-[500px]"
+            : "min-h-[300px] md:min-h-[400px]"
         }  relative ${(centerHeading || !showForm) && "flex items-center"}`}
       >
         <div
@@ -34,7 +36,7 @@ function HeroSection({
           <div className={` w-full md:h-full text-left ${colorText}`}>
             {header && (
               <h1
-                className={`-bottom-[68px] sm:-bottom-[81px] lg:-bottom-[179px] absolute text-6xl md:text-7xl lg:text-[160px] font-bold block`}
+                className={`-bottom-[68px] md:-bottom-[81px] lg:-bottom-[179px] absolute text-6xl md:text-7xl lg:text-[160px] font-bold block`}
               >
                 {header.split(" ").map((t) => (
                   <span className="block last:text-black">{t}</span>
@@ -78,16 +80,16 @@ function HeroSection({
             )}
 
             {carouselImages && backgroundImage && (
-              <div className=" absolute h-full w-full top-0 grid grid-cols-5">
-                <div className="col-span-3">
+              <div className="absolute h-full w-full top-0 flex flex-col md:flex-row justify-between">
+                <div className="">
                   <GatsbyImage
-                    className="absolute h-full w-3/5 top-0 col-span-3"
+                    className="md:absolute h-[250px] md:h-full w-full md:w-3/5 top-0"
                     style={{ position: "block" }}
                     image={backgroundImage.gatsbyImageData}
                     alt={backgroundImage.title}
                   />
                 </div>
-                <div className="col-span-2 h-full">
+                <div className="w-full md:w-2/5 h-full">
                   <Carousel
                     settings={{
                       prevArrow: false,
@@ -100,7 +102,7 @@ function HeroSection({
                     {carouselImages &&
                       carouselImages.map((image) => (
                         <GatsbyImage
-                          className="h-full w-full mx-auto top-0"
+                          className="h-[250px] md:h-[500px] w-full mx-auto md:top-0 object-cover"
                           style={{ display: "block" }}
                           image={image.gatsbyImageData}
                           alt={image.title}
