@@ -14,15 +14,32 @@ import MapSection from "../components/contentful/MapSection"
 import VideoSection from "../components/contentful/VideoSection"
 import useCustomSection from "../hooks/useCustomSection"
 import TabSection from "../components/contentful/TabSection"
+import HubspotForm from "../components/forms/HubspotForm"
+import FullScreenImage from "../components/contentful/FullScreenImage"
 
-const SectionSwitcher = (section, index) => {
+export const SectionSwitcher = (section, pageType, index) => {
+  const isServicePage = pageType.includes("Service Page")
   switch (section.internal?.type) {
     case "ContentfulThreeCardsSection":
-      return <ThreeCardsSection key={`${section.id}` + index} {...section} />
+      return (
+        <>
+          <ThreeCardsSection key={`${section.id}` + index} {...section} />
+          {isServicePage && (
+            <SpacerSection size={"Small"} backgroundColour={"Black"} />
+          )}
+        </>
+      )
     case "ContentfulCarouselSection":
       return <CarouselSection key={`${section.id}` + index} {...section} />
     case "ContentfulHeroSection":
-      return <HeroSection key={`${section.id}` + index} {...section} />
+      return (
+        <>
+          <HeroSection key={`${section.id}` + index} {...section} />
+          {isServicePage && (
+            <SpacerSection size={"Large"} backgroundColour={"Black"} />
+          )}
+        </>
+      )
     case "ContentfulCollectionSection":
       return <CollectionSection key={`${section.id}` + index} {...section} />
     case "ContentfulSocialSection":
@@ -30,7 +47,14 @@ const SectionSwitcher = (section, index) => {
     case "ContentfulTwoColumnSection":
       return <TwoColumnSection key={`${section.id}` + index} {...section} />
     case "ContentfulTextSection":
-      return <TextSection key={`${section.id}` + index} {...section} />
+      return (
+        <>
+          <TextSection key={`${section.id}` + index} {...section} />
+          {isServicePage && (
+            <SpacerSection size={"Small"} backgroundColour={"Black"} />
+          )}
+        </>
+      )
     case "ContentfulSpacerSection":
       return <SpacerSection key={`${section.id}` + index} {...section} />
     case "ContentfulMapSection":
@@ -38,7 +62,25 @@ const SectionSwitcher = (section, index) => {
     case "ContentfulVideo":
       return <VideoSection key={`${section.id}` + index} {...section} />
     case "ContentfulTabsSection":
-      return <TabSection key={`${section.id}` + index} {...section} />
+      return (
+        <>
+          <TabSection key={`${section.id}` + index} {...section} />
+          {isServicePage && (
+            <SpacerSection size={"Small"} backgroundColour={"Black"} />
+          )}
+        </>
+      )
+    case "ContentfulContactForm":
+      return (
+        <>
+          <HubspotForm key={`${section.id}` + index} {...section} />
+          {isServicePage && (
+            <SpacerSection size={"Small"} backgroundColour={"Black"} />
+          )}
+        </>
+      )
+    case "ContentfulFullScreenImage":
+      return <FullScreenImage key={`${section.id}` + index} {...section} />
     default:
       break
   }
@@ -50,6 +92,7 @@ const PageTemplate = ({ data: { contentfulPage } }) => {
     metaDescription,
     metaImage,
     metaTitle,
+    pageType,
     title,
     slug,
     sections,
@@ -72,11 +115,15 @@ const PageTemplate = ({ data: { contentfulPage } }) => {
 
       <div>
         {snapSections &&
-          snapSections.map((section, index) => SectionSwitcher(section, index))}
+          snapSections.map((section, index) =>
+            SectionSwitcher(section, pageType, index)
+          )}
       </div>
 
       {restSections &&
-        restSections.map((section, index) => SectionSwitcher(section, index))}
+        restSections.map((section, index) =>
+          SectionSwitcher(section, pageType, index)
+        )}
 
       {customSection}
     </Layout>
@@ -97,6 +144,7 @@ export const PagesQuery = graphql`
       metaDescription {
         text: metaDescription
       }
+      pageType
       extraImages {
         gatsbyImageData(
           width: 1200
@@ -131,14 +179,17 @@ export const PagesQuery = graphql`
         ... on ContentfulSpacerSection {
           ...ContentfulSpacerSectionFragment
         }
-        ... on ContentfulMapSection {
-          ...ContentfulMapSectionFragment
-        }
+        #... on ContentfulMapSection {
+        #  ...ContentfulMapSectionFragment
+        #}
         ... on ContentfulVideo {
           ...ContentfulVideoFragment
         }
         ... on ContentfulTabsSection {
           ...ContentfulTabsSectionFragment
+        }
+        ... on ContentfulContactForm {
+          ...ContentfulContactFormFragment
         }
       }
     }
