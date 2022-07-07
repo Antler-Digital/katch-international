@@ -80,8 +80,8 @@ const Nav = (props) => {
 
   const { navBar, navLogo } = contentfulSiteSettings
   const location = typeof window !== "undefined" && window.location.pathname
-  const isProject = location.includes("project")
-  const isContactUs = location.includes("contact-us")
+  const isProject = location && location?.includes("project") || false
+  const isContactUs = location && location?.includes("contact-us") || false
 
   const [atTop, setAtTop] = React.useState(
     isProject || isContactUs ? false : true

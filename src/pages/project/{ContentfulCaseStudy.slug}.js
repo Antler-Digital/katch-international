@@ -32,7 +32,6 @@ const CaseStudyTemplate = ({
     (caseStudy) => caseStudy.slug === page.slug
   )
 
-  console.log(allContentfulCaseStudy, currentCaseStudy)
   const prevCaseStudy =
     caseStudies?.[currentCaseStudy - 1] || caseStudies?.[caseStudies.length - 1] 
   const nextCaseStudy = caseStudies?.[currentCaseStudy + 1] || caseStudies?.[0]

@@ -23,7 +23,6 @@ export const SectionSwitcher = (section, pageType, index, slug) => {
   const isServicePage = pageType.includes("Service Page")
 
   const isBlogHome = slug === 'blog'
-  console.log(slug)
   switch (section.internal?.type) {
     case "ContentfulThreeCardsSection":
       return (

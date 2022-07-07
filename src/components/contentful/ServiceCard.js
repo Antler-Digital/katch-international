@@ -29,8 +29,6 @@ function ServiceCard({
     },
   }
 
-  console.log(link)
-
   const textShadow = { textShadow: "rgba(0, 0, 0, 0.4) 0.08em 0.08em 0em" }
   return (
     <article
