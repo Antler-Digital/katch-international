@@ -4,7 +4,7 @@ import Slide from "./Slide"
 import Carousel from "../elements/Carousel"
 import CaseStudySlide from "./CaseStudySlide"
 
-function CarouselSection({ slides }) {
+function CarouselSection({ slides, name }) {
   const [activeSlide, setActiveSlide] = React.useState(0)
 
   const settings = {
@@ -31,8 +31,9 @@ function CarouselSection({ slides }) {
     // cssEase: "ease-in"
   }
 
+  const isCaseStudy = name === "Case Study Carousel"
   return (
-    <div className="min-h-600 relative overflow-hidden pb-16">
+    <div className="min-h-600 relative overflow-hidden pb-16" id={isCaseStudy ? 'our-work' :''}>
       <Carousel
         settings={settings}
         className="max-w-screen-2xl mx-auto overflow-hidden"

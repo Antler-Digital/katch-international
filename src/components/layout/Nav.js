@@ -6,10 +6,7 @@ import UseBodyLock from "../../hooks/useBodyLock"
 import { useStaticQuery, graphql } from "gatsby"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
-  faBars,
   faChevronDown,
-  faPlus,
-  faEnvelope,
 } from "@fortawesome/free-solid-svg-icons"
 import { Transition } from "@headlessui/react"
 import {
@@ -108,15 +105,14 @@ const Nav = (props) => {
   return (
     <>
       <nav
-        className={` w-full fixed ${
-          atTop ? "py-4" : "hidden"
-        } transition-all duration-300 lg:px-0 z-[999]`}
+        className={` w-full fixed ${atTop ? "py-4" : "hidden"
+          } transition-all duration-300 lg:px-0 z-[999]`}
       >
         <div className="flex max-w-screen-2xl mx-auto px-4">
           <Linked linkTo="/" className="">
             <img className="w-24" src={KatchLogo} alt="Katch Logo" />
           </Linked>
-     
+
 
           <div className="hidden md:flex space-x-4 text-sm ml-auto mt-2 pr-4 uppercase ">
             {navBar &&
@@ -133,11 +129,10 @@ const Nav = (props) => {
                 return (
                   <Linked
                     className="text-white cursor-pointer relative group"
-                    linkTo={`${
-                      item.slug
+                    linkTo={`${item.slug
                         ? `/${item.slug === "/" ? "" : item.slug}`
                         : item.linkTo
-                    }`}
+                      }`}
                     key={item.id}
                     underline
                   >
@@ -148,13 +143,12 @@ const Nav = (props) => {
           </div>
         </div>
       </nav>
-  
+
       <nav className=" w-full fixed z-[999]">
-      <button
-          onClick={() => setMenuOpen(!menuOpen) }
-          className={`${!atTop ? "inline-block" : "lg:hidden"} ${
-            !menuOpen ? "hover:text-black text-secondary " : "text-white"
-          } z-[9999] ml-auto mr-6 mt-6 h-8 w-8 fixed top-0 right-5  duration-300 hover:animate-pulse`}
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className={`${!atTop ? "inline-block" : "lg:hidden"} ${!menuOpen ? "hover:text-black text-secondary " : "text-white"
+            } z-[9999] ml-auto mr-6 mt-6 h-8 w-8 fixed top-0 right-5  duration-300 hover:animate-pulse`}
         >
           <svg
             width="37"
@@ -205,11 +199,10 @@ const Nav = (props) => {
                             {item.menuItems.map((item) => (
                               <li key={item.title}>
                                 <Linked
-                                  linkTo={`${
-                                    item.slug
+                                  linkTo={`${item.slug
                                       ? `/${item.slug === "/" ? "" : item.slug}`
                                       : item.linkTo
-                                  }`}
+                                    }`}
                                 >
                                   {item.title}
                                 </Linked>
@@ -227,11 +220,10 @@ const Nav = (props) => {
                       <motion.li key={item.id} variants={itemVariant}>
                         <Linked
                           className="text-white cursor-pointer relative group text-5xl leading-tight"
-                          linkTo={`${
-                            item.slug
+                          linkTo={`${item.slug
                               ? `/${item.slug === "/" ? "" : item.slug}`
                               : item.linkTo
-                          }`}
+                            }`}
                           key={item.id}
                         >
                           {item.title || item.text}

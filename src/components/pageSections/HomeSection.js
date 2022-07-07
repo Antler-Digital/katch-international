@@ -82,11 +82,11 @@ const HomeSection = ({ extraImages }) => {
 const IconCard = ({ icon, text, linkTo }) => {
   return (
     <a
-      className="flex text-2xl items-center space-x-8"
+      className="flex text-2xl items-center group space-x-8 hover:text-secondary"
       href={linkTo}
       target="_blank"
     >
-      <FontAwesomeIcon size="2xl" className="w-20" icon={icon} />
+      <FontAwesomeIcon size="2xl" className="w-20 group-hover:animate-bounce" icon={icon} />
       <div className="w-64 md:w-auto">
         {text.map((t, index) => (
           <p key={index}>{t}</p>

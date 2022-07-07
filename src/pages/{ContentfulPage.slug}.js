@@ -27,7 +27,7 @@ export const SectionSwitcher = (section, pageType, index, slug) => {
   switch (section.internal?.type) {
     case "ContentfulThreeCardsSection":
       return (
-        <div key={`${section.id}` + index}>
+        <div key={`${section.id}` + index} id="our-services">
           <ThreeCardsSection key={`${section.id}` + index} {...section} />
           {isServicePage && (
             <SpacerSection size={"Small"} backgroundColour={"Black"} />
@@ -35,7 +35,7 @@ export const SectionSwitcher = (section, pageType, index, slug) => {
         </div>
       )
     case "ContentfulCarouselSection":
-      return <CarouselSection key={`${section.id}` + index} {...section} />
+      return <CarouselSection  key={`${section.id}` + index} {...section} />
     case "ContentfulHeroSection":
       return (
         <div key={`${section.id}` + index}>
