@@ -110,14 +110,15 @@ const Nav = (props) => {
       <nav
         className={` w-full fixed ${
           atTop ? "py-4" : "hidden"
-        } transition-all duration-300 lg:px-0 z-front`}
+        } transition-all duration-300 lg:px-0 z-[999]`}
       >
         <div className="flex max-w-screen-2xl mx-auto px-4">
           <Linked linkTo="/" className="">
             <img className="w-24" src={KatchLogo} alt="Katch Logo" />
           </Linked>
+     
 
-          <div className="hidden md:flex space-x-4 text-sm ml-auto mt-2 uppercase ">
+          <div className="hidden md:flex space-x-4 text-sm ml-auto mt-2 pr-4 uppercase ">
             {navBar &&
               navBar.map((item) => {
                 if (item.menuItems) {
@@ -145,32 +146,15 @@ const Nav = (props) => {
                 )
               })}
           </div>
-          <div className="md:hidden ml-auto flex  text-white pr-4 relative z-10">
-            <button
-              title="Menu Button"
-              role="button"
-              onClick={() => setMenuOpen(!menuOpen)}
-              className=""
-            >
-              {menuOpen ? (
-                <FontAwesomeIcon
-                  icon={faPlus}
-                  className="transform rotate-45 text-xl"
-                />
-              ) : (
-                <FontAwesomeIcon icon={faBars} className="text-xl" />
-              )}
-            </button>
-          </div>
         </div>
       </nav>
-
-      <nav className=" w-full fixed z-front">
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className={`${!atTop ? "block" : "hidden"} ${
-            !menuOpen ? "hover:text-white " : "text-white"
-          } relative z-[9999] ml-auto mr-6 mt-6 text-secondary duration-300 hover:animate-pulse`}
+  
+      <nav className=" w-full fixed z-[999]">
+      <button
+          onClick={() => setMenuOpen(!menuOpen) }
+          className={`${!atTop ? "inline-block" : "lg:hidden"} ${
+            !menuOpen ? "hover:text-black text-secondary " : "text-white"
+          } z-[9999] ml-auto mr-6 mt-6 h-8 w-8 fixed top-0 right-5  duration-300 hover:animate-pulse`}
         >
           <svg
             width="37"
@@ -180,8 +164,8 @@ const Nav = (props) => {
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
+              fillRule="evenodd"
+              clipRule="evenodd"
               d="M10 2C10 0.895508 10.8955 0 12 0H35C35.6133 0 36.1621 0.276367 36.5293 0.711426C36.8232 1.05957 37 1.50928 37 2C37 3.10449 36.1045 4 35 4H12C10.8955 4 10 3.10449 10 2ZM0 10C0 8.89551 0.895508 8 2 8H25C26.1045 8 27 8.89551 27 10C27 11.1045 26.1045 12 25 12H2C0.895508 12 0 11.1045 0 10ZM24 16C22.8955 16 22 16.8955 22 18C22 18.5522 22.2236 19.0522 22.5859 19.4141C22.9473 19.7764 23.4473 20 24 20H35C36.1045 20 37 19.1045 37 18C37 16.8955 36.1045 16 35 16H24Z"
               fill="currentColor"
             />

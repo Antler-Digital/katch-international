@@ -17,29 +17,33 @@ import TabSection from "../components/contentful/TabSection"
 import HubspotForm from "../components/forms/HubspotForm"
 import FullScreenImage from "../components/contentful/FullScreenImage"
 import WhatsappIcon from "../components/contentful/WhatsappIcon"
+import AltHeroSection from "../components/contentful/AltHeroSection"
 
-export const SectionSwitcher = (section, pageType, index) => {
+export const SectionSwitcher = (section, pageType, index, slug) => {
   const isServicePage = pageType.includes("Service Page")
+
+  const isBlogHome = slug === 'blog'
+  console.log(slug)
   switch (section.internal?.type) {
     case "ContentfulThreeCardsSection":
       return (
-        <>
+        <div key={`${section.id}` + index}>
           <ThreeCardsSection key={`${section.id}` + index} {...section} />
           {isServicePage && (
             <SpacerSection size={"Small"} backgroundColour={"Black"} />
           )}
-        </>
+        </div>
       )
     case "ContentfulCarouselSection":
       return <CarouselSection key={`${section.id}` + index} {...section} />
     case "ContentfulHeroSection":
       return (
-        <>
-          <HeroSection key={`${section.id}` + index} {...section} />
+        <div key={`${section.id}` + index}>
+          {isBlogHome ? <AltHeroSection {...section} /> : <HeroSection  {...section} />}
           {isServicePage && (
             <SpacerSection size={"Large"} backgroundColour={"Black"} />
           )}
-        </>
+        </div>
       )
     case "ContentfulCollectionSection":
       return <CollectionSection key={`${section.id}` + index} {...section} />
@@ -49,12 +53,12 @@ export const SectionSwitcher = (section, pageType, index) => {
       return <TwoColumnSection key={`${section.id}` + index} {...section} />
     case "ContentfulTextSection":
       return (
-        <>
+        <div key={`${section.id}` + index}>
           <TextSection key={`${section.id}` + index} {...section} />
           {isServicePage && (
             <SpacerSection size={"Small"} backgroundColour={"Black"} />
           )}
-        </>
+        </div>
       )
     case "ContentfulSpacerSection":
       return <SpacerSection key={`${section.id}` + index} {...section} />
@@ -64,32 +68,32 @@ export const SectionSwitcher = (section, pageType, index) => {
       return <VideoSection key={`${section.id}` + index} {...section} />
     case "ContentfulTabsSection":
       return (
-        <>
+        <div key={`${section.id}` + index}>
           <TabSection key={`${section.id}` + index} {...section} />
           {isServicePage && (
             <SpacerSection size={"Small"} backgroundColour={"Black"} />
           )}
-        </>
+        </div>
       )
     case "ContentfulContactForm":
       return (
-        <>
-          <HubspotForm key={`${section.id}` + index} {...section} />
+        <div key={`${section.id}` + index}>
+          <HubspotForm  {...section} />
           {isServicePage && (
             <SpacerSection size={"Small"} backgroundColour={"Black"} />
           )}
-        </>
+        </div>
       )
     case "ContentfulFullScreenImage":
       return <FullScreenImage key={`${section.id}` + index} {...section} />
-    case "ContentfulWhatsappIcon":
-      return <WhatsappIcon key={`${section.id}` + index} {...section} />
+    // case "ContentfulWhatsappIcon":
+    //   return <WhatsappIcon key={`${section.id}` + index} {...section} />
     default:
       break
   }
 }
 
-const PageTemplate = ({ data: { contentfulPage } }) => {
+const PageTemplate = ({ data: { contentfulPage }, location }) => {
   const page = contentfulPage
   const {
     metaDescription,
@@ -114,18 +118,19 @@ const PageTemplate = ({ data: { contentfulPage } }) => {
         metaDescription={metaDescription}
         metaImage={metaImage?.gatsbyImageData?.images?.fallback?.src}
       />
+      <WhatsappIcon path={location.pathname} />
       {metaTitle && <h1 className="opacity-0 absolute">{metaTitle}</h1>}
 
       <div>
         {snapSections &&
           snapSections.map((section, index) =>
-            SectionSwitcher(section, pageType, index)
+            SectionSwitcher(section, pageType, index, slug)
           )}
       </div>
 
       {restSections &&
         restSections.map((section, index) =>
-          SectionSwitcher(section, pageType, index)
+          SectionSwitcher(section, pageType, index, slug)
         )}
 
       {customSection}

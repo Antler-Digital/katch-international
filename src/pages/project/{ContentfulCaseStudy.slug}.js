@@ -29,12 +29,16 @@ const CaseStudyTemplate = ({
 
   const caseStudies = allContentfulCaseStudy.nodes
   const currentCaseStudy = caseStudies.findIndex(
-    (caseStudy) => caseStudy.id === page.id
+    (caseStudy) => caseStudy.slug === page.slug
   )
-  const prevCaseStudy =
-    caseStudies[currentCaseStudy - 1] || caseStudies[caseStudies.length - 1]
-  const nextCaseStudy = caseStudies[currentCaseStudy + 1] || caseStudies[0]
 
+  console.log(allContentfulCaseStudy, currentCaseStudy)
+  const prevCaseStudy =
+    caseStudies?.[currentCaseStudy - 1] || caseStudies?.[caseStudies.length - 1] 
+  const nextCaseStudy = caseStudies?.[currentCaseStudy + 1] || caseStudies?.[0]
+
+
+  const hasTabs = theChallenge && theSolution && theResults
   return (
     <Layout>
       <SEO
@@ -55,7 +59,7 @@ const CaseStudyTemplate = ({
       <SpacerSection size={"Medium"} backgroundColour="Black" />
 
       <section className="flex flex-col md:flex-row w-full max-w-screen-2xl mx-auto py-6 md:py-12 lg:py-24 gap-y-10 gap-x-12">
-        <div className="md:w-[70%]">
+        {hasTabs && <div className="md:w-[70%]">
           <TabSection
             sections={[
               { header: "The Challenge", text: theChallenge },
@@ -63,7 +67,7 @@ const CaseStudyTemplate = ({
               { header: "The Results", text: theResults },
             ]}
           />
-        </div>
+        </div>}
         <div className="md:w-[40%] flex flex-row md:flex-col lg:flex-row justify-between lg:justify-start gap-x-8 max-w-screen-2xl mx-auto px-6">
           <div className="shrink">
             <h5 className="uppercase mb-12 text-sm sm:text-base">

@@ -8,6 +8,7 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS } from "@contentful/rich-text-types"
 import Video from "../../components/contentful/Video";
+import AltHeroSection from "../../components/contentful/AltHeroSection";
 
 const BlogPostTemplate = ({ data: { contentfulBlogPost } }) => {
 
@@ -53,7 +54,7 @@ const BlogPostTemplate = ({ data: { contentfulBlogPost } }) => {
         metaDescription={metaDescription}
         metaImage={metaImage?.gatsbyImageData?.images?.fallback?.src}
       />
-      <HeroSection
+      <AltHeroSection
         header={title}
         headerClasses="text-3xl md:text-4xl lg:text-5xl block leading-relaxed"
         subHeader={{ subHeader: `## __by ${author} | ${datePosted} __` }}

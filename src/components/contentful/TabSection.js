@@ -9,7 +9,7 @@ const TabSection = ({ sections }) => {
     <div className="max-w-screen-2xl mx-auto px-6">
       <Tab.Group>
         <Tab.List className={"flex justify-start gap-8 font-bold"}>
-          {sections.map(({ header }, index) => {
+          {sections?.map(({ header }, index) => {
             return (
               <Tab as={Fragment} key={`tab-${index}`}>
                 {({ selected }) => (
@@ -17,7 +17,7 @@ const TabSection = ({ sections }) => {
                     type="button"
                     className={`${
                       selected ? "text-secondary" : "text-primary"
-                    } focus:ring-0 ring-transparent focus:border-none  uppercase text-sm sm:text-lg`}
+                    } focus:ring-0 ring-transparent focus:border-none  uppercase text-sm sm:text-lg focus-visible:border-none focus:outline-none focus-visible:outline-none`}
                   >
                     {header}
                   </button>
@@ -27,7 +27,7 @@ const TabSection = ({ sections }) => {
           })}
         </Tab.List>
         <Tab.Panels className={"mt-12"}>
-          {sections.map(({ text }, index) => {
+          {sections?.map(({ text }, index) => {
             return (
               <Tab.Panel
                 key={`panel-${index}`}
