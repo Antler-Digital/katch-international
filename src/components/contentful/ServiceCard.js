@@ -42,7 +42,7 @@ function ServiceCard({
         />
       )}
 
-      <div className="relative z-10 py-12 flex flex-col justify-center text-white p-4 hover:bg-secondary hover:mix-blend-hard-light cursor-pointer  w-full h-full">
+      <div className="absolute top-0 z-10 py-12 flex flex-col justify-center text-white p-4 hover:bg-secondary mix-blend-hard-light cursor-pointer  w-full h-full">
         <motion.h3
           initial="hidden"
           whileInView="show"
