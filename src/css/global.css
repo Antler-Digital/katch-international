@@ -42,3 +42,28 @@ h6 {
 .gatsby-image-wrapper > img {
   margin-top: 0px;
 }
+
+
+@keyframes bounce-big {
+  0%, 100% {
+    transform: translateY(-100%);
+    animation-timing-function: cubic-bezier(0.8,0,1,1);
+  }
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0,0,0.2,1);
+  }
+}
+.animate-bounce-big {
+  animation: bounce-big 1s infinite;
+}
+
+.delay-1s {
+  animation-delay: 0.1s;
+}
+.delay-2s {
+  animation-delay: 0.2s;
+}
+.delay-3s {
+  animation-delay: 0.3s;
+}
