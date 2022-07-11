@@ -34,8 +34,8 @@ export const ContentfulCaseStudyCardFragment = graphql`
     mainImage {
       gatsbyImageData(
         quality: 90
-        width: 220
-        height: 220
+        width: 250
+        height: 250
         cropFocus: CENTER
         layout: CONSTRAINED
         placeholder: BLURRED
@@ -54,7 +54,7 @@ export const ContentfulCaseStudyCardFragment = graphql`
       title
     }
     logoWhite {
-      gatsbyImageData(quality: 90, layout: FIXED, width: 130)
+      gatsbyImageData(quality: 90, layout: FIXED, width: 130, placeholder: BLURRED)
       title
     }
     slug

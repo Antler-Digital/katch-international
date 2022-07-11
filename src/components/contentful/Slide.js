@@ -51,7 +51,7 @@ fragment ContentfulSlideFragment on ContentfulSlide {
     title
     gatsbyImageData(
       width: 1600
-      placeholder: DOMINANT_COLOR
+      placeholder: BLURRED
       quality: 90
       layout: FULL_WIDTH
     )
