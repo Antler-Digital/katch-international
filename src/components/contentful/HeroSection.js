@@ -84,9 +84,9 @@ function HeroSection({
 
             {carouselImages && backgroundImage && (
               <div className="absolute h-full w-full top-0 flex flex-col md:flex-row justify-between">
-                <div className="">
+                <div className="md:w-3/5 w-full">
                   <GatsbyImage
-                    className="md:absolute h-[250px] md:h-full w-full md:w-3/5 top-0"
+                    className="md:absolute h-[250px] md:h-full w-full top-0"
                     style={{ position: "block" }}
                     image={backgroundImage.gatsbyImageData}
                     alt={backgroundImage.title}
