@@ -36,7 +36,7 @@ function ServiceCard({
     >
       {backgroundImage && (
         <GatsbyImage
-          className="absolute group-hover:scale-100 scale-110 duration-500  top-0 h-full w-full"
+          className="absolute group-hover:scale-100 scale-110 duration-500 brightness-[85%] top-0 h-full w-full"
           image={backgroundImage.gatsbyImageData}
           alt={backgroundImage.title}
         />
