@@ -1,28 +1,30 @@
+import { graphql } from "gatsby"
 import React from "react"
+
+import AltHeroSection from "../components/contentful/AltHeroSection"
+import CarouselSection from "../components/contentful/CarouselSection"
+import CollectionSection from "../components/contentful/CollectionSection"
+import FullScreenImage from "../components/contentful/FullScreenImage"
+import HeroSection from "../components/contentful/HeroSection"
+import MapSection from "../components/contentful/MapSection"
+import RelatedCaseStudiesSection from "../components/contentful/RelatedCaseStudiesSection"
+import SocialSection from "../components/contentful/SocialSection"
+import SpacerSection from "../components/contentful/SpacerSection"
+import TabSection from "../components/contentful/TabSection"
+import TextSection from "../components/contentful/TextSection"
+import ThreeCardsSection from "../components/contentful/ThreeCardsSection"
+import TwoColumnSection from "../components/contentful/TwoColumnSection"
+import VideoSection from "../components/contentful/VideoSection"
+import WhatsappIcon from "../components/contentful/WhatsappIcon"
+import HubspotForm from "../components/forms/HubspotForm"
 import Layout from "../components/layout/Layout"
 import SEO from "../components/SEO"
-import { graphql } from "gatsby"
-import ThreeCardsSection from "../components/contentful/ThreeCardsSection"
-import CarouselSection from "../components/contentful/CarouselSection"
-import HeroSection from "../components/contentful/HeroSection"
-import CollectionSection from "../components/contentful/CollectionSection"
-import SocialSection from "../components/contentful/SocialSection"
-import TwoColumnSection from "../components/contentful/TwoColumnSection"
-import TextSection from "../components/contentful/TextSection"
-import SpacerSection from "../components/contentful/SpacerSection"
-import MapSection from "../components/contentful/MapSection"
-import VideoSection from "../components/contentful/VideoSection"
 import useCustomSection from "../hooks/useCustomSection"
-import TabSection from "../components/contentful/TabSection"
-import HubspotForm from "../components/forms/HubspotForm"
-import FullScreenImage from "../components/contentful/FullScreenImage"
-import WhatsappIcon from "../components/contentful/WhatsappIcon"
-import AltHeroSection from "../components/contentful/AltHeroSection"
 
 export const SectionSwitcher = (section, pageType, index, slug) => {
   const isServicePage = pageType.includes("Service Page")
 
-  const isBlogHome = slug === 'blog'
+  const isBlogHome = slug === "blog"
   switch (section.internal?.type) {
     case "ContentfulThreeCardsSection":
       return (
@@ -34,11 +36,15 @@ export const SectionSwitcher = (section, pageType, index, slug) => {
         </div>
       )
     case "ContentfulCarouselSection":
-      return <CarouselSection  key={`${section.id}` + index} {...section} />
+      return <CarouselSection key={`${section.id}` + index} {...section} />
     case "ContentfulHeroSection":
       return (
         <div key={`${section.id}` + index}>
-          {isBlogHome ? <AltHeroSection {...section} /> : <HeroSection  {...section} />}
+          {isBlogHome ? (
+            <AltHeroSection {...section} />
+          ) : (
+            <HeroSection {...section} />
+          )}
           {isServicePage && (
             <SpacerSection size={"Large"} backgroundColour={"Black"} />
           )}
@@ -51,14 +57,7 @@ export const SectionSwitcher = (section, pageType, index, slug) => {
     case "ContentfulTwoColumnSection":
       return <TwoColumnSection key={`${section.id}` + index} {...section} />
     case "ContentfulTextSection":
-      return (
-        <div key={`${section.id}` + index}>
-          <TextSection key={`${section.id}` + index} {...section} />
-          {isServicePage && (
-            <SpacerSection size={"Small"} backgroundColour={"Black"} />
-          )}
-        </div>
-      )
+      return <TextSection key={`${section.id}` + index} {...section} />
     case "ContentfulSpacerSection":
       return <SpacerSection key={`${section.id}` + index} {...section} />
     case "ContentfulMapSection":
@@ -77,7 +76,7 @@ export const SectionSwitcher = (section, pageType, index, slug) => {
     case "ContentfulContactForm":
       return (
         <div key={`${section.id}` + index}>
-          <HubspotForm  {...section} />
+          <HubspotForm {...section} />
           {isServicePage && (
             <SpacerSection size={"Small"} backgroundColour={"Black"} />
           )}
@@ -87,6 +86,18 @@ export const SectionSwitcher = (section, pageType, index, slug) => {
       return <FullScreenImage key={`${section.id}` + index} {...section} />
     // case "ContentfulWhatsappIcon":
     //   return <WhatsappIcon key={`${section.id}` + index} {...section} />
+    case "ContentfulRelatedCaseStudies":
+      return (
+        <div key={`${section.id}` + index}>
+          <RelatedCaseStudiesSection
+            key={`${section.id}` + index}
+            {...section}
+          />
+          {isServicePage && (
+            <SpacerSection size={"Small"} backgroundColour={"Black"} />
+          )}
+        </div>
+      )
     default:
       break
   }
@@ -200,6 +211,9 @@ export const PagesQuery = graphql`
         }
         ... on ContentfulWhatsappIcon {
           ...ContentfulWhatsappIconFragment
+        }
+        ... on ContentfulRelatedCaseStudies {
+          ...ContentfulRelatedCaseStudiesSectionFragment
         }
       }
     }
