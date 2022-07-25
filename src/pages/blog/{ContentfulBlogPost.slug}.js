@@ -1,17 +1,17 @@
 import React from "react"
 import Layout from "../../components/layout/Layout"
 import SEO from "../../components/SEO"
-import { graphql } from 'gatsby';
-import HeroSection from '../../components/contentful/HeroSection';
-import RichTextOptions from '../../components/rich-text/RichTextOptions';
-import { GatsbyImage } from "gatsby-plugin-image";
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { graphql } from "gatsby"
+import HeroSection from "../../components/contentful/HeroSection"
+import RichTextOptions from "../../components/rich-text/RichTextOptions"
+import { GatsbyImage } from "gatsby-plugin-image"
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { BLOCKS } from "@contentful/rich-text-types"
-import Video from "../../components/contentful/Video";
-import AltHeroSection from "../../components/contentful/AltHeroSection";
+import Video from "../../components/contentful/Video"
+import AltHeroSection from "../../components/contentful/AltHeroSection"
+import BlogHeaderSection from "../../components/elements/BlogHeaderSection"
 
 const BlogPostTemplate = ({ data: { contentfulBlogPost } }) => {
-
   const page = contentfulBlogPost
   const {
     metaDescription,
@@ -23,11 +23,9 @@ const BlogPostTemplate = ({ data: { contentfulBlogPost } }) => {
     category,
     datePosted,
     body,
-
   } = page
 
-
-  const assets = new Map(body.references.map(ref => [ref.contentful_id, ref]))
+  const assets = new Map(body.references.map((ref) => [ref.contentful_id, ref]))
 
   const options = {
     renderNode: {
@@ -35,17 +33,23 @@ const BlogPostTemplate = ({ data: { contentfulBlogPost } }) => {
       [BLOCKS.EMBEDDED_ENTRY]: (node) => {
         const asset = assets.get(node.data.target.sys.id)
         if (asset.internal.type === "ContentfulVideo") {
-          return <Video videoSrcURL={`https://www.youtube.com/embed/${asset.videoId}`} />
+          return (
+            <Video
+              videoSrcURL={`https://www.youtube.com/embed/${asset.videoId}`}
+            />
+          )
         }
       },
       [BLOCKS.EMBEDDED_ASSET]: (node) => {
         const image = assets.get(node.data.target.sys.id)
-        return image ? <GatsbyImage image={image.gatsbyImageData} alt={image.title} /> : ""
-      }
-    }
+        return image ? (
+          <GatsbyImage image={image.gatsbyImageData} alt={image.title} />
+        ) : (
+          ""
+        )
+      },
+    },
   }
-
-
 
   return (
     <Layout>
@@ -54,85 +58,80 @@ const BlogPostTemplate = ({ data: { contentfulBlogPost } }) => {
         metaDescription={metaDescription}
         metaImage={metaImage?.gatsbyImageData?.images?.fallback?.src}
       />
-      <AltHeroSection
-        header={title}
-        headerClasses="text-3xl md:text-4xl lg:text-5xl block leading-relaxed"
-        subHeader={{ subHeader: `## __by ${author} | ${datePosted} __` }}
-        textColour="Pink"
-        showForm={false}
+      <BlogHeaderSection
+        title={title}
+        subtitle={`by ${author} | ${datePosted} | ${category}`}
       />
 
       <section className="bg-gray-100 pb-12">
         <article className="bg-white max-w-screen-md mx-auto p-8 -mt-12 relative z-10 prose">
           <div className="mx-auto max-w-content mb-12">
-            <GatsbyImage image={mainImage.gatsbyImageData} alt={mainImage.title} />
+            <GatsbyImage
+              image={mainImage.gatsbyImageData}
+              alt={mainImage.title}
+            />
           </div>
           {body && documentToReactComponents(JSON.parse(body.raw), options)}
         </article>
       </section>
-
-    </Layout >
+    </Layout>
   )
 }
 
-
-
-
-
 export const BlogPostQuery = graphql`
-query BlogPostQuery($id: String) {
-  contentfulBlogPost(id: {eq: $id}) {
-    title
-    slug
-    metaTitle
-    metaImage {
-      gatsbyImageData(width: 248, layout: FIXED)
+  query BlogPostQuery($id: String) {
+    contentfulBlogPost(id: { eq: $id }) {
       title
-    }
-    metaDescription {
-      text: metaDescription
-    }
-    author
-    datePosted(formatString: "Do MMMM YYYY")
-    mainImage {
-      gatsbyImageData(
-        layout: CONSTRAINED
-        quality: 90
-        width: 800
-        placeholder: BLURRED
-      )
-      title
-    }
-    category
-    body {
-      raw
-      references {
-        ... on ContentfulAsset {
-          contentful_id
-          internal {
-            type
+      slug
+      metaTitle
+      metaImage {
+        gatsbyImageData(width: 248, layout: FIXED)
+        title
+      }
+      metaDescription {
+        text: metaDescription
+      }
+      author
+      datePosted(formatString: "Do MMMM YYYY")
+      mainImage {
+        gatsbyImageData(
+          layout: CONSTRAINED
+          quality: 90
+          width: 800
+          placeholder: BLURRED
+        )
+        title
+      }
+      category
+      body {
+        raw
+        references {
+          ... on ContentfulAsset {
+            contentful_id
+            internal {
+              type
+            }
+            gatsbyImageData(
+              placeholder: BLURRED
+              width: 800
+              layout: CONSTRAINED
+              quality: 90
+            )
+            title
           }
-          gatsbyImageData(
-            placeholder: BLURRED
-            width: 800
-            layout: CONSTRAINED
-            quality: 90
-          )
-          title
-        }
-        ... on ContentfulVideo {
-          contentful_id
-          internal {
+          ... on ContentfulVideo {
+            contentful_id
+            internal {
+              type
+            }
+            name
             type
+            videoId
           }
-          name
-          type
-          videoId
         }
       }
     }
   }
-}
 `
 
 export default BlogPostTemplate

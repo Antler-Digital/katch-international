@@ -30,7 +30,8 @@ function CollectionSection({
   const clientsClasses = "grid lg:grid-cols-10 md:grid-cols-8 grid-cols-4"
   const caseStudiesClasses =
     "grid lg:grid-cols-4 md:grid-cols-3  grid-cols-2 gap-4"
-  const blogPostsClasses = "grid md:grid-cols-4 sm:grid-cols-2 gap-4"
+  const blogPostsClasses =
+    "max-w-screen-xl grid lg:grid-cols-3 sm:grid-cols-2 gap-4"
 
   const renderCollection = () => {
     switch (postType) {
@@ -68,7 +69,12 @@ function CollectionSection({
   }
 
   return (
-    <section id={contentfulid} className={`bg-gray-100 py-12 lg:py-24`}>
+    <section
+      id={contentfulid}
+      className={`${
+        postType === "Blog Posts" ? "bg-primary" : "bg-gray-100"
+      }  py-12 lg:py-24`}
+    >
       <div className="text-center max-w-screen-2xl mx-auto px-4">
         {header && (
           <h2 className="text-4xl md:text-6xl xl:text-7xl mb-8 leading-normal text-black  px-4 py-1 inline-block text-center">
