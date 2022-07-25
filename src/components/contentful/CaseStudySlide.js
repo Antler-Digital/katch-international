@@ -17,15 +17,15 @@ const CaseStudySlide = ({ title, sqrImage, slug, isActive }) => {
         alt={sqrImage.title}
         image={sqrImage.gatsbyImageData}
       />
-      <h3 className="absolute bottom-20 w-4/5 text-white leading-tight text-3xl lg:text-6xl uppercase">
+      <h3 className="absolute bottom-20 w-full px-4 text-white leading-tight text-3xl lg:text-6xl uppercase">
         {title}
       </h3>
       <AnimatePresence>
         {isActive && (
           <motion.div
             key={"link" + title + slug}
-            className="bg-secondary w-4/5 text-white block absolute px-4 font-thin py-1 group hover:bg-opacity-80 uppercase"
-            animate={{ opacity: 1, bottom: 26, transition: { duration: 0.5 } }}
+            className="bg-secondary w-full text-white block absolute font-thin px-4 py-1 group hover:bg-opacity-80 uppercase"
+            animate={{ opacity: 1, bottom: 22, transition: { duration: 0.5 } }}
             initial={{ opacity: 0, bottom: -40 }}
             exit={{ opacity: 0, bottom: -40 }}
           >
