@@ -10,9 +10,7 @@ const WhatsappIcon = ({ path }) => {
 
   return (
     <a
-      className={`fixed z-[999] cursor-pointer md:bottom-20 md:right-20 right-6 bottom-6 ${
-        shouldBeGreen ? "text-[#25D366]" : "text-black"
-      }`}
+      className={`fixed z-[999] cursor-pointer md:bottom-20 md:right-20 right-6 bottom-6 text-[#25D366]`}
       href="https://wa.me/971527196124"
       target="_blank"
       rel="noopener noreferrer"
