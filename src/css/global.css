@@ -3,6 +3,15 @@
 @tailwind components;
 @tailwind utilities;
 
+html::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
 body {
   font-family: Fjalla One, Arial, sans-serif;
 }
@@ -43,15 +52,15 @@ h6 {
   margin-top: 0px;
 }
 
-
 @keyframes bounce-big {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(-100%);
-    animation-timing-function: cubic-bezier(0.8,0,1,1);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
   }
   50% {
     transform: none;
-    animation-timing-function: cubic-bezier(0,0,0.2,1);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
   }
 }
 .animate-bounce-big {
