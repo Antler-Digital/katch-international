@@ -132,6 +132,7 @@ export const ContentfulHeroSectionFragment = graphql`
     }
     showForm
     textColour
+    textBackgroundColour
     header
     # body {
     #   raw

@@ -33,7 +33,7 @@ function AltHeroSection({
         backgroundImage
           ? "h-full md:h-screen min-h-[600px]"
           : "min-h-[300px] md:min-h-[400px]"
-      } overflow-hidden relative bg-gradient-to-t from-black to-gray-800 max-h-[900px] ${
+      } overflow-hidden relative bg-gradient-to-t from-black to-[#2C3656] max-h-[900px] ${
         (centerHeading || !showForm) && "flex items-center"
       }`}
     >
