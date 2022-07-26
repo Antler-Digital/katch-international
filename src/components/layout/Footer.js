@@ -9,7 +9,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons"
 
 export const blackButtonClassName =
-  "inline-block my-2 bg-primary px-4 text-white text-sm py-2 font-thin rounded hover:text-secondary hover:bg-white transition-bg duration-500"
+  "inline-block my-2 bg-primary px-4 text-white text-sm py-2 font-thin rounded hover:text-secondary hover:bg-white transition-bg duration-500 min-w-[175px] text-center"
 
 export const linksToOtherKatch = [
   {
@@ -28,16 +28,17 @@ export const linksToOtherKatch = [
 
 const Footer = (props) => {
   return (
-    <footer className="py-12 bg-secondary ">
-      <div className="max-w-screen-xl mx-auto md:grid grid-cols-3 lg:grid-cols-4 sm:px-12 px-4 space-y-4 md:space-y-0">
+    <footer className="py-12 bg-secondary">
+      <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-screen-xl mx-auto px-6 w-full">
+        {/* Column 1 */}
         <div className="col-span-1 h-full w-full">
-          <h4 className="mb-4  font-medium px-0 pt-0 pb-2 m-0 text-lg  leading-4 text-primary">
+          <h4 className="mb-4  font-medium px-0 pt-0 pb-2 m-0 text-lg leading-4 text-primary w-full">
             WE LIKE TO BE FOLLOWED
           </h4>
           <SocialIcons
-            className="text-white space-y-2 mb-4 "
+            className="text-white space-y-2 mb-4 w-full flex flex-col"
             showText
-            itemClassName="hover:text-primary"
+            itemClassName="hover:text-primary w-full flex flex-nowrap"
             icons={[
               {
                 icon: faFacebookF,
@@ -62,8 +63,11 @@ const Footer = (props) => {
             ]}
           />
         </div>
-        <div className="col-span-1 md:col-span-2">
-          <div className="flex flex-col sm:flex-row sm:space-x-12 space-y-6 sm:space-y-0 ">
+
+        {/* Column 2 / 3 */}
+        <div className="col-span-3 lg:col-span-2 flex flex-col items-start">
+          {/* Addresses */}
+          <div className="flex flex-wrap gap-y-8 gap-x-12">
             <div className="flex flex-col justify-center">
               <h4 className="text-primary">Dubai Branch</h4>
               <div className="text-sm text-white space-y-1">
@@ -103,9 +107,25 @@ const Footer = (props) => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col md:flex-row md:space-x-4 space-y-4"></div>
+
+          {/* Buttons Links */}
+          <div className="flex flex-wrap gap-x-2 md:gap-x-6 mt-4">
+            {linksToOtherKatch.map((link) => (
+              <div key={link.linkTo}>
+                <Linked
+                  className={`${blackButtonClassName}`}
+                  linkTo={link.linkTo}
+                >
+                  {link.text}
+                </Linked>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="max-w-lg col-span-3 lg:col-span-1 pt-8 lg:pt-0">
+
+        {/* Column 4 */}
+
+        <div className="max-w-lg col-span-3 lg:col-span-1 lg:pt-0">
           <h4 className="mb-4  font-medium px-0 pt-0 pb-2 m-0 text-lg  leading-4 text-primary">
             KATCH US
           </h4>
@@ -122,15 +142,6 @@ const Footer = (props) => {
         </div>
       </div>
 
-      <div className="max-w-screen-xl mx-auto flex md:flex-row flex-col sm:justify-center md:space-x-6 mt-4 sm:px-12 px-4">
-        {linksToOtherKatch.map((link) => (
-          <div key={link.linkTo}>
-            <Linked className={`${blackButtonClassName}`} linkTo={link.linkTo}>
-              {link.text}
-            </Linked>
-          </div>
-        ))}
-      </div>
       <div className="max-w-screen-xl mx-auto flex justify-between mt-4 px-4">
         <h5 className="mt-2 font-thin opacity-75 text-white text-sm ">
           &copy; Katch International {new Date().getFullYear()}
