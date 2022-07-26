@@ -1,25 +1,30 @@
-import React from 'react'
+import React from "react"
 
-const useSnapToNext = (ref, triggerDistance = 200) => {
+const useSnapToNext = (ref, triggerDistance = 50) => {
   let scrollPosition = 0
 
   React.useEffect(() => {
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-
   const handleScroll = () => {
-    let direction = 'down'
+    if (
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator?.userAgent
+      )
+    )
+      return
+
+    let direction = "down"
     const scrollY = window.scrollY
-    if (Math.abs(scrollY - scrollPosition) > 10) {
-      if (scrollY > scrollPosition) {
-        scrollPosition = scrollY
-        direction = 'down'
-      } else {
-        scrollPosition = scrollY
-        direction = 'up'
-      }
+
+    if (scrollY > scrollPosition) {
+      scrollPosition = scrollY
+      direction = "down"
+    } else {
+      scrollPosition = scrollY
+      direction = "up"
     }
 
     const isAwayFromTop = scrollY > triggerDistance
@@ -28,24 +33,21 @@ const useSnapToNext = (ref, triggerDistance = 200) => {
 
     const inViewFromBottom = scrollY < window.innerHeight - triggerDistance
 
-    
-    if (inViewFromBottom && direction === 'up' ) {
+    if (inViewFromBottom && direction === "up") {
       scrollIntoView()
     }
-    if (isAwayFromTop && direction === 'down' && isOnScreen) {
+    if (isAwayFromTop && direction === "down" && isOnScreen) {
       scrollIntoView(true)
     }
   }
 
   const scrollIntoView = (next) => {
     if (next) {
-      ref.current.nextElementSibling.scrollIntoView({ behavior: 'smooth' })
+      ref.current.nextElementSibling.scrollIntoView({ behavior: "smooth" })
     } else {
-      ref.current.scrollIntoView({ behavior: 'smooth' })
+      ref.current.scrollIntoView({ behavior: "smooth" })
     }
   }
-
 }
-
 
 export default useSnapToNext
