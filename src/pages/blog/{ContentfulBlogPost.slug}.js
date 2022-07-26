@@ -63,8 +63,8 @@ const BlogPostTemplate = ({ data: { contentfulBlogPost } }) => {
         subtitle={`by ${author} | ${datePosted} | ${category}`}
       />
 
-      <section className="bg-gray-100 pb-12">
-        <article className="bg-white max-w-screen-md mx-auto p-8 -mt-12 relative z-10 prose">
+      <section className="bg-white pb-12">
+        <article className="bg-white max-w-screen-md mx-auto p-8 relative z-10 prose">
           <div className="mx-auto max-w-content mb-12">
             <GatsbyImage
               image={mainImage.gatsbyImageData}

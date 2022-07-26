@@ -31,7 +31,7 @@ function CollectionSection({
   const caseStudiesClasses =
     "grid lg:grid-cols-4 md:grid-cols-3  grid-cols-2 gap-4"
   const blogPostsClasses =
-    "max-w-screen-xl grid lg:grid-cols-3 sm:grid-cols-2 gap-4"
+    "max-w-screen-xl grid lg:grid-cols-3 sm:grid-cols-2 gap-8"
 
   const renderCollection = () => {
     switch (postType) {
