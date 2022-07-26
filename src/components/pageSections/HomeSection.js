@@ -13,7 +13,7 @@ const HomeSection = ({ extraImages }) => {
 
   return (
     <>
-      <section className="max-w-screen-xl mx-auto lg:py-40">
+      <section className="max-w-screen-xl mx-auto lg:py-20">
         <h3 className="uppercase text-4xl text-center">Contact Us.</h3>
 
         <div className="flex justify-center space-y-6 mb-12 sm:space-x-12 lg:space-x-0 lg:justify-around items-center mt-12 max-w-screen-lg flex-wrap mx-auto">
@@ -86,7 +86,11 @@ const IconCard = ({ icon, text, linkTo }) => {
       href={linkTo}
       target="_blank"
     >
-      <FontAwesomeIcon size="2xl" className="w-20 group-hover:animate-bounce" icon={icon} />
+      <FontAwesomeIcon
+        size="2xl"
+        className="w-20 group-hover:animate-bounce"
+        icon={icon}
+      />
       <div className="w-64 md:w-auto">
         {text.map((t, index) => (
           <p key={index}>{t}</p>

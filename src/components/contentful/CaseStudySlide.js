@@ -9,7 +9,7 @@ const CaseStudySlide = ({ title, sqrImage, slug, isActive }) => {
   return (
     <article
       className={`${
-        isActive ? " scale-[110%]" : "scale-90"
+        isActive ? " scale-[110%] z-10" : "scale-90"
       } relative transform h-full  transition-all duration-500 flex flex-col items-center`}
     >
       <GatsbyImage
