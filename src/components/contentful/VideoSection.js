@@ -1,4 +1,5 @@
 import { graphql } from "gatsby"
+import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import useSnapToNext from "../../hooks/useSnapToNext"
 import LocalVideo from "./LocalVideo"
@@ -15,12 +16,20 @@ const VideoSection = ({ name, type, videoId, video, placeholder }) => {
     ) : (
       <LocalVideo />
     )
+
+    console.log(placeholder.gatsbyImageData)
   return (
     <section
       ref={containerRef}
       className={`h-screen w-full bg-primary flex items-center justify-center`}
     >
       <VideoComponent />
+
+      {placeholder?.gatsbyImageData && <GatsbyImage
+        className="absolute h-full w-full top-0 z-[1]"
+        alt={placeholder.title}
+        image={placeholder?.gatsbyImageData}
+      />}
       <ul className="text-white flex space-x-1 relative z-0">
         <li className="border border-white w-2 h-2 rounded-full animate-bounce-big delay-1s"></li>
         <li className="border border-white w-2 h-2 rounded-full animate-bounce-big delay-2s"></li>
