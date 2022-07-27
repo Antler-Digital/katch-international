@@ -18,17 +18,20 @@ function HeroSection({
     textColour === "White"
       ? "text-gray-100"
       : textColour === "Pink"
-      ? "text-secondary"
-      : "text-black"
+        ? "text-secondary"
+        : "text-black"
+
+
+  const title = header.trim().split(" ")
+
 
   return (
     <>
       <section
-        className={`${
-          backgroundImage || carouselImages
-            ? "h-[500px]"
-            : "min-h-[300px] md:min-h-[400px]"
-        }  relative ${(centerHeading || !showForm) && "flex items-center"}`}
+        className={`${backgroundImage || carouselImages
+          ? "h-[500px]"
+          : "min-h-[300px] md:min-h-[400px]"
+          }  relative ${(centerHeading || !showForm) && "flex items-center"}`}
       >
         <div
           className={`max-w-screen-2xl mx-auto  w-full h-full flex flex-wrap relative px-4 z-20`}
@@ -38,12 +41,12 @@ function HeroSection({
               <h1
                 className={`-bottom-[68px] md:-bottom-[81px] lg:-bottom-[179px] absolute text-6xl md:text-7xl lg:text-[160px] font-bold block`}
               >
-                {[
-                  header.slice(0, header.lastIndexOf(" ")),
-                  header.slice(header.lastIndexOf(" ") + 1),
-                ].map((t) => (
-                  <span className="block last:text-black">{t}</span>
-                ))}
+
+                <span>{title[0]}</span>
+                <span className="block last:text-black">{
+                  title.slice(1, title.length).join(' ')
+                }
+                </span>
               </h1>
             )}
           </div>
