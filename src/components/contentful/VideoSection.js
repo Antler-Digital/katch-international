@@ -30,7 +30,7 @@ const VideoSection = ({ name, type, videoId, video, placeholder }) => {
         alt={placeholder.title}
         image={placeholder?.gatsbyImageData}
       />}
-      <ul className="text-white flex space-x-1 relative z-0">
+      <ul className="text-white flex space-x-1 relative z-0 absolute">
         <li className="border border-white w-2 h-2 rounded-full animate-bounce-big delay-1s"></li>
         <li className="border border-white w-2 h-2 rounded-full animate-bounce-big delay-2s"></li>
         <li className="border border-white w-2 h-2 rounded-full animate-bounce-big delay-3s"></li>
