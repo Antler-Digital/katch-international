@@ -82,12 +82,12 @@ const ClientCarousel = ({ arrayToRender, isHover, CardComponent, showAll }) => {
         type="button"
         className={`${
           showAll ? "" : "group-hover:visible group-hover:opacity-100"
-        } invisible opacity-0 duration-200 transition-all`}
+        } hidden sm:flex invisible opacity-0 duration-200 transition-all`}
         onClick={() => setIndex((prev) => (prev === 0 ? 2 : prev - 1))}
       >
         <LeftChevron className="sm:mr-16" />
       </button>
-      <div className="flex flex-col overflow-x-hidden max-w-[288px] sm:max-w-[576px] lg:max-w-[864px]">
+      <div className="hidden sm:flex flex-col overflow-x-hidden max-w-[288px] sm:max-w-[576px] lg:max-w-[864px]">
         {Array(3)
           .fill(0)
           .map((_, i) => {
@@ -112,11 +112,19 @@ const ClientCarousel = ({ arrayToRender, isHover, CardComponent, showAll }) => {
             )
           })}
       </div>
+      <div className="grid grid-cols-4 px-5 sm:hidden">
+        {arrayToRender &&
+          arrayToRender?.slice(0, 24).map((item) => (
+            <div className="h-20 w-20" key={item.id}>
+              <CardComponent {...item} />
+            </div>
+          ))}
+      </div>
       <button
         type="button"
         className={`${
           showAll ? "" : "group-hover:visible group-hover:opacity-100"
-        } invisible opacity-0 duration-200 transition-all`}
+        } hidden sm:flex invisible opacity-0 duration-200 transition-all`}
         onClick={() => setIndex((prev) => (prev === 2 ? 0 : prev + 1))}
       >
         <RightChevron className="sm:ml-16" />

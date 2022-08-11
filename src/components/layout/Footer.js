@@ -26,19 +26,27 @@ export const linksToOtherKatch = [
   },
 ]
 
+export const footerLinks = [
+  { name: "Katch", linkTo: "/" },
+  { name: "Clients", linkTo: "/projects" },
+  { name: "Blog", linkTo: "/blog" },
+  { name: "Case Studies", linkTo: "/projects" },
+  { name: "Katch Us", linkTo: "/katch-us" },
+]
+
 const Footer = (props) => {
   return (
-    <footer className="py-12 bg-secondary">
+    <footer className="py-12 bg-secondary h-[80vh] flex flex-col justify-end">
       <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-screen-xl mx-auto px-6 w-full">
         {/* Column 1 */}
         <div className="col-span-1 h-full w-full">
-          <h4 className="mb-4  font-medium px-0 pt-0 pb-2 m-0 text-lg leading-4 text-primary w-full">
+          <h4 className="mb-4  font-medium px-0 pt-0 pb-2 m-0 text-lg leading-4 text-white w-full">
             WE LIKE TO BE FOLLOWED
           </h4>
           <SocialIcons
-            className="text-white space-y-2 mb-4 w-full flex flex-col"
+            className="text-white gap-y-2 mb-4 w-full flex flex-row sm:flex-col"
             showText
-            itemClassName="hover:text-primary w-full flex flex-nowrap"
+            itemClassName="hover:text-primary sm:w-full flex flex-nowrap w-min"
             icons={[
               {
                 icon: faFacebookF,
@@ -65,7 +73,7 @@ const Footer = (props) => {
         </div>
 
         {/* Column 2 / 3 */}
-        <div className="col-span-3 lg:col-span-2 flex flex-col items-start">
+        <div className="hidden sm:flex col-span-3 lg:col-span-2 flex-col items-start">
           {/* Addresses */}
           <div className="flex flex-wrap gap-y-8 gap-x-12">
             <div className="flex flex-col justify-center">
@@ -125,8 +133,40 @@ const Footer = (props) => {
 
         {/* Column 4 */}
 
-        <div className="max-w-lg col-span-3 lg:col-span-1 lg:pt-0">
-          <h4 className="mb-4  font-medium px-0 pt-0 pb-2 m-0 text-lg  leading-4 text-primary">
+        <div className="text-xs text-white">
+          <div className="flex gap-x-1 text-sm text-white">
+            {footerLinks.map(({ name, linkTo }, idx) => {
+              if (idx < footerLinks.length - 1) {
+                return (
+                  <>
+                    <Linked linkTo={linkTo}>
+                      <p>{name}</p>
+                    </Linked>
+                    <div>|</div>
+                  </>
+                )
+              } else {
+                return (
+                  <Linked linkTo={linkTo}>
+                    <p>{name}</p>
+                  </Linked>
+                )
+              }
+            })}
+          </div>
+
+          <div className="flex gap-x-2 mt-2">
+            {["Privacy Policy", "Terms of Use"].map((item) => (
+              <p>{item}</p>
+            ))}
+          </div>
+          <p>Copyright &copy; 2011 - 2016 Katch International L.T.D.</p>
+        </div>
+
+        <p className="text-xs text-white">Designed by: KATCH INTERNATIONAL</p>
+
+        <div className="hidden sm:block max-w-lg col-span-3 lg:col-span-1 lg:pt-0">
+          <h4 className="mb-4  font-medium px-0 pt-0 pb-2 m-0 text-lg  leading-4 text-white">
             KATCH US
           </h4>
           <p className="text-white text-sm">
@@ -142,8 +182,8 @@ const Footer = (props) => {
         </div>
       </div>
 
-      <div className="max-w-screen-xl mx-auto flex justify-between mt-4 px-4">
-        <h5 className="mt-2 font-thin opacity-75 text-white text-sm ">
+      <div className="hidden sm:flex max-w-screen-xl mx-auto justify-between mt-4 px-4">
+        <h5 className="mt-2 font-thin opacity-75 text-white text-sm text-center">
           &copy; Katch International {new Date().getFullYear()}
         </h5>
         {/* <h6 className="text-xs font-thin mt-2 opacity-50 text-right ml-auto text-white hover:opacity-100"><Linked linkTo="https://www.katchdisruption.com/">Built by Katch Distruption</Linked></h6> */}

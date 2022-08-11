@@ -46,7 +46,7 @@ function ServiceCard({
         <motion.h3
           initial="hidden"
           whileInView="show"
-          className="text-7xl group-hover:text-8xl duration-500 leading-tight w-2"
+          className="text-3xl group-hover:text-4xl sm:text-5xl sm:group-hover:text-6xl md:text-7xl md:group-hover:text-8xl duration-500 leading-tight w-2"
           variants={ulVariant}
           viewport={{ once: true, amount: "all" }}
         >

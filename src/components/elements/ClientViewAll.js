@@ -31,25 +31,50 @@ const ClientViewAll = ({ arrayToRender, CardComponent, showAll }) => {
   ]
 
   return (
-    <motion.div
-      className="flex flex-wrap justify-center max-w-[288px] sm:max-w-[576px] lg:max-w-[864px] overflow-hidden"
-      variants={containerVariants}
-      initial={{ height: 0 }}
-      animate={showAll ? "show" : "hide"}
-    >
-      {items &&
-        items.map((item, index) => {
-          return (
-            <motion.div
-              key={item.id}
-              className="h-24 w-24"
-              variants={elementVariants}
-            >
-              <CardComponent {...item} />
-            </motion.div>
-          )
-        })}
-    </motion.div>
+    <>
+      <div className="hidden sm:block">
+        <motion.div
+          className="flex flex-wrap justify-center max-w-[288px] sm:max-w-[576px] lg:max-w-[864px] overflow-hidden"
+          variants={containerVariants}
+          initial={{ height: 0 }}
+          animate={showAll ? "show" : "hide"}
+        >
+          {items &&
+            items.map((item, index) => {
+              return (
+                <motion.div
+                  key={item.id}
+                  className="h-24 w-24"
+                  variants={elementVariants}
+                >
+                  <CardComponent {...item} />
+                </motion.div>
+              )
+            })}
+        </motion.div>
+      </div>
+      <div className="block sm:hidden">
+        <motion.div
+          className="grid grid-cols-4 sm:hidden px-5"
+          variants={containerVariants}
+          initial={{ height: 0 }}
+          animate={showAll ? "show" : "hide"}
+        >
+          {arrayToRender &&
+            arrayToRender.slice(24).map((item, index) => {
+              return (
+                <motion.div
+                  key={item.id}
+                  className="h-20 w-20"
+                  variants={elementVariants}
+                >
+                  <CardComponent {...item} />
+                </motion.div>
+              )
+            })}
+        </motion.div>
+      </div>
+    </>
   )
 }
 

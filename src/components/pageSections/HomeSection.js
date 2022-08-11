@@ -16,7 +16,7 @@ const HomeSection = ({ extraImages }) => {
       <section className="max-w-screen-xl mx-auto lg:py-20">
         <h3 className="uppercase text-4xl text-center">Contact Us.</h3>
 
-        <div className="flex justify-center space-y-6 mb-12 sm:space-x-12 lg:space-x-0 lg:justify-around items-center mt-12 max-w-screen-lg flex-wrap mx-auto">
+        <div className="flex mx-auto justify-center items-center gap-y-6 mb-12 sm:gap-x-12 lg:gap-x-0 lg:justify-around mt-12 max-w-screen-lg flex-wrap">
           <IconCard
             icon={faPhoneAlt}
             text={["+971 4 243 8577"]}
@@ -82,16 +82,16 @@ const HomeSection = ({ extraImages }) => {
 const IconCard = ({ icon, text, linkTo }) => {
   return (
     <a
-      className="flex text-2xl items-center group space-x-8 hover:text-secondary"
+      className="flex text-2xl items-center group gap-x-2 sm:gap-x-8 hover:text-secondary"
       href={linkTo}
       target="_blank"
     >
       <FontAwesomeIcon
         size="2xl"
-        className="w-20 group-hover:animate-bounce"
+        className="w-20 group-hover:animate-bounce text-2xl sm:text-4xl"
         icon={icon}
       />
-      <div className="w-64 md:w-auto">
+      <div className="w-64 md:w-auto text-xl sm:text-2xl">
         {text.map((t, index) => (
           <p key={index}>{t}</p>
         ))}

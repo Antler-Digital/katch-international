@@ -17,21 +17,20 @@ const CaseStudySlide = ({ title, sqrImage, slug, isActive }) => {
         alt={sqrImage.title}
         image={sqrImage.gatsbyImageData}
       />
-      <h3 className="absolute bottom-20 w-full px-4 text-white leading-tight text-3xl lg:text-6xl uppercase">
-        {title}
-      </h3>
+
       <AnimatePresence>
         {isActive && (
           <motion.div
             key={"link" + title + slug}
-            className="bg-secondary w-full text-white block absolute font-thin px-4 py-1 group hover:bg-opacity-80 uppercase"
+            className="bg-secondary mix-blend-hard-light w-full text-white block absolute font-thin p-10 group hover:bg-opacity-80 uppercase"
             animate={{ opacity: 1, bottom: 22, transition: { duration: 0.5 } }}
             initial={{ opacity: 0, bottom: -40 }}
             exit={{ opacity: 0, bottom: -40 }}
           >
+            <p className="text-2xl sm:text-4xl text-white">{title}</p>
             <Link
               to={`/project/${slug}`}
-              className="flex justify-between items-center"
+              className="flex justify-between items-center text-sm mt-3"
             >
               Read more
               <FontAwesomeIcon
