@@ -1,4 +1,4 @@
-import React from "react"
+import React, { Fragment } from "react"
 import { SocialIcons } from "../elements/SocialIcons"
 import Linked from "../elements/Linked"
 import {
@@ -32,6 +32,11 @@ export const footerLinks = [
   { name: "Blog", linkTo: "/blog" },
   { name: "Case Studies", linkTo: "/projects" },
   { name: "Katch Us", linkTo: "/katch-us" },
+]
+
+export const legalLinks = [
+  { name: "Privacy Policy", linkTo: "/privacy-policy" },
+  { name: "Terms & Conditions", linkTo: "/terms-and-conditions" },
 ]
 
 const Footer = (props) => {
@@ -138,16 +143,16 @@ const Footer = (props) => {
             {footerLinks.map(({ name, linkTo }, idx) => {
               if (idx < footerLinks.length - 1) {
                 return (
-                  <>
+                  <Fragment key={`footer-link-${name}`}>
                     <Linked linkTo={linkTo}>
                       <p>{name}</p>
                     </Linked>
                     <div>|</div>
-                  </>
+                  </Fragment>
                 )
               } else {
                 return (
-                  <Linked linkTo={linkTo}>
+                  <Linked linkTo={linkTo} key={`footer-link-${name}`}>
                     <p>{name}</p>
                   </Linked>
                 )
@@ -156,8 +161,10 @@ const Footer = (props) => {
           </div>
 
           <div className="flex gap-x-2 mt-2">
-            {["Privacy Policy", "Terms of Use"].map((item) => (
-              <p>{item}</p>
+            {legalLinks.map(({ name, linkTo }) => (
+              <Linked key={`legal-footer-link-${name}`} linkTo={linkTo}>
+                <p>{name}</p>
+              </Linked>
             ))}
           </div>
           <p>Copyright &copy; 2011 - 2016 Katch International L.T.D.</p>
