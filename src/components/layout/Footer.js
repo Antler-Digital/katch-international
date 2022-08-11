@@ -36,7 +36,7 @@ export const footerLinks = [
 
 const Footer = (props) => {
   return (
-    <footer className="py-12 bg-secondary h-[80vh] flex flex-col justify-end">
+    <footer className="py-12 bg-secondary min-h-[80vh] flex flex-col justify-end">
       <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-screen-xl mx-auto px-6 w-full">
         {/* Column 1 */}
         <div className="col-span-1 h-full w-full">
