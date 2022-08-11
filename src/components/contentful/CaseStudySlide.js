@@ -20,25 +20,31 @@ const CaseStudySlide = ({ title, sqrImage, slug, isActive }) => {
 
       <AnimatePresence>
         {isActive && (
-          <motion.div
-            key={"link" + title + slug}
-            className="bg-secondary mix-blend-hard-light w-full text-white block absolute font-thin p-10 group hover:bg-opacity-80 uppercase"
-            animate={{ opacity: 1, bottom: 22, transition: { duration: 0.5 } }}
-            initial={{ opacity: 0, bottom: -40 }}
-            exit={{ opacity: 0, bottom: -40 }}
+          <Link
+            to={`/project/${slug}`}
+            className="relative flex justify-between items-center text-sm mt-3 w-full"
           >
-            <p className="text-2xl sm:text-4xl text-white">{title}</p>
-            <Link
-              to={`/project/${slug}`}
-              className="flex justify-between items-center text-sm mt-3"
+            <motion.div
+              key={"link" + title + slug}
+              className="bg-secondary mix-blend-hard-light w-full text-white block absolute font-thin p-10 group hover:bg-opacity-80 uppercase"
+              animate={{
+                opacity: 1,
+                bottom: 22,
+                transition: { duration: 0.5 },
+              }}
+              initial={{ opacity: 0, bottom: -40 }}
+              exit={{ opacity: 0, bottom: -40 }}
             >
-              Read more
-              <FontAwesomeIcon
-                className="group-hover:opacity-100 opacity-0 right-10 duration-500 group-hover:right-0 relative"
-                icon={faArrowRight}
-              />
-            </Link>
-          </motion.div>
+              <p className="text-2xl sm:text-4xl text-white">{title}</p>
+              <div className="flex justify-between items-center">
+                <span>Read more</span>
+                <FontAwesomeIcon
+                  className="group-hover:opacity-100 opacity-0 right-10 duration-500 group-hover:right-0 relative"
+                  icon={faArrowRight}
+                />
+              </div>
+            </motion.div>
+          </Link>
         )}
       </AnimatePresence>
     </article>

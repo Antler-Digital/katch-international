@@ -2,7 +2,7 @@ import { graphql } from "gatsby"
 import React from "react"
 
 import CollectionSection from "../../components/contentful/CollectionSection"
-import HeroSection from "../../components/contentful/HeroSection"
+import CaseStudyHeroSection from "../../components/elements/CaseStudyHeroSection"
 import SpacerSection from "../../components/contentful/SpacerSection"
 import TabSection from "../../components/contentful/TabSection"
 import Layout from "../../components/layout/Layout"
@@ -33,9 +33,8 @@ const CaseStudyTemplate = ({
   )
 
   const prevCaseStudy =
-    caseStudies?.[currentCaseStudy - 1] || caseStudies?.[caseStudies.length - 1] 
+    caseStudies?.[currentCaseStudy - 1] || caseStudies?.[caseStudies.length - 1]
   const nextCaseStudy = caseStudies?.[currentCaseStudy + 1] || caseStudies?.[0]
-
 
   const hasTabs = theChallenge && theSolution && theResults
   return (
@@ -45,7 +44,7 @@ const CaseStudyTemplate = ({
         metaDescription={metaDescription}
         metaImage={metaImage?.gatsbyImageData?.images?.fallback?.src}
       />
-      <HeroSection
+      <CaseStudyHeroSection
         header={title.toUpperCase()}
         subHeader={{ subHeader: `## __${title.toUpperCase()}__` }}
         textColour="White"
@@ -55,18 +54,18 @@ const CaseStudyTemplate = ({
         carouselImages={carouselImages}
       />
 
-      <SpacerSection size={"Medium"} backgroundColour="Black" />
-
       <section className="flex flex-col md:flex-row w-full max-w-screen-2xl mx-auto py-6 md:py-12 lg:py-24 gap-y-10 gap-x-12">
-        {hasTabs && <div className="md:w-[70%]">
-          <TabSection
-            sections={[
-              { header: "The Brand", text: theChallenge },
-              { header: "The Challenge", text: theSolution },
-              { header: "The Result", text: theResults },
-            ]}
-          />
-        </div>}
+        {hasTabs && (
+          <div className="md:w-[70%]">
+            <TabSection
+              sections={[
+                { header: "The Brand", text: theChallenge },
+                { header: "The Challenge", text: theSolution },
+                { header: "The Result", text: theResults },
+              ]}
+            />
+          </div>
+        )}
         <div className="md:w-[40%] flex flex-row md:flex-col lg:flex-row justify-between lg:justify-start gap-x-8 max-w-screen-2xl mx-auto px-6">
           <div className="shrink">
             <h5 className="uppercase mb-12 text-sm sm:text-base">

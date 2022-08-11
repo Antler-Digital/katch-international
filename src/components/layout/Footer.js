@@ -30,8 +30,8 @@ export const footerLinks = [
   { name: "Katch", linkTo: "/" },
   { name: "Clients", linkTo: "/projects" },
   { name: "Blog", linkTo: "/blog" },
-  { name: "Case Studies", linkTo: "/projects" },
-  { name: "Katch Us", linkTo: "/katch-us" },
+  { name: "Case Studies", linkTo: "/#our-work" },
+  { name: "Katch Us", linkTo: "/contact-us" },
 ]
 
 export const legalLinks = [
@@ -41,7 +41,7 @@ export const legalLinks = [
 
 const Footer = (props) => {
   return (
-    <footer className="py-12 bg-secondary min-h-[80vh] flex flex-col justify-end">
+    <footer className="py-12 bg-secondary min-h-[80vh] sm:min-h-min flex flex-col justify-end">
       <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-screen-xl mx-auto px-6 w-full">
         {/* Column 1 */}
         <div className="col-span-1 h-full w-full">
@@ -138,7 +138,7 @@ const Footer = (props) => {
 
         {/* Column 4 */}
 
-        <div className="text-xs text-white">
+        <div className="sm:hidden text-xs text-white">
           <div className="flex gap-x-1 text-sm text-white">
             {footerLinks.map(({ name, linkTo }, idx) => {
               if (idx < footerLinks.length - 1) {
@@ -160,7 +160,7 @@ const Footer = (props) => {
             })}
           </div>
 
-          <div className="flex gap-x-2 mt-2">
+          <div className="sm:hidden flex gap-x-2 mt-2">
             {legalLinks.map(({ name, linkTo }) => (
               <Linked key={`legal-footer-link-${name}`} linkTo={linkTo}>
                 <p>{name}</p>
@@ -170,7 +170,9 @@ const Footer = (props) => {
           <p>Copyright &copy; 2011 - 2016 Katch International L.T.D.</p>
         </div>
 
-        <p className="text-xs text-white">Designed by: KATCH INTERNATIONAL</p>
+        <p className="sm:hidden text-xs text-white">
+          Designed by: KATCH INTERNATIONAL
+        </p>
 
         <div className="hidden sm:block max-w-lg col-span-3 lg:col-span-1 lg:pt-0">
           <h4 className="mb-4  font-medium px-0 pt-0 pb-2 m-0 text-lg  leading-4 text-white">
