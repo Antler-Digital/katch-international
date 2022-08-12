@@ -1,9 +1,10 @@
 import React, { useRef, useState, useEffect } from "react"
 
 import LargeDesktopVideo from "../../videos/Katch_1920x1080.mp4"
-// import SmallDesktopVideo from '../../videos/Katch_1280x1024.mp4'
+import SmallDesktopVideo from "../../videos/Katch_1280x1024.mp4"
 // import MediumDesktopVideo from '../../videos/Katch_1366x768.mp4'
 // import MobileVideo from '../../videos/Katch_mobile.mp4'
+import MobileCompressedVideo from "../../videos/Katch_mobile_compressed.mp4"
 
 const isSafari = () => {
   const ua = navigator.userAgent.toLowerCase()
@@ -13,6 +14,31 @@ const isSafari = () => {
 const LocalVideo = () => {
   const videoParentRef = useRef()
   const [shouldUseImage, setShouldUseImage] = useState(false)
+  const [videoSelected, setVideoSelected] = useState(null)
+
+  const selectVideo = (width) => {
+    if (width < 768) {
+      setVideoSelected(MobileCompressedVideo)
+    } else if (width < 1024) {
+      setVideoSelected(SmallDesktopVideo)
+    } else {
+      setVideoSelected(LargeDesktopVideo)
+    }
+  }
+
+  const handleResize = () => {
+    setVideoSelected(null)
+    const width = window.innerWidth
+    selectVideo(width)
+  }
+
+  useEffect(() => {
+    const width = window.innerWidth
+    window.addEventListener("resize", handleResize)
+    selectVideo(width)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
+
   useEffect(() => {
     // check if user agent is safari and we have the ref to the container <div />
     if (isSafari() && videoParentRef.current) {
@@ -48,8 +74,12 @@ const LocalVideo = () => {
     }
   }, [])
 
+  if (!videoSelected) {
+    return null
+  }
+
   return shouldUseImage ? (
-    <img src={LargeDesktopVideo} alt="Muted Video" />
+    <img src={videoSelected} alt="Muted Video" />
   ) : (
     <div
       ref={videoParentRef}
@@ -63,7 +93,7 @@ const LocalVideo = () => {
           playsinline
           preload="metadata"
         >
-        <source src="${LargeDesktopVideo}" type="video/mp4" />
+        <source src="${videoSelected}" type="video/mp4" />
         </video>`,
       }}
     />

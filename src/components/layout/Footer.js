@@ -78,7 +78,7 @@ const Footer = (props) => {
         </div>
 
         {/* Column 2 / 3 */}
-        <div className="hidden sm:flex col-span-3 lg:col-span-2 flex-col items-start">
+        <div className="flex col-span-3 lg:col-span-2 flex-col items-start">
           {/* Addresses */}
           <div className="flex flex-wrap gap-y-8 gap-x-12">
             <div className="flex flex-col justify-center">
@@ -138,7 +138,7 @@ const Footer = (props) => {
 
         {/* Column 4 */}
 
-        <div className="sm:hidden text-xs text-white">
+        {/* <div className="sm:hidden text-xs text-white">
           <div className="flex gap-x-1 text-sm text-white">
             {footerLinks.map(({ name, linkTo }, idx) => {
               if (idx < footerLinks.length - 1) {
@@ -172,9 +172,9 @@ const Footer = (props) => {
 
         <p className="sm:hidden text-xs text-white">
           Designed by: KATCH INTERNATIONAL
-        </p>
+        </p> */}
 
-        <div className="hidden sm:block max-w-lg col-span-3 lg:col-span-1 lg:pt-0">
+        <div className="max-w-lg col-span-3 lg:col-span-1 lg:pt-0">
           <h4 className="mb-4  font-medium px-0 pt-0 pb-2 m-0 text-lg  leading-4 text-white">
             KATCH US
           </h4>
@@ -191,8 +191,8 @@ const Footer = (props) => {
         </div>
       </div>
 
-      <div className="hidden sm:flex max-w-screen-xl mx-auto justify-between mt-4 px-4">
-        <h5 className="mt-2 font-thin opacity-75 text-white text-sm text-center">
+      <div className="flex flex-col max-w-screen-xl mx-auto justify-between mt-4 px-4">
+        <h5 className="mt-2 font-thin opacity-75 text-white text-sm mx-auto">
           &copy; Katch International {new Date().getFullYear()}
         </h5>
         {/* <h6 className="text-xs font-thin mt-2 opacity-50 text-right ml-auto text-white hover:opacity-100"><Linked linkTo="https://www.katchdisruption.com/">Built by Katch Distruption</Linked></h6> */}
