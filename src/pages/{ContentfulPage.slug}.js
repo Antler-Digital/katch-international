@@ -22,7 +22,7 @@ import SEO from "../components/SEO"
 import useCustomSection from "../hooks/useCustomSection"
 
 export const SectionSwitcher = (section, pageType, index, slug) => {
-  const isServicePage = pageType.includes("Service Page")
+  const isServicePage = pageType?.includes("Service Page")
 
   const isBlogHome = slug === "blog"
   switch (section.internal?.type) {
@@ -45,9 +45,6 @@ export const SectionSwitcher = (section, pageType, index, slug) => {
           ) : (
             <HeroSection {...section} />
           )}
-          {isServicePage && (
-            <SpacerSection size={"Large"} backgroundColour={"Black"} />
-          )}
         </div>
       )
     case "ContentfulCollectionSection":
@@ -57,7 +54,13 @@ export const SectionSwitcher = (section, pageType, index, slug) => {
     case "ContentfulTwoColumnSection":
       return <TwoColumnSection key={`${section.id}` + index} {...section} />
     case "ContentfulTextSection":
-      return <TextSection key={`${section.id}` + index} {...section} />
+      return (
+        <TextSection
+          key={`${section.id}` + index}
+          {...section}
+          includePadding={pageType !== "other"}
+        />
+      )
     case "ContentfulSpacerSection":
       return <SpacerSection key={`${section.id}` + index} {...section} />
     case "ContentfulMapSection":
@@ -67,7 +70,11 @@ export const SectionSwitcher = (section, pageType, index, slug) => {
     case "ContentfulTabsSection":
       return (
         <div key={`${section.id}` + index}>
-          <TabSection key={`${section.id}` + index} {...section} />
+          <TabSection
+            key={`${section.id}` + index}
+            {...section}
+            pageType={pageType}
+          />
           {isServicePage && (
             <SpacerSection size={"Small"} backgroundColour={"Black"} />
           )}
@@ -129,7 +136,7 @@ const PageTemplate = ({ data: { contentfulPage }, location }) => {
         metaImage={metaImage?.gatsbyImageData?.images?.fallback?.src}
       />
       <WhatsappIcon path={location.pathname} />
-      {metaTitle && <h1 className="opacity-0 absolute">{metaTitle}</h1>}
+      {metaTitle && <h1 className="absolute opacity-0">{metaTitle}</h1>}
 
       <div>
         {snapSections &&

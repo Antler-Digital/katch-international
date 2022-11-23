@@ -3,13 +3,18 @@ import React, { Fragment } from "react"
 import { graphql } from "gatsby"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 import RichTextOptions from "../rich-text/RichTextOptions"
+import TwoColumnSection from "./TwoColumnSection"
+import { SectionSwitcher } from "../../pages/{ContentfulPage.slug}"
 
 const TabSection = ({ sections }) => {
   return (
-    <div className="max-w-screen-2xl mx-auto px-6">
+    <div className="px-6 mx-auto mt-10 max-w-screen-2xl">
       <Tab.Group>
-        <Tab.List className={"flex justify-start gap-8 font-bold"}>
+        <Tab.List
+          className={"flex flex-wrap justify-start gap-x-8 gap-y-4 font-bold"}
+        >
           {sections?.map(({ header }, index) => {
+            console.log(header)
             return (
               <Tab as={Fragment} key={`tab-${index}`}>
                 {({ selected }) => (
@@ -26,14 +31,14 @@ const TabSection = ({ sections }) => {
             )
           })}
         </Tab.List>
-        <Tab.Panels className={"mt-12"}>
-          {sections?.map(({ text }, index) => {
+        <Tab.Panels className={"mt-6"}>
+          {sections?.map((section, index) => {
             return (
               <Tab.Panel
                 key={`panel-${index}`}
-                className="text-base text-justify space-y-4"
+                className="space-y-4 text-base text-justify"
               >
-                {renderRichText(text, RichTextOptions)}
+                {SectionSwitcher(section, "other", index)}
               </Tab.Panel>
             )
           })}
@@ -48,9 +53,11 @@ export default TabSection
 export const ContentfulTabSectionFragment = graphql`
   fragment ContentfulTabsSectionFragment on ContentfulTabsSection {
     sections {
-      header
-      text {
-        raw
+      ... on ContentfulTwoColumnSection {
+        ...ContentfulTwoColumnSectionFragment
+      }
+      ... on ContentfulTextSection {
+        ...ContentfulTextSectionFragment
       }
     }
     internal {

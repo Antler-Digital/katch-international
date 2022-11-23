@@ -17,7 +17,7 @@ const Layout = ({ children }) => {
       <header className="bg-gray-100">
         <Nav />
       </header>
-      <main className="bg-gray-100 leading-loose font-thin ">{children}</main>
+      <main className="font-thin leading-loose bg-gray-100 ">{children}</main>
       <Footer />
     </>
   )

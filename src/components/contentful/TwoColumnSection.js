@@ -10,6 +10,7 @@ function TwoColumnSection({
   leftColumn,
   rightColumn,
   header,
+  includeHeader = true,
 }) {
   if (rightColumn && leftColumn) {
     return (
@@ -20,7 +21,7 @@ function TwoColumnSection({
               SectionSwitcher(section, "other", index)
             )}
           </div>
-          <div className="my-auto p-6 xl:px-24">
+          <div className="p-6 my-auto xl:px-24">
             {rightColumn.map((section, index) =>
               SectionSwitcher(section, "other", index)
             )}
@@ -31,11 +32,15 @@ function TwoColumnSection({
   }
 
   return (
-    <section className="bg-black text-white py-4">
-      {header && <h2 className="text-center">{header}</h2>}
-      <div className="max-w-screen-xl mx-auto grid md:grid-cols-2 gap-4 prose prose-white px-4 ">
-        <div>{renderRichText(leftColumnRichText, RichTextOptions)}</div>
-        <div>{renderRichText(rightColumnRichText, RichTextOptions)}</div>
+    <section className="">
+      {includeHeader && <h2 className="text-center">{header}</h2>}
+      <div className="grid max-w-screen-xl mx-auto prose text-left gap-x-4 md:grid-cols-2 prose-black">
+        {leftColumnRichText && (
+          <div>{renderRichText(leftColumnRichText, RichTextOptions)}</div>
+        )}
+        {rightColumnRichText && (
+          <div>{renderRichText(rightColumnRichText, RichTextOptions)}</div>
+        )}
       </div>
     </section>
   )
@@ -62,6 +67,7 @@ export const ContentfulTwoColumnSectionFragment = graphql`
       }
     }
     header
+    includeHeader
     internal {
       type
     }

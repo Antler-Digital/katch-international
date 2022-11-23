@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 import RichTextOptions from "../rich-text/RichTextOptions"
 
-function TextSection({ text, align }) {
+function TextSection({ text, align, includePadding = true }) {
   const textAlign =
     align === "Left"
       ? "text-left"
@@ -11,9 +11,11 @@ function TextSection({ text, align }) {
       ? "text-right"
       : "text-justify"
   return (
-    <section className="bg-gray-100  text-black py-4">
+    <section className="py-4 text-black bg-gray-100">
       <div
-        className={`max-w-screen-2xl mx-auto px-6 ${textAlign} text-base space-y-4`}
+        className={`max-w-screen-2xl mx-auto ${
+          includePadding ? "px-6" : ""
+        } ${textAlign} text-base space-y-4`}
       >
         {renderRichText(text, RichTextOptions)}
       </div>
@@ -28,6 +30,7 @@ export const ContentfulTabSectionFragment = graphql`
     text {
       raw
     }
+    header
     align
     internal {
       type

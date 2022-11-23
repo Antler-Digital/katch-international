@@ -38,6 +38,12 @@ const Nav = (props) => {
 
   const [menuOpen, setMenuOpen] = useState(false)
 
+  React.useEffect(() => {
+    if (menuOpen) {
+      setMenuOpen(false)
+    }
+  }, [window?.location?.pathname])
+
   UseBodyLock(menuOpen)
 
   const { contentfulSiteSettings } = useStaticQuery(graphql`
@@ -109,14 +115,17 @@ const Nav = (props) => {
           atTop ? "py-4" : "hidden"
         } transition-all duration-300 lg:px-0 z-[999]`}
       >
-        <div className="flex max-w-screen-2xl mx-auto px-4">
+        <div className="flex px-4 mx-auto max-w-screen-2xl">
           <Linked linkTo="/" className="">
             <img className="w-24" src={KatchLogo} alt="Katch Logo" />
           </Linked>
 
-          <div className="hidden md:flex space-x-4 text-sm ml-auto mt-2 pr-4 uppercase ">
+          <div className="hidden pr-4 mt-2 ml-auto space-x-4 text-sm uppercase md:flex ">
             {navBar &&
               navBar.map((item) => {
+                if (item.linkTo === "/careers") {
+                  return null
+                }
                 if (item.menuItems) {
                   return (
                     <DropDown
@@ -128,7 +137,7 @@ const Nav = (props) => {
                 }
                 return (
                   <Linked
-                    className="text-white cursor-pointer relative group"
+                    className="relative text-white cursor-pointer group"
                     linkTo={`${
                       item.slug
                         ? `/${item.slug === "/" ? "" : item.slug}`
@@ -150,7 +159,7 @@ const Nav = (props) => {
           onClick={() => setMenuOpen(!menuOpen)}
           className={`${!atTop ? "inline-block" : "lg:hidden"} ${
             !menuOpen ? "hover:text-black text-secondary " : "text-white"
-          } z-[9999] ml-auto mr-6 mt-6 h-8 w-8 fixed top-0 right-5  duration-300 hover:animate-pulse`}
+          } z-[9999] ml-auto mr-6 mt-6 h-8 w-8 fixed top-0 md:right-20 right-6 duration-300 hover:animate-pulse`}
         >
           <svg
             width="37"
@@ -180,6 +189,7 @@ const Nav = (props) => {
               }}
               exit={{ opacity: 0 }}
               className={`bg-secondary   w-full h-screen fixed top-0`}
+              onClick={() => setMenuOpen(!menuOpen)}
             >
               <motion.ul
                 variants={ulVariant}
@@ -197,7 +207,7 @@ const Nav = (props) => {
                           className=""
                         >
                           {item.header}
-                          <ul className=" text-6xl space-y-3 mt-4 mb-4">
+                          <ul className="mt-4 mb-4 space-y-3 text-6xl ">
                             {item.menuItems.map((item) => (
                               <li key={item.title}>
                                 <Linked
@@ -222,7 +232,7 @@ const Nav = (props) => {
                     return (
                       <motion.li key={item.id} variants={itemVariant}>
                         <Linked
-                          className="text-white cursor-pointer relative group text-5xl leading-tight"
+                          className="relative text-5xl leading-tight text-white cursor-pointer group"
                           linkTo={`${
                             item.slug
                               ? `/${item.slug === "/" ? "" : item.slug}`
@@ -253,13 +263,13 @@ const Nav = (props) => {
                   <hr className="border-white max-w-[500px]" />
                   <Linked
                     linkTo="mailto:info@katchthis.com"
-                    className="text-white  py-1 flex items-center space-x-4 rounded-full"
+                    className="flex items-center py-1 space-x-4 text-white rounded-full"
                   >
                     INFO@KATCHTHIS.COM
                   </Linked>
 
                   <SocialIcons
-                    className="text-white space-x-2 flex mt-auto"
+                    className="flex mt-auto space-x-2 text-white"
                     // showText
                     icons={[
                       {
@@ -294,13 +304,13 @@ const DropDown = ({ items, header }) => {
 
   return (
     <div
-      className="text-white  relative"
+      className="relative text-white"
       onMouseEnter={() => setShowMenu(true)}
       onMouseLeave={() => setShowMenu(false)}
     >
       <p>
         {header}{" "}
-        <FontAwesomeIcon className="text-sm ml-1" icon={faChevronDown} />
+        <FontAwesomeIcon className="ml-1 text-sm" icon={faChevronDown} />
       </p>
 
       <Transition
@@ -319,7 +329,7 @@ const DropDown = ({ items, header }) => {
             <li key={item.slug}>
               <Linked linkTo={`/${item.slug}`} className="relative group">
                 {item.title}
-                <span className="group-hover:w-full w-0 transition-all duration-500 absolute h-1 bg-secondary left-0 -bottom-1" />
+                <span className="absolute left-0 w-0 h-1 transition-all duration-500 group-hover:w-full bg-secondary -bottom-1" />
               </Linked>
             </li>
           ))}
