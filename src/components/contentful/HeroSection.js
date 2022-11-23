@@ -26,31 +26,45 @@ function HeroSection({
   const getTextStyle = (text) => {
     const textLength = text?.length || 0
 
+    console.log(textLength)
+
     if (textLength > 40)
       return "-bottom-[53px] md:-bottom-[63px] lg:-bottom-[140px]  relative text-4xl md:text-5xl lg:text-[80px]"
     if (textLength > 30)
       return "-bottom-[42px] md:-bottom-[63px] lg:-bottom-[176px]  relative text-5xl md:text-7xl lg:text-[110px]"
+    if (textLength > 20)
+      return "-top-[43px] md:-top-[64px] lg:-top-[97px] relative"
     return "-bottom-[68px] md:-bottom-[81px] lg:-bottom-[179px]  relative text-6xl md:text-7xl lg:text-[160px]"
   }
 
   return (
     <>
-      <section
-        className={` h-[500px] ${
-          backgroundImage || carouselImages
-            ? "h-[500px]"
-            : "-min-h-[300px] lmd:min-h-[400px]"
-        }  relative ${(centerHeading || !showForm) && "flex items-center"}`}
-      >
+      <section>
         <div
-          className={`max-w-screen-2xl mx-auto  w-full h-full flex flex-wrap relative px-4 z-20 self-end`}
+          className={` h-[500px] ${
+            backgroundImage || carouselImages
+              ? "h-[500px]"
+              : "-min-h-[300px] lmd:min-h-[400px]"
+          } relative ${(centerHeading || !showForm) && "flex items-center"}`}
+        >
+          <div className="absolute top-0 z-10 w-full h-full bg-black bg-opacity-25 sm:px-4" />
+          {backgroundImage && (
+            <GatsbyImage
+              className="absolute top-0 w-full h-full "
+              style={{ position: "absolute" }}
+              image={backgroundImage.gatsbyImageData}
+              alt={backgroundImage.title}
+            />
+          )}
+        </div>
+        {/* </div> */}
+        <div
+          className={`-top-[43px] md:-top-[64px] lg:-top-[97px] relative max-w-screen-2xl mx-auto  w-full h-full flex flex-wrap px-4 z-50 self-end`}
         >
           {/* <div className={` w-full md:h-full text-left relative bottom-0 `}> */}
           {header && (
             <h1
-              className={`${getTextStyle(
-                header?.trim()
-              )} font-bold block self-end ${colorText}`}
+              className={`md:text-7xl lg:text-[110px] font-bold block self-end ${colorText}`}
             >
               <span>{title[0]}</span>
               <span className="block last:text-black">
@@ -59,16 +73,6 @@ function HeroSection({
             </h1>
           )}
         </div>
-        {/* </div> */}
-        <div className="h-full absolute top-0 z-10 w-full sm:px-4 bg-black bg-opacity-25" />
-        {backgroundImage && (
-          <GatsbyImage
-            className="absolute h-full w-full top-0 "
-            style={{ position: "absolute" }}
-            image={backgroundImage.gatsbyImageData}
-            alt={backgroundImage.title}
-          />
-        )}
       </section>
     </>
   )
