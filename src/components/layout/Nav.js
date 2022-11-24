@@ -111,9 +111,8 @@ const Nav = (props) => {
   return (
     <>
       <nav
-        className={` w-full fixed ${
-          atTop ? "py-4" : "hidden"
-        } transition-all duration-300 lg:px-0 z-[999]`}
+        className={` w-full fixed ${atTop ? "py-4" : "hidden"
+          } transition-all duration-300 lg:px-0 z-[999]`}
       >
         <div className="flex px-4 mx-auto max-w-screen-2xl">
           <Linked linkTo="/" className="">
@@ -138,11 +137,10 @@ const Nav = (props) => {
                 return (
                   <Linked
                     className="relative text-white cursor-pointer group"
-                    linkTo={`${
-                      item.slug
-                        ? `/${item.slug === "/" ? "" : item.slug}`
-                        : item.linkTo
-                    }`}
+                    linkTo={`${item.slug
+                      ? `/${item.slug === "/" ? "" : item.slug}`
+                      : item.linkTo
+                      }`}
                     key={item.id}
                     underline
                   >
@@ -157,9 +155,8 @@ const Nav = (props) => {
       <nav className=" w-full fixed z-[999]">
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className={`${!atTop ? "inline-block" : "lg:hidden"} ${
-            !menuOpen ? "hover:text-black text-secondary " : "text-white"
-          } z-[9999] ml-auto mr-6 mt-6 h-8 w-8 fixed top-0 md:right-20 right-6 duration-300 hover:animate-pulse`}
+          className={`${!atTop ? "inline-block" : "lg:hidden"} ${!menuOpen ? "hover:text-black text-secondary " : "text-white"
+            } z-[9999] ml-auto mr-2 mt-6 h-8 w-8 fixed top-0 md:right-20 right-5 duration-300 hover:animate-pulse`}
         >
           <svg
             width="37"
@@ -211,11 +208,10 @@ const Nav = (props) => {
                             {item.menuItems.map((item) => (
                               <li key={item.title}>
                                 <Linked
-                                  linkTo={`${
-                                    item.slug
-                                      ? `/${item.slug === "/" ? "" : item.slug}`
-                                      : item.linkTo
-                                  }`}
+                                  linkTo={`${item.slug
+                                    ? `/${item.slug === "/" ? "" : item.slug}`
+                                    : item.linkTo
+                                    }`}
                                 >
                                   {item.title}
                                 </Linked>
@@ -233,11 +229,10 @@ const Nav = (props) => {
                       <motion.li key={item.id} variants={itemVariant}>
                         <Linked
                           className="relative text-5xl leading-tight text-white cursor-pointer group"
-                          linkTo={`${
-                            item.slug
-                              ? `/${item.slug === "/" ? "" : item.slug}`
-                              : item.linkTo
-                          }`}
+                          linkTo={`${item.slug
+                            ? `/${item.slug === "/" ? "" : item.slug}`
+                            : item.linkTo
+                            }`}
                           key={item.id}
                         >
                           {item.title || item.text}
@@ -260,13 +255,19 @@ const Nav = (props) => {
                   initial={{ opacity: 0, y: 50 }}
                   className="block"
                 >
-                  <hr className="border-white max-w-[500px]" />
-                  <Linked
-                    linkTo="mailto:info@katchthis.com"
-                    className="flex items-center py-1 space-x-4 text-white rounded-full"
-                  >
-                    INFO@KATCHTHIS.COM
-                  </Linked>
+                  <hr className="border-white max-w-[500px] " />
+
+                  <div className="flex justify-between items-center max-w-[500px]">
+                    <Linked
+                      linkTo="mailto:info@katchthis.com"
+                      className="py-1 space-x-4 text-white rounded-full"
+                    >
+                      INFO@KATCHTHIS.COM
+                    </Linked>
+                    <Linked className="py-1" linkTo="/careers" >
+                      Careers
+                    </Linked>
+                  </div>
 
                   <SocialIcons
                     className="flex mt-auto space-x-2 text-white"

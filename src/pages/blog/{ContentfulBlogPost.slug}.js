@@ -85,7 +85,7 @@ export const BlogPostQuery = graphql`
       slug
       metaTitle
       metaImage {
-        gatsbyImageData(width: 248, layout: FIXED)
+        gatsbyImageData(width: 200, layout: FIXED)
         title
       }
       metaDescription {
