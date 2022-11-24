@@ -34,8 +34,8 @@ export const ContentfulCaseStudyCardFragment = graphql`
     mainImage {
       gatsbyImageData(
         quality: 90
-        width: 250
-        height: 250
+        width: 200
+        height: 200
         cropFocus: CENTER
         layout: CONSTRAINED
         placeholder: BLURRED

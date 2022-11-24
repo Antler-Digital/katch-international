@@ -2,16 +2,12 @@ import { graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 
-import Carousel from "../../components/elements/Carousel"
-
 function HeroSection({
   backgroundImage,
   carouselImages,
-  subHeader,
   header,
   textColour,
   showForm = true,
-  headerClasses,
   centerHeading,
 }) {
   const colorText =
@@ -22,20 +18,6 @@ function HeroSection({
       : "text-black"
 
   const title = header.trim().split(" ")
-
-  const getTextStyle = (text) => {
-    const textLength = text?.length || 0
-
-    console.log(textLength)
-
-    if (textLength > 40)
-      return "-bottom-[53px] md:-bottom-[63px] lg:-bottom-[140px]  relative text-4xl md:text-5xl lg:text-[80px]"
-    if (textLength > 30)
-      return "-bottom-[42px] md:-bottom-[63px] lg:-bottom-[176px]  relative text-5xl md:text-7xl lg:text-[110px]"
-    if (textLength > 20)
-      return "-top-[43px] md:-top-[64px] lg:-top-[97px] relative"
-    return "-bottom-[68px] md:-bottom-[81px] lg:-bottom-[179px]  relative text-6xl md:text-7xl lg:text-[160px]"
-  }
 
   return (
     <>

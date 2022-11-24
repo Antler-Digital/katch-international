@@ -1,9 +1,6 @@
 import { Tab } from "@headlessui/react"
 import React, { Fragment } from "react"
 import { graphql } from "gatsby"
-import { renderRichText } from "gatsby-source-contentful/rich-text"
-import RichTextOptions from "../rich-text/RichTextOptions"
-import TwoColumnSection from "./TwoColumnSection"
 import { SectionSwitcher } from "../../pages/{ContentfulPage.slug}"
 
 const TabSection = ({ sections }) => {
@@ -14,7 +11,6 @@ const TabSection = ({ sections }) => {
           className={"flex flex-wrap justify-start gap-x-8 gap-y-4 font-bold"}
         >
           {sections?.map(({ header }, index) => {
-            console.log(header)
             return (
               <Tab as={Fragment} key={`tab-${index}`}>
                 {({ selected }) => (

@@ -42,7 +42,7 @@ const Nav = (props) => {
     if (menuOpen) {
       setMenuOpen(false)
     }
-  }, [window?.location?.pathname])
+  }, [pathName])
 
   UseBodyLock(menuOpen)
 

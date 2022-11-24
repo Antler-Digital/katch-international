@@ -100,7 +100,7 @@ export const CaseStudyQuery = graphql`
       slug
       metaTitle
       metaImage {
-        gatsbyImageData(width: 248, layout: FIXED)
+        gatsbyImageData(width: 200, layout: FIXED)
         title
       }
       metaDescription {
@@ -131,7 +131,7 @@ export const CaseStudyQuery = graphql`
       }
       logoBlack {
         gatsbyImageData(
-          width: 250
+          width: 200
           layout: FIXED
           quality: 90
           placeholder: TRACED_SVG
