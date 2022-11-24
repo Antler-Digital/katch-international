@@ -41,7 +41,7 @@ function HeroSection({
         </div>
         {/* </div> */}
         <div
-          className={`-top-[43px] md:-top-[64px] lg:-top-[97px] relative max-w-screen-2xl mx-auto  w-full h-full flex flex-wrap px-4 z-50 self-end`}
+          className={`mt-[-43px] md:mt-[-64px] lg:mt-[-97px] relative max-w-screen-2xl mx-auto  w-full h-full flex flex-wrap px-4 z-50 self-end`}
         >
           {/* <div className={` w-full md:h-full text-left relative bottom-0 `}> */}
           {header && (

@@ -3,9 +3,9 @@ import React, { Fragment } from "react"
 import { graphql } from "gatsby"
 import { SectionSwitcher } from "../../pages/{ContentfulPage.slug}"
 
-const TabSection = ({ sections }) => {
+const TabSection = ({ sections, className }) => {
   return (
-    <div className="px-6 mx-auto mt-10 max-w-screen-2xl">
+    <div className={`px-6 mx-auto max-w-screen-2xl ${className ?? ''}`}>
       <Tab.Group>
         <Tab.List
           className={"flex flex-wrap justify-start gap-x-8 gap-y-4 font-bold"}

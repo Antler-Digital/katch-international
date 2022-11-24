@@ -71,6 +71,7 @@ export const SectionSwitcher = (section, pageType, index, slug) => {
       return (
         <div key={`${section.id}` + index}>
           <TabSection
+            className="mt-10"
             key={`${section.id}` + index}
             {...section}
             pageType={pageType}
