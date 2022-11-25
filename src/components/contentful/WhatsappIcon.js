@@ -10,13 +10,13 @@ const WhatsappIcon = ({ path }) => {
 
   return (
     <a
-      className={`fixed z-[999] cursor-pointer md:bottom-20 md:right-20 right-6 bottom-6 text-[#25D366]`}
+      className={`fixed z-[999] cursor-pointer md:bottom-20 md:right-20 right-6 bottom-6 text-[#25D366] bg-white rounded-full h-14 w-14 flex justify-center items-center shadow-lg`}
       href="https://wa.me/971527196124"
       target="_blank"
       rel="noopener noreferrer"
     >
       <svg
-        className="h-12 w-12 "
+        className="h-9 w-9 "
         version="1.1"
         id="Layer_1"
         xmlns="http://www.w3.org/2000/svg"

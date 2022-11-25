@@ -153,10 +153,11 @@ const Nav = (props) => {
       </nav>
 
       <nav className=" w-full fixed z-[999]">
+
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className={`${!atTop ? "inline-block" : "lg:hidden"} ${!menuOpen ? "hover:text-black text-secondary " : "text-white"
-            } z-[9999] ml-auto mr-2 mt-6 h-8 w-8 fixed top-0 md:right-20 right-5 duration-300 hover:animate-pulse`}
+          className={`${!atTop ? "inline-block bg-white" : "md:hidden  "} ${!menuOpen ? "hover:text-black text-secondary " : "text-white"
+            } z-[9999] ml-auto mr-2 mt-3 fixed top-0 md:right-20 right-5 duration-300 hover:animate-pulse w-14 h-14  flex justify-center items-center rounded-full`}
         >
           <svg
             width="37"
