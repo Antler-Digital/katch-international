@@ -156,7 +156,9 @@ export default function HubspotForm({ footnote }) {
         {...register("message", { required: true })}
         rows="3"
       ></textarea>
-      {errors.message && <span>This field is required</span>}
+      {errors.message && <span>This field is required</span>} 
+
+
 
       <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row justify-between items-end sm:items-center md:items-end lg:items-center gap-y-4">
         <div className="flex justify-end sm:justify-start md:justify-end lg:justify-start items-center gap-4">
