@@ -156,7 +156,7 @@ export default function HubspotForm({ footnote }) {
         {...register("message", { required: true })}
         rows="3"
       ></textarea>
-      {errors.message && <span>This field is required</span>} 
+      {errors.message && <span>This field is required</span>}
 
 
 
@@ -176,7 +176,7 @@ export default function HubspotForm({ footnote }) {
           Submit
         </button>
       </div>
-      <p className="text-sm">{renderRichText(footnote, RichTextOptions)}</p>
+      {footnote && footnote.trim() && <p className="text-sm">{renderRichText(footnote, RichTextOptions)}</p>}
     </form>
   )
 }
