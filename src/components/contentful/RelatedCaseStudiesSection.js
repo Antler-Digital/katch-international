@@ -7,7 +7,7 @@ const RelatedCaseStudiesSection = ({ caseStudies }) => {
     <div className="max-w-screen-2xl mx-auto px-6">
       <h3 className="uppercase text-4xl font-bold">Related Case Studies.</h3>
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 h-fit mt-12 gap-8">
-        {caseStudies.map(({ id, mainImage, title, slug }) => mainImage.gatsbyImageData ? (
+        {caseStudies.map(({ id, mainImage, title, slug }) => mainImage?.gatsbyImageData ? (
           <Link
             key={id}
             className="relative aspect-1 group overflow-hidden cursor-pointer"
