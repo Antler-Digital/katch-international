@@ -8,6 +8,7 @@ import { renderRichText } from "gatsby-source-contentful/rich-text"
 import RichTextOptions from "../rich-text/RichTextOptions"
 
 export default function HubspotForm({ footnote }) {
+
   const {
     register,
     handleSubmit,
@@ -176,7 +177,7 @@ export default function HubspotForm({ footnote }) {
           Submit
         </button>
       </div>
-      {footnote && footnote.trim() && <p className="text-sm">{renderRichText(footnote, RichTextOptions)}</p>}
+      {footnote && footnote?.raw && <p className="text-sm">{renderRichText(footnote, RichTextOptions)}</p>}
     </form>
   )
 }
