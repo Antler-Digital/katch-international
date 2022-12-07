@@ -71,7 +71,7 @@ const CaseStudyTemplate = ({
             <h5 className="uppercase mb-12 text-sm sm:text-base">
               The Service
             </h5>
-            <div className="grid grid-cols-2 md:grid-cols-1 xl:grid-cols-2">
+            <div className="grid grid-cols-1">
               {category.map((category) => (
                 <p className="text-base font-thin font-sans mt-1">{category}</p>
               ))}
