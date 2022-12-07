@@ -59,9 +59,9 @@ const CaseStudyTemplate = ({
           <div className="md:w-[70%]">
             <TabSection
               sections={[
-                { header: "The Brand", text: theChallenge },
-                { header: "The Challenge", text: theSolution },
-                { header: "The Result", text: theResults },
+                { header: "The Brand", text: theChallenge, internal: { type: 'ContentfulTextSection'} },
+                { header: "The Challenge", text: theSolution , internal: { type: 'ContentfulTextSection'} },
+                { header: "The Result", text: theResults , internal: { type: 'ContentfulTextSection'}},
               ]}
             />
           </div>
