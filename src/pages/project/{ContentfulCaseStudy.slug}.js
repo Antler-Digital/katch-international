@@ -1,16 +1,15 @@
 import { graphql } from "gatsby"
 import React from "react"
 
-import CollectionSection from "../../components/contentful/CollectionSection"
 import CaseStudyHeroSection from "../../components/elements/CaseStudyHeroSection"
-import SpacerSection from "../../components/contentful/SpacerSection"
 import TabSection from "../../components/contentful/TabSection"
 import Layout from "../../components/layout/Layout"
 import SEO from "../../components/SEO"
 import ChangeCaseStudy from "../../components/elements/ChangeCaseStudy"
+import WhatsappIcon from "../../components/contentful/WhatsappIcon"
 
 const CaseStudyTemplate = ({
-  data: { contentfulCaseStudy, allContentfulCaseStudy },
+  data: { contentfulCaseStudy, allContentfulCaseStudy }, location
 }) => {
   const page = contentfulCaseStudy
   const {
@@ -44,6 +43,7 @@ const CaseStudyTemplate = ({
         metaDescription={metaDescription}
         metaImage={metaImage?.gatsbyImageData?.images?.fallback?.src}
       />
+      <WhatsappIcon path={location.pathname} />
       <CaseStudyHeroSection
         header={title ? title?.toUpperCase() : ''}
         subHeader={{ subHeader: `## __${title ? title?.toUpperCase() : ''}__` }}
