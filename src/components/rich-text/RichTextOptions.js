@@ -22,7 +22,7 @@ const RichTextOptions = {
     // [BLOCKS.HR]: () => <Hr />,
     // [BLOCKS.LIST_ITEM]: (node, children) => <li className="md:pl-2">{children}</li>,
     [BLOCKS.UL_LIST]: (node, children) => (
-      <ul className="list-disc space-y-4">{children}</ul>
+      <ul className="list-disc space-y-2">{children}</ul>
     ),
     [BLOCKS.OL_LIST]: (node, children) => <ol className="list-">{children}</ol>,
     [INLINES.HYPERLINK]: (node, children) => {

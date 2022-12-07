@@ -82,7 +82,7 @@ const Footer = (props) => {
           {/* Addresses */}
           <div className="flex flex-wrap gap-y-8 gap-x-12">
             <div className="flex flex-col justify-center">
-              <h4 className="text-primary">Dubai Branch</h4>
+              <h4 className="text-white">Dubai Branch</h4>
               <div className="text-sm text-white space-y-1">
                 <p>Address 2004, Tameem House,</p>
                 <p>Barsha Heights, P.O.Box 122321</p>
@@ -97,7 +97,7 @@ const Footer = (props) => {
               </div>
             </div>
             <div className="flex flex-col justify-center">
-              <h4 className="text-primary">London Branch</h4>
+              <h4 className="text-white">London Branch</h4>
               <div className="text-sm text-white space-y-1">
                 <p>25 The Panoramic, 152 Grosvenor Rd</p>
                 <p> London, SW1V 3JL </p>

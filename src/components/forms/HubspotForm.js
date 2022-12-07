@@ -7,8 +7,8 @@ import Cookies from "js-cookie"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 import RichTextOptions from "../rich-text/RichTextOptions"
 
-export default function HubspotForm({ footnote }) {
-
+export default function HubspotForm({ footnote, type }) {
+  console.log(type)
   const {
     register,
     handleSubmit,
@@ -144,12 +144,12 @@ export default function HubspotForm({ footnote }) {
         {...register("phone")}
       />
 
-      <input
+      {type !== 'career-form' && <input
         type="text"
         className={`${inputClass} w-full h-16`}
         placeholder="Company Name"
         {...register("company")}
-      />
+      />}
 
       <textarea
         placeholder="Message"
@@ -188,6 +188,7 @@ export const ContentfulContactFormFragment = graphql`
     internal {
       type
     }
+    type
     footnote {
       raw
     }

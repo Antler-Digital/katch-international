@@ -34,12 +34,12 @@ function TwoColumnSection({
   return (
     <section className="">
       {includeHeader && <h2 className="text-center">{header}</h2>}
-      <div className="grid max-w-screen-xl mx-auto prose text-left gap-x-4 md:grid-cols-2 prose-black">
+      <div className="grid max-w-screen-xl mx-auto prose text-left gap-x-4 md:grid-cols-2 prose-black prose-p:my-0 ">
         {leftColumnRichText && (
-          <div>{renderRichText(leftColumnRichText, RichTextOptions)}</div>
+          <div className="">{renderRichText(leftColumnRichText, RichTextOptions)}</div>
         )}
         {rightColumnRichText && (
-          <div>{renderRichText(rightColumnRichText, RichTextOptions)}</div>
+          <div className="">{renderRichText(rightColumnRichText, RichTextOptions)}</div>
         )}
       </div>
     </section>

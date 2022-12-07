@@ -11,6 +11,8 @@ import {
   faFacebookF,
   faTwitter,
   faInstagram,
+  faLinkedin,
+  faTiktok,
 } from "@fortawesome/free-brands-svg-icons"
 import { SocialIcons } from "../elements/SocialIcons"
 import KatchLogo from "../../images/logo-katch.png"
@@ -156,8 +158,8 @@ const Nav = (props) => {
 
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className={`${!atTop ? "inline-block bg-white" : "md:hidden  "} ${!menuOpen ? "hover:text-black text-secondary " : "text-white"
-            } z-[9999] ml-auto mr-2 mt-3 fixed top-0 md:right-20 right-5 duration-300 hover:animate-pulse w-14 h-14  flex justify-center items-center rounded-full`}
+          className={`${!atTop ? "inline-block bg-white" : "md:hidden  "} ${!menuOpen ? "hover:text-black text-secondary " : "text-black"
+            } z-[9999] ml-auto  mt-3 fixed top-0 md:right-20 right-5 duration-300 hover:animate-pulse w-14 h-14  flex justify-center items-center rounded-full`}
         >
           <svg
             width="37"
@@ -258,7 +260,7 @@ const Nav = (props) => {
                 >
                   <hr className="border-white max-w-[500px] " />
 
-                  <div className="flex justify-between items-center max-w-[500px]">
+                  {/* <div className="flex justify-between items-center max-w-[500px]">
                     <Linked
                       linkTo="mailto:info@katchthis.com"
                       className="py-1 space-x-4 text-white rounded-full"
@@ -268,10 +270,10 @@ const Nav = (props) => {
                     <Linked className="py-1" linkTo="/careers" >
                       Careers
                     </Linked>
-                  </div>
+                  </div> */}
 
                   <SocialIcons
-                    className="flex mt-auto space-x-2 text-white"
+                    className="flex mt-auto space-x-2 text-white mt-2"
                     // showText
                     icons={[
                       {
@@ -288,6 +290,16 @@ const Nav = (props) => {
                         icon: faInstagram,
                         linkTo: "https://www.instagram.com/katch_int/",
                         text: "Follow our Instagram",
+                      },
+                      {
+                        icon: faLinkedin,
+                        linkTo: "https://www.linkedin.com/company/katch-international/",
+                        text: "Follow our LinkedIn",
+                      },
+                      {
+                        icon: faTiktok,
+                        linkTo: "https://www.tiktok.com/@katchinternational",
+                        text: "Follow our TikTok",
                       },
                     ]}
                   />
