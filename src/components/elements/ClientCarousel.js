@@ -4,20 +4,20 @@ import LeftChevron from "../svgs/LeftChevron"
 import RightChevron from "../svgs/RightChevron"
 
 const keyframesEven = [
-  ["0%", -2 * (100 / 3) + "%"],
-  [-1 * (100 / 3) + "%", -2 * (100 / 3) + "%", -1 * (100 / 3) + "%", "0%"],
-  [-2 * (100 / 3) + "%", -1 * (100 / 3) + "%", "0%"],
+  ["0%", -2 * (100 /4) + "%"],
+  [-1 * (100 /4) + "%", -2 * (100 /4) + "%", -1 * (100 /4) + "%", "0%"],
+  [-2 * (100 /4) + "%", -1 * (100 /4) + "%", "0%"],
 ]
 
 const keyframesOdd = [
-  [-2 * (100 / 3) + "%", "0%"],
-  [-1 * (100 / 3) + "%", "0%", -1 * (100 / 3) + "%", -2 * (100 / 3) + "%"],
-  ["0%", -1 * (100 / 3) + "%", -2 * (100 / 3) + "%"],
+  [-2 * (100 /4) + "%", "0%"],
+  [-1 * (100 /4) + "%", "0%", -1 * (100 /4) + "%", -2 * (100 /4) + "%"],
+  ["0%", -1 * (100 /4) + "%", -2 * (100 /4) + "%"],
 ]
 
 const evenCollectionVariants = {
   whileHover: (index) => ({
-    x: -index * (100 / 3) + "%",
+    x: -index * (100 /4) + "%",
     transition: {
       type: "spring",
       stiffness: 200,
@@ -33,14 +33,14 @@ const evenCollectionVariants = {
       ease: "linear",
     },
     initial: {
-      x: -index * (100 / 3) + "%",
+      x: -index * (100 /4) + "%",
     },
   }),
 }
 
 const oddCollectionVariants = {
   whileHover: (index) => ({
-    x: -(2 - index) * (100 / 3) + "%",
+    x: -(2 - index) * (100 /4) + "%",
     transition: {
       type: "spring",
       stiffness: 200,
@@ -88,7 +88,7 @@ const ClientCarousel = ({ arrayToRender, isHover, CardComponent, showAll }) => {
         <LeftChevron className="sm:mr-16" />
       </button>
       <div className="hidden sm:flex flex-col overflow-x-hidden max-w-[288px] sm:max-w-[576px] lg:max-w-[864px]">
-        {Array(3)
+        {Array(2)
           .fill(0)
           .map((_, i) => {
             const isEven = i % 2 === 0
@@ -97,12 +97,12 @@ const ClientCarousel = ({ arrayToRender, isHover, CardComponent, showAll }) => {
                 className={"flex flex-nowrap w-max"}
                 key={i}
                 custom={index}
-                initial={isEven ? { x: 0 } : { x: -2 * (100 / 3) + "%" }}
+                initial={isEven ? { x: 0 } : { x: -2 * (100 /4) + "%" }}
                 animate={isEven ? evenAnimate : oddAnimate}
               >
                 {arrayToRender &&
                   arrayToRender
-                    .slice(i * 9 * 3, (1 + i) * 9 * 3)
+                    .slice(i * 9 * 2, (1 + i) * 9 * 2)
                     .map((item) => (
                       <div className="h-24 w-24" key={item.id}>
                         <CardComponent {...item} />
