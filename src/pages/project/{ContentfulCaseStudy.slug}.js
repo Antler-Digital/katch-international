@@ -45,8 +45,8 @@ const CaseStudyTemplate = ({
         metaImage={metaImage?.gatsbyImageData?.images?.fallback?.src}
       />
       <CaseStudyHeroSection
-        header={title.toUpperCase()}
-        subHeader={{ subHeader: `## __${title.toUpperCase()}__` }}
+        header={title ? title?.toUpperCase() : ''}
+        subHeader={{ subHeader: `## __${title ? title?.toUpperCase() : ''}__` }}
         textColour="White"
         showForm={false}
         centerHeading={true}
