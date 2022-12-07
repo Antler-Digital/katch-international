@@ -8,15 +8,14 @@ import React from "react"
 const CaseStudySlide = ({ title, sqrImage, slug, isActive }) => {
   return (
     <article
-      className={`${
-        isActive ? " scale-[110%] z-10" : "scale-90"
-      } relative transform h-full  transition-all duration-500 flex flex-col items-center`}
+      className={`${isActive ? " scale-[110%] z-10" : "scale-90"
+        } relative transform h-full  transition-all duration-500 flex flex-col items-center`}
     >
-      <GatsbyImage
+      {sqrImage && <GatsbyImage
         className="min-h-[500px] aspect-1 w-full"
         alt={sqrImage.title}
         image={sqrImage.gatsbyImageData}
-      />
+      />}
 
       <AnimatePresence>
         {isActive && (

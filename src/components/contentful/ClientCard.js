@@ -9,8 +9,8 @@ const ClientCard = ({ name, type, logo }) => {
         <h6 className="bg-secondary px-3">{name}</h6>
       </div> */}
 
-      { logo?.gatsbyImageData ? 
-        <GatsbyImage className="invert" image={logo.gatsbyImageData} alt={logo.title} /> 
+      {logo?.gatsbyImageData ?
+        <GatsbyImage className="invert" image={logo.gatsbyImageData} alt={logo.title} objectFit="contain" />
         : <img src={logo?.file?.url} alt={logo.title} />
       }
     </div>
@@ -27,9 +27,10 @@ export const ContentfulClientFragment = graphql`
   logo {
     gatsbyImageData(
       layout: CONSTRAINED
-      width: 100
+      width: 80
+      height: 80
       placeholder: TRACED_SVG
-      quality: 60
+      quality: 70
     )
     title
     file {
