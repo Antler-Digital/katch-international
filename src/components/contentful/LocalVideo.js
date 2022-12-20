@@ -1,10 +1,10 @@
 import React, { useRef, useState, useEffect } from "react"
 
-import LargeDesktopVideo from "../../videos/Katch_1920x1080.mp4"
-import SmallDesktopVideo from "../../videos/Katch_1280x1024.mp4"
+import LargeDesktopVideo from "../../videos/RENDER COMP (1920x1080).mp4"
+import SmallDesktopVideo from "../../videos/RENDER COMP (1280x1024).mp4"
 // import MediumDesktopVideo from '../../videos/Katch_1366x768.mp4'
 // import MobileVideo from '../../videos/Katch_mobile.mp4'
-import MobileCompressedVideo from "../../videos/Katch_mobile_compressed.mp4"
+import MobileCompressedVideo from "../../videos/RENDER COMP (567x1024).mp4"
 
 const isSafari = () => {
   const ua = navigator.userAgent.toLowerCase()
