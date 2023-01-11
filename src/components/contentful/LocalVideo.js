@@ -90,6 +90,7 @@ const LocalVideo = () => {
           loop
           muted
           autoplay
+          defaultMuted
           playsinline
           preload="metadata"
         >

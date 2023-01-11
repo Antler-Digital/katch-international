@@ -42,7 +42,7 @@ const ClientViewAll = ({ arrayToRender, CardComponent, showAll }) => {
               return (
                 <motion.div
                   key={item.id}
-                  className="w-24 h-24 px-2"
+                  className="flex items-center justify-center w-24 h-24 px-3"
                   variants={elementVariants}
                 >
                   <CardComponent {...item} />
@@ -53,7 +53,7 @@ const ClientViewAll = ({ arrayToRender, CardComponent, showAll }) => {
       </div>
       <div className="block sm:hidden">
         <motion.div
-          className="grid grid-cols-4 px-5 sm:hidden"
+          className="grid grid-cols-4 sm:hidden"
           variants={containerVariants("grid")}
           initial={{ height: 0 }}
           animate={showAll ? "show" : "hide"}
@@ -63,7 +63,7 @@ const ClientViewAll = ({ arrayToRender, CardComponent, showAll }) => {
               return (
                 <motion.div
                   key={item.id}
-                  className="w-20 h-20 px-2"
+                  className="w-20 h-20 px-3 "
                   variants={elementVariants}
                 >
                   <CardComponent {...item} />

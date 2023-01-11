@@ -104,7 +104,10 @@ const ClientCarousel = ({ arrayToRender, isHover, CardComponent, showAll }) => {
                   arrayToRender
                     .slice(i * 9 * 2, (1 + i) * 9 * 2)
                     .map((item) => (
-                      <div className="w-24 h-24" key={item.id}>
+                      <div
+                        className="flex items-center justify-center w-24 h-24 px-3"
+                        key={item.id}
+                      >
                         <CardComponent {...item} />
                       </div>
                     ))}
@@ -115,7 +118,10 @@ const ClientCarousel = ({ arrayToRender, isHover, CardComponent, showAll }) => {
       <div className="grid grid-cols-4 px-5 sm:hidden">
         {arrayToRender &&
           arrayToRender?.slice(0, 24).map((item) => (
-            <div className="w-20 h-20 p-2" key={item.id}>
+            <div
+              className="flex items-center justify-center w-20 h-20 px-3"
+              key={item.id}
+            >
               <CardComponent {...item} />
             </div>
           ))}
