@@ -1,8 +1,9 @@
 import React from "react"
 import { motion } from "framer-motion"
 
-const containerVariants = {
+const containerVariants = (display) => ({
   show: {
+    display,
     height: "fit-content",
     transition: {
       staggerChildren: 0.05,
@@ -11,7 +12,7 @@ const containerVariants = {
   hide: {
     height: 0,
   },
-}
+})
 
 const elementVariants = {
   show: {
@@ -25,26 +26,23 @@ const elementVariants = {
 }
 
 const ClientViewAll = ({ arrayToRender, CardComponent, showAll }) => {
-  const items = [
-    ...arrayToRender.slice(9, 45),
-    ...arrayToRender.slice(9 * 3 * 3),
-  ]
+  const items = [...arrayToRender.slice(9, 9 * 3), ...arrayToRender.slice(36)]
 
   return (
     <>
       <div className="hidden sm:block">
         <motion.div
           className="flex flex-wrap justify-center max-w-[288px] sm:max-w-[576px] lg:max-w-[864px] overflow-hidden"
-          variants={containerVariants}
+          variants={containerVariants("flex")}
           initial={{ height: 0 }}
           animate={showAll ? "show" : "hide"}
         >
           {items &&
-            items.map((item, index) => {
+            items.map((item) => {
               return (
                 <motion.div
                   key={item.id}
-                  className="h-24 w-24"
+                  className="w-24 h-24 px-2"
                   variants={elementVariants}
                 >
                   <CardComponent {...item} />
@@ -55,17 +53,17 @@ const ClientViewAll = ({ arrayToRender, CardComponent, showAll }) => {
       </div>
       <div className="block sm:hidden">
         <motion.div
-          className="grid grid-cols-4 sm:hidden px-5"
-          variants={containerVariants}
+          className="grid grid-cols-4 px-5 sm:hidden"
+          variants={containerVariants("grid")}
           initial={{ height: 0 }}
           animate={showAll ? "show" : "hide"}
         >
           {arrayToRender &&
-            arrayToRender.slice(24).map((item, index) => {
+            arrayToRender?.slice(24).map((item, index) => {
               return (
                 <motion.div
                   key={item.id}
-                  className="h-20 w-20"
+                  className="w-20 h-20 px-2"
                   variants={elementVariants}
                 >
                   <CardComponent {...item} />

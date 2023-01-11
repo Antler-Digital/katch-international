@@ -4,20 +4,20 @@ import LeftChevron from "../svgs/LeftChevron"
 import RightChevron from "../svgs/RightChevron"
 
 const keyframesEven = [
-  ["0%", -2 * (100 /4) + "%"],
-  [-1 * (100 /4) + "%", -2 * (100 /4) + "%", -1 * (100 /4) + "%", "0%"],
-  [-2 * (100 /4) + "%", -1 * (100 /4) + "%", "0%"],
+  ["0%", -2 * (100 / 4) + "%"],
+  [-1 * (100 / 4) + "%", -2 * (100 / 4) + "%", -1 * (100 / 4) + "%", "0%"],
+  [-2 * (100 / 4) + "%", -1 * (100 / 4) + "%", "0%"],
 ]
 
 const keyframesOdd = [
-  [-2 * (100 /4) + "%", "0%"],
-  [-1 * (100 /4) + "%", "0%", -1 * (100 /4) + "%", -2 * (100 /4) + "%"],
-  ["0%", -1 * (100 /4) + "%", -2 * (100 /4) + "%"],
+  [-2 * (100 / 4) + "%", "0%"],
+  [-1 * (100 / 4) + "%", "0%", -1 * (100 / 4) + "%", -2 * (100 / 4) + "%"],
+  ["0%", -1 * (100 / 4) + "%", -2 * (100 / 4) + "%"],
 ]
 
 const evenCollectionVariants = {
   whileHover: (index) => ({
-    x: -index * (100 /4) + "%",
+    x: -index * (100 / 4) + "%",
     transition: {
       type: "spring",
       stiffness: 200,
@@ -33,14 +33,14 @@ const evenCollectionVariants = {
       ease: "linear",
     },
     initial: {
-      x: -index * (100 /4) + "%",
+      x: -index * (100 / 4) + "%",
     },
   }),
 }
 
 const oddCollectionVariants = {
   whileHover: (index) => ({
-    x: -(2 - index) * (100 /4) + "%",
+    x: -(2 - index) * (100 / 4) + "%",
     transition: {
       type: "spring",
       stiffness: 200,
@@ -97,14 +97,14 @@ const ClientCarousel = ({ arrayToRender, isHover, CardComponent, showAll }) => {
                 className={"flex flex-nowrap w-max"}
                 key={i}
                 custom={index}
-                initial={isEven ? { x: 0 } : { x: -2 * (100 /4) + "%" }}
+                initial={isEven ? { x: 0 } : { x: -2 * (100 / 4) + "%" }}
                 animate={isEven ? evenAnimate : oddAnimate}
               >
                 {arrayToRender &&
                   arrayToRender
                     .slice(i * 9 * 2, (1 + i) * 9 * 2)
                     .map((item) => (
-                      <div className="h-24 w-24" key={item.id}>
+                      <div className="w-24 h-24" key={item.id}>
                         <CardComponent {...item} />
                       </div>
                     ))}
@@ -115,7 +115,7 @@ const ClientCarousel = ({ arrayToRender, isHover, CardComponent, showAll }) => {
       <div className="grid grid-cols-4 px-5 sm:hidden">
         {arrayToRender &&
           arrayToRender?.slice(0, 24).map((item) => (
-            <div className="h-20 w-20" key={item.id}>
+            <div className="w-20 h-20 p-2" key={item.id}>
               <CardComponent {...item} />
             </div>
           ))}
