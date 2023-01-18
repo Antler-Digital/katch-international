@@ -19,11 +19,10 @@ function SEO({ description, lang, meta, path, title, image, article, twitterUser
       }
     `
   )
-
+console.log(description)
   const metaDescription = description || site.siteMetadata.description
   // const metaImage = `${site.siteMetadata.siteUrl}${image ? `${image}` : logo }` // placeholder logo here
   const metaTitle = title ? `${title} | ${site.siteMetadata.title}` : site.siteMetadata.title
-
 
   const metaImage = image ? `https:${image}` : `${site.siteMetadata.siteUrl}${logo}` // placeholder logo here
   return (

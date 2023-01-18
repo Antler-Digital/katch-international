@@ -55,7 +55,7 @@ const BlogPostTemplate = ({ data: { contentfulBlogPost } }) => {
     <Layout>
       <SEO
         title={metaTitle || title}
-        metaDescription={metaDescription}
+        description={metaDescription?.text}
         metaImage={metaImage?.gatsbyImageData?.images?.fallback?.src}
       />
       <BlogHeaderSection

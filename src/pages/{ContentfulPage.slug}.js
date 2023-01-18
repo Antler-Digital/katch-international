@@ -133,7 +133,7 @@ const PageTemplate = ({ data: { contentfulPage }, location }) => {
     <Layout>
       <SEO
         title={metaTitle || title}
-        metaDescription={metaDescription}
+        description={metaDescription?.text}
         metaImage={metaImage?.gatsbyImageData?.images?.fallback?.src}
       />
       <WhatsappIcon path={location.pathname} />
