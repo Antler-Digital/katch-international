@@ -41,7 +41,7 @@ if (process.env.CONTENTFUL_HOST) {
 module.exports = {
   siteMetadata: {
     title: `Katch`,
-    description: `Katch International is a digital agency based out of Dubai and London.`,
+    description: `Maximize your brand's visibility in the GCC with the help of our award-winning PR firm based in Dubai. Our services include press relations, social media strategy, and creative design to get you noticed.`,
     author: `Sam Loyd`,
     siteUrl
   },
