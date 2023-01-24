@@ -27,6 +27,8 @@ function SEO({ description, lang, meta, path, title, image, article, twitterUser
 
   const noTrailingSlashPath = path?.endsWith('/') ? path?.slice(0, -1) : path
 
+  const useCanonical = path?.endsWith('/')
+
   return (
     <Helmet
       htmlAttributes={{
@@ -39,7 +41,7 @@ function SEO({ description, lang, meta, path, title, image, article, twitterUser
 
       <meta name="description" content={metaDescription} />
       <meta name="image" content={metaImage} />
-      <link rel="canonical" href={`${site.siteMetadata.siteUrl}${path && `${noTrailingSlashPath}`}`} />
+      {useCanonical && <link rel="canonical" href={`${site.siteMetadata.siteUrl}${path && `${noTrailingSlashPath}`}`} /> }
       {/* Facebook */}
       <meta property="og:url"  content={`${site.siteMetadata.siteUrl}${path && `${noTrailingSlashPath}`}`}  />
       <meta property="og:type" content={article ? `article` : `website`} />
