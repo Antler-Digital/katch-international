@@ -18,7 +18,7 @@ require("dotenv").config({
 // Handles removing the robot crawlers from Netlify preview domains and improves SEO
 const {
   NODE_ENV,
-  URL: NETLIFY_SITE_URL = 'https://katchintenational.com',
+  URL: NETLIFY_SITE_URL = 'https://katchinternational.com',
   DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
   CONTEXT: NETLIFY_ENV = NODE_ENV
 } = process.env;
@@ -43,7 +43,7 @@ module.exports = {
     title: `Katch`,
     description: `Maximize your brand's visibility in the GCC with the help of our award-winning PR firm based in Dubai. Our services include press relations, social media strategy, and creative design to get you noticed.`,
     author: `Sam Loyd`,
-    siteUrl: 'https://katchintenational.com'
+    siteUrl: 'https://katchinternational.com'
   },
   plugins: [
 
