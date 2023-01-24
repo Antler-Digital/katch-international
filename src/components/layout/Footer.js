@@ -90,7 +90,7 @@ const Footer = (props) => {
                 <p>TEL : +971 4 243 8577</p>
                 <p>
                   Email:{" "}
-                  <a className="hover:text-primary" href="info@katchthis.com">
+                  <a className="hover:text-primary" href="mailto:info@katchthis.com">
                     info@katchthis.com
                   </a>
                 </p>
@@ -104,18 +104,18 @@ const Footer = (props) => {
                 <p>TEL: +44 20 8895 6383</p>
                 <p>
                   Email:{" "}
-                  <a className="hover:text-primary" href="info@katchthis.com">
+                  <a className="hover:text-primary" href="mailto:info@katchthis.com">
                     info@katchthis.com
                   </a>
                 </p>
                 <p>
                   Website:{" "}
-                  <Linked
+                  <a
                     className="hover:text-primary"
-                    linkTo="www.katchcommunications.com"
+                    href="https://www.katchcommunications.com"
                   >
                     www.katchcommunications.com
-                  </Linked>
+                  </a>
                 </p>
               </div>
             </div>
