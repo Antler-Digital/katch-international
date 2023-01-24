@@ -43,7 +43,7 @@ module.exports = {
     title: `Katch`,
     description: `Maximize your brand's visibility in the GCC with the help of our award-winning PR firm based in Dubai. Our services include press relations, social media strategy, and creative design to get you noticed.`,
     author: `Sam Loyd`,
-    siteUrl
+    siteUrl: 'https://katchintenational.com'
   },
   plugins: [
 
@@ -148,16 +148,16 @@ module.exports = {
           production: {
             policy: [{ userAgent: '*' }]
           },
-          'branch-deploy': {
-            policy: [{ userAgent: '*', disallow: ['/'] }],
-            sitemap: null,
-            host: null
-          },
-          'deploy-preview': {
-            policy: [{ userAgent: '*', disallow: ['/'] }],
-            sitemap: null,
-            host: null
-          }
+          // 'branch-deploy': {
+          //   policy: [{ userAgent: '*', disallow: ['/'] }],
+          //   sitemap: null,
+          //   host: null
+          // },
+          // 'deploy-preview': {
+          //   policy: [{ userAgent: '*', disallow: ['/'] }],
+          //   sitemap: null,
+          //   host: null
+          // }
         }
       }
     },
