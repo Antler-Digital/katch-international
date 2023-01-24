@@ -25,9 +25,7 @@ function SEO({ description, lang, meta, path, title, image, article, twitterUser
 
   const metaImage = image ? `https:${image}` : `${site.siteMetadata.siteUrl}${logo}` // placeholder logo here
 
-  const noTrailingSlashPath = path?.endsWith('/') ? path?.slice(0, -1) : path
-
-  const useCanonical = path?.endsWith('/')
+  const useCanonical = !path?.endsWith('/')
 
   return (
     <Helmet
@@ -41,9 +39,9 @@ function SEO({ description, lang, meta, path, title, image, article, twitterUser
 
       <meta name="description" content={metaDescription} />
       <meta name="image" content={metaImage} />
-      {useCanonical && <link rel="canonical" href={`${site.siteMetadata.siteUrl}${path && `${noTrailingSlashPath}`}`} /> }
+      {useCanonical && <link rel="canonical" href={`${site.siteMetadata.siteUrl}${path && `${path}/`}`} /> }
       {/* Facebook */}
-      <meta property="og:url"  content={`${site.siteMetadata.siteUrl}${path && `${noTrailingSlashPath}`}`}  />
+      <meta property="og:url"  content={`${site.siteMetadata.siteUrl}${path && `${path}/`}`}  />
       <meta property="og:type" content={article ? `article` : `website`} />
       <meta property="og:title" content={metaTitle} />
       <meta property="og:description" content={metaDescription} />
@@ -51,7 +49,7 @@ function SEO({ description, lang, meta, path, title, image, article, twitterUser
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:url"  content={`${site.siteMetadata.siteUrl}${path && `${noTrailingSlashPath}`}`}  />
+      <meta name="twitter:url"  content={`${site.siteMetadata.siteUrl}${path && `${path}/`}`}  />
       <meta name="twitter:title" content={metaTitle} />
       <meta name="twitter:description" content={metaDescription} />
       <meta name="twitter:image" content={metaImage} />
