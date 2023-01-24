@@ -2,16 +2,14 @@ import React from "react"
 import Layout from "../../components/layout/Layout"
 import SEO from "../../components/SEO"
 import { graphql } from "gatsby"
-import HeroSection from "../../components/contentful/HeroSection"
 import RichTextOptions from "../../components/rich-text/RichTextOptions"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { BLOCKS } from "@contentful/rich-text-types"
 import Video from "../../components/contentful/Video"
-import AltHeroSection from "../../components/contentful/AltHeroSection"
 import BlogHeaderSection from "../../components/elements/BlogHeaderSection"
 
-const BlogPostTemplate = ({ data: { contentfulBlogPost } }) => {
+const BlogPostTemplate = ({ data: { contentfulBlogPost }, location }) => {
   const page = contentfulBlogPost
   const {
     metaDescription,
@@ -57,6 +55,7 @@ const BlogPostTemplate = ({ data: { contentfulBlogPost } }) => {
         title={metaTitle || title}
         description={metaDescription?.text}
         metaImage={metaImage?.gatsbyImageData?.images?.fallback?.src}
+        path={location.pathname}
       />
       <BlogHeaderSection
         title={title}

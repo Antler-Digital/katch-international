@@ -19,12 +19,14 @@ function SEO({ description, lang, meta, path, title, image, article, twitterUser
       }
     `
   )
-console.log(description)
   const metaDescription = description || site.siteMetadata.description
   // const metaImage = `${site.siteMetadata.siteUrl}${image ? `${image}` : logo }` // placeholder logo here
   const metaTitle = title ? `${title} | ${site.siteMetadata.title}` : site.siteMetadata.title
 
   const metaImage = image ? `https:${image}` : `${site.siteMetadata.siteUrl}${logo}` // placeholder logo here
+
+  const noTrailingSlashPath = path?.endsWith('/') ? path?.slice(0, -1) : path
+
   return (
     <Helmet
       htmlAttributes={{
@@ -37,9 +39,9 @@ console.log(description)
 
       <meta name="description" content={metaDescription} />
       <meta name="image" content={metaImage} />
-
+      <link rel="canonical" href={`${site.siteMetadata.siteUrl}${path && `${noTrailingSlashPath}`}`} />
       {/* Facebook */}
-      <meta property="og:url"  content={`${site.siteMetadata.siteUrl}${path && `${path}`}`}  />
+      <meta property="og:url"  content={`${site.siteMetadata.siteUrl}${path && `${noTrailingSlashPath}`}`}  />
       <meta property="og:type" content={article ? `article` : `website`} />
       <meta property="og:title" content={metaTitle} />
       <meta property="og:description" content={metaDescription} />
@@ -47,7 +49,7 @@ console.log(description)
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:url"  content={`${site.siteMetadata.siteUrl}${path && `${path}`}`}  />
+      <meta name="twitter:url"  content={`${site.siteMetadata.siteUrl}${path && `${noTrailingSlashPath}`}`}  />
       <meta name="twitter:title" content={metaTitle} />
       <meta name="twitter:description" content={metaDescription} />
       <meta name="twitter:image" content={metaImage} />

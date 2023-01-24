@@ -42,6 +42,7 @@ const CaseStudyTemplate = ({
         title={metaTitle || title}
         description={metaDescription?.text}
         metaImage={metaImage?.gatsbyImageData?.images?.fallback?.src}
+        path={location.pathname}
       />
       <WhatsappIcon path={location.pathname} />
       <CaseStudyHeroSection
