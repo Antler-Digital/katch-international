@@ -172,7 +172,7 @@ export default function HubspotForm({ footnote, type }) {
         <button
           type="submit"
           value="Send"
-          className="block text-black hover:text-secondary uppercase text-4xl font-bold"
+          className="block  hover:text-black uppercase text-4xl font-bold bg-secondary text-white px-4 py-2 rounded-full"
         >
           Submit
         </button>
