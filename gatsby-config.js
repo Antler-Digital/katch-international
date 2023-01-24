@@ -139,12 +139,12 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
     `gatsby-plugin-sitemap`,
-    `gatsby-plugin-netlify`,
+    // `gatsby-plugin-netlify`,
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        resolveEnv: () => NETLIFY_ENV,
         env: {
+          host: 'https://katchinternational.com',
           production: {
             policy: [{ userAgent: '*' }]
           },
