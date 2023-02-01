@@ -2,10 +2,9 @@ import React from "react"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
-import logo from "../images/katch-meta.jpg"
 
-function SEO({ description, lang, meta, path, title, image, article, twitterUsername }) {
-  const { site } = useStaticQuery(
+function SEO({ description, lang, meta, path, title, metaImage, article, twitterUsername }) {
+  const { site, contentfulSite} = useStaticQuery(
     graphql`
       query {
         site {
@@ -16,16 +15,31 @@ function SEO({ description, lang, meta, path, title, image, article, twitterUser
             siteUrl
           }
         }
+        contentfulSite: contentfulSiteSettings(contentful_id: {eq: "2qyIV95SHuSmul974kg5VR"}) {
+          siteDescription {
+            text: siteDescription
+          }
+          siteName
+          siteImage {
+            gatsbyImageData(
+              height: 600
+              width: 1200
+              layout: FIXED
+              cropFocus: CENTER
+              resizingBehavior: FILL
+            )
+          }
+        }
       }
     `
   )
-  const metaDescription = description || site.siteMetadata.description
+  const metaDescription = description || contentfulSite?.siteDescription?.text || site.siteMetadata.description
   // const metaImage = `${site.siteMetadata.siteUrl}${image ? `${image}` : logo }` // placeholder logo here
-  const metaTitle = title ? `${title} | ${site.siteMetadata.title}` : site.siteMetadata.title
+  const metaTitle = title ? `${title} | ${contentfulSite.siteName}` : contentfulSite.siteName
 
-  const metaImage = image ? `https:${image}` : `${site.siteMetadata.siteUrl}${logo}` // placeholder logo here
+  const metaImageRender = metaImage ? `${metaImage}` : `${contentfulSite?.siteImage?.gatsbyImageData?.images.fallback?.src}` // placeholder logo here
 
-  const useCanonical = !path?.endsWith('/')
+  const useCanonical = path?.endsWith('/')
 
   return (
     <Helmet
@@ -38,21 +52,21 @@ function SEO({ description, lang, meta, path, title, image, article, twitterUser
       <noscript>Your browser does not support JavaScript! A London List works best with javascript ( and by best only ). </noscript>
 
       <meta name="description" content={metaDescription} />
-      <meta name="image" content={metaImage} />
-      {useCanonical && <link rel="canonical" href={`${site.siteMetadata.siteUrl}${path && `${path}/`}`} /> }
+      <meta name="image" content={metaImageRender} />
+      {useCanonical && <link rel="canonical" href={`${site.siteMetadata.siteUrl}${path && `${path}/`}`} />}
       {/* Facebook */}
-      <meta property="og:url"  content={`${site.siteMetadata.siteUrl}${path && `${path}/`}`}  />
+      <meta property="og:url" content={`${site.siteMetadata.siteUrl}${path && `${path}/`}`} />
       <meta property="og:type" content={article ? `article` : `website`} />
       <meta property="og:title" content={metaTitle} />
       <meta property="og:description" content={metaDescription} />
-      <meta property="og:image" content={metaImage} />
+      <meta property="og:image" content={metaImageRender} />
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:url"  content={`${site.siteMetadata.siteUrl}${path && `${path}/`}`}  />
+      <meta name="twitter:url" content={`${site.siteMetadata.siteUrl}${path && `${path}/`}`} />
       <meta name="twitter:title" content={metaTitle} />
       <meta name="twitter:description" content={metaDescription} />
-      <meta name="twitter:image" content={metaImage} />
+      <meta name="twitter:image" content={metaImageRender} />
 
       {twitterUsername && (
         <meta name="twitter:creator" content={twitterUsername} />

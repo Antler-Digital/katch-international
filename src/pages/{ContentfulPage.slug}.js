@@ -165,7 +165,13 @@ export const PagesQuery = graphql`
       slug
       metaTitle
       metaImage {
-        gatsbyImageData(width: 400, layout: FIXED)
+        gatsbyImageData(
+          height: 600
+          width: 1200
+          layout: FIXED
+          resizingBehavior: FILL
+          cropFocus: CENTER
+        )
         title
       }
       metaDescription {

@@ -101,7 +101,13 @@ export const CaseStudyQuery = graphql`
       slug
       metaTitle
       metaImage {
-        gatsbyImageData(width: 200, layout: FIXED)
+        gatsbyImageData(
+          height: 600
+          width: 1200
+          layout: FIXED
+          resizingBehavior: FILL
+          cropFocus: CENTER
+        )
         title
       }
       metaDescription {

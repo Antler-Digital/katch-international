@@ -24,7 +24,7 @@ const BlogPostTemplate = ({ data: { contentfulBlogPost }, location }) => {
   } = page
 
   const assets = new Map(body.references.map((ref) => [ref.contentful_id, ref]))
-
+  console.log(metaImage)
   const options = {
     renderNode: {
       ...RichTextOptions.renderNode,
@@ -84,7 +84,13 @@ export const BlogPostQuery = graphql`
       slug
       metaTitle
       metaImage {
-        gatsbyImageData(width: 200, layout: FIXED)
+        gatsbyImageData(
+          height: 600
+          width: 1200
+          layout: FIXED
+          resizingBehavior: FILL
+          cropFocus: CENTER
+        )
         title
       }
       metaDescription {
