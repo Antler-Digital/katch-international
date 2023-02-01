@@ -24,7 +24,6 @@ const BlogPostTemplate = ({ data: { contentfulBlogPost }, location }) => {
   } = page
 
   const assets = new Map(body.references.map((ref) => [ref.contentful_id, ref]))
-  console.log(metaImage)
   const options = {
     renderNode: {
       ...RichTextOptions.renderNode,
