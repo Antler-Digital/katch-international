@@ -39,7 +39,7 @@ function SEO({ description, lang, meta, path, title, metaImage, article, twitter
 
   const metaImageRender = metaImage ? `${metaImage}` : `${contentfulSite?.siteImage?.gatsbyImageData?.images.fallback?.src}` // placeholder logo here
 
-  const useCanonical = path?.endsWith('/')
+  const useCanonical = !path?.endsWith('/')
 
   return (
     <Helmet
@@ -55,7 +55,7 @@ function SEO({ description, lang, meta, path, title, metaImage, article, twitter
       <meta name="image" content={metaImageRender} />
       {useCanonical && <link rel="canonical" href={`${site.siteMetadata.siteUrl}${path && `${path}`}`} />}
       {/* Facebook */}
-      <meta property="og:url" content={`${site.siteMetadata.siteUrl}${path && `${path}/`}`} />
+      <meta property="og:url" content={`${site.siteMetadata.siteUrl}${path && `${path}`}`} />
       <meta property="og:type" content={article ? `article` : `website`} />
       <meta property="og:title" content={metaTitle} />
       <meta property="og:description" content={metaDescription} />
@@ -63,7 +63,7 @@ function SEO({ description, lang, meta, path, title, metaImage, article, twitter
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:url" content={`${site.siteMetadata.siteUrl}${path && `${path}/`}`} />
+      <meta name="twitter:url" content={`${site.siteMetadata.siteUrl}${path && `${path}`}`} />
       <meta name="twitter:title" content={metaTitle} />
       <meta name="twitter:description" content={metaDescription} />
       <meta name="twitter:image" content={metaImageRender} />
