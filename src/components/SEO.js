@@ -53,7 +53,7 @@ function SEO({ description, lang, meta, path, title, metaImage, article, twitter
 
       <meta name="description" content={metaDescription} />
       <meta name="image" content={metaImageRender} />
-      {useCanonical && <link rel="canonical" href={`${site.siteMetadata.siteUrl}${path && `${path}/`}`} />}
+      {useCanonical && <link rel="canonical" href={`${site.siteMetadata.siteUrl}${path && `${path}`}`} />}
       {/* Facebook */}
       <meta property="og:url" content={`${site.siteMetadata.siteUrl}${path && `${path}/`}`} />
       <meta property="og:type" content={article ? `article` : `website`} />
