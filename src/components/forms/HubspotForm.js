@@ -6,9 +6,9 @@ import fetch from "isomorphic-unfetch"
 import Cookies from "js-cookie"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 import RichTextOptions from "../rich-text/RichTextOptions"
+import gtag_report_conversion from "../../funcs/track"
 
 export default function HubspotForm({ footnote, type }) {
-  console.log(type)
   const {
     register,
     handleSubmit,
@@ -97,6 +97,10 @@ export default function HubspotForm({ footnote, type }) {
     const response = await res.json()
 
     if (response.inlineMessage) {
+
+      // report conversion
+      gtag_report_conversion()
+
       setFormSubmitted({
         success: true,
         message: response.inlineMessage,
