@@ -52,6 +52,7 @@ function SEO({ description, lang, meta, path, title, metaImage, article, twitter
       <noscript>Your browser does not support JavaScript! A London List works best with javascript ( and by best only ). </noscript>
 
       <meta name="description" content={metaDescription} />
+      <meta name="google-site-verification" content="PD6tyitBu8QELW0ECvtmf5SyAecUyD7DBnuucSsr3gk" />
       <meta name="image" content={metaImageRender} />
       {useCanonical && <link rel="canonical" href={`${site.siteMetadata.siteUrl}${path && `${path}`}`} />}
       {/* Facebook */}

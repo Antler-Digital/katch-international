@@ -98,7 +98,7 @@ export default function HubspotForm({ footnote, type }) {
 
     if (response.inlineMessage) {
 
-      // report conversion
+      //  report conversion
       gtag_report_conversion()
 
       setFormSubmitted({
