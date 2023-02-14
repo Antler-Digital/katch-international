@@ -1,12 +1,23 @@
 import React from "react"
 
-const useSnapToNext = (ref, triggerDistance = 50) => {
-  let scrollPosition = 0
+const useSnapToNext = (ref, triggerDistance = 50, trigger=true) => {
 
   React.useEffect(() => {
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
+
+    if (trigger) {
+
+      window.addEventListener("scroll", handleScroll)
+      return () => window.removeEventListener("scroll", handleScroll)
+    }
+   
   }, [])
+
+  if (!trigger) {
+    return
+  }
+
+  let scrollPosition = 0
+
 
   const handleScroll = () => {
     if (

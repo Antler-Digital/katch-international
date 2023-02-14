@@ -24,10 +24,10 @@ const BlogCard = ({ slug, mainImage, title, datePosted, body, category }) => {
           </h3>
           <p className="text-sm  font-sans text-primary">
             {datePosted} |{" "}
-            <span className="text-secondary">{category.join(", ")}</span>
+            <span className="text-secondary">{category?.join(", ")}</span>
           </p>
           <p className="text-sm font-sans text-primary mt-2">
-            {documentToPlainTextString(JSON.parse(body.raw)).slice(0, 140)}...
+            {body?.raw && documentToPlainTextString(JSON.parse(body.raw)).slice(0, 140)}...
           </p>
         </div>
       </article>

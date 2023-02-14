@@ -6,15 +6,19 @@ import CallToAction from './CallToAction';
 
 function Slide({ body, header, image, callToAction }) {
 
-  const [ state, setState ] = React.useState(false)
+  const [state, setState] = React.useState(false)
   React.useEffect(() => {
     !state && setState(true)
-  },[])
+  }, [])
 
 
+  const isLogo = image?.title === 'katch-on-black'
   return (
     <section className="min-h-600 relative">
-      { image?.gatsbyImageData && <GatsbyImage className="min-h-600 h-screen" image={image.gatsbyImageData} alt={image.title} /> }
+      {image?.gatsbyImageData && !isLogo && <GatsbyImage className="min-h-600 h-screen" image={image.gatsbyImageData} alt={image.title} />}
+      {isLogo && image?.gatsbyImageData && <div className='flex items-center justify-center w-full h-screen bg-black px-10'>
+        <GatsbyImage className='w-full min-h-[100px] relative' image={image.gatsbyImageData} alt={image.title} />
+      </div>}
       <div className="w-full h-full absolute top-0 z-front">
         <div data-aos="fade-in" className="w-full md:w-1/2 xl:w-1/3 md:ml-auto text-white flex h-full items-center justify-center text-center md:text-left md:justify-start px-4 md:px-0">
           <div className="max-w-sm" >
@@ -47,6 +51,9 @@ export default Slide
 
 export const ContentfulSlideFragment = graphql`
 fragment ContentfulSlideFragment on ContentfulSlide {
+  internal {
+    type
+  }
   image {
     title
     gatsbyImageData(

@@ -29,8 +29,8 @@ const isDev = getEnv() !== 'production'
 let contentfulConfig = {
   spaceId: process.env.CONTENTFUL_SPACE_ID,
   // Learn about environment variables: https://gatsby.dev/env-vars
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-  host: 'cdn.contentful.com'
+  accessToken: process.env.NODE_ENV === 'production' ? process.env.CONTENTFUL_ACCESS_TOKEN : process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN,
+  host: process.env.NODE_ENV === 'production' ? 'cdn.contentful.com' : 'preview.contentful.com',
 }
 // handle the preview environments
 if (process.env.CONTENTFUL_HOST) {

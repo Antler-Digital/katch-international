@@ -128,7 +128,6 @@ const PageTemplate = ({ data: { contentfulPage }, location }) => {
   const restSections = sections.slice(2)
 
   const customSection = useCustomSection(slug, { extraImages })
-
   return (
     <Layout>
       <SEO
@@ -215,9 +214,9 @@ export const PagesQuery = graphql`
         # ... on ContentfulMapSection {
         #  ...ContentfulMapSectionFragment
         # }
-        ... on ContentfulVideo {
-          ...ContentfulVideoFragment
-        }
+        # ... on ContentfulVideo {
+        #   ...ContentfulVideoFragment
+        # }
         ... on ContentfulTabsSection {
           ...ContentfulTabsSectionFragment
         }

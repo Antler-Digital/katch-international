@@ -23,7 +23,7 @@ const BlogPostTemplate = ({ data: { contentfulBlogPost }, location }) => {
     body,
   } = page
 
-  const assets = new Map(body.references.map((ref) => [ref.contentful_id, ref]))
+  const assets = new Map(body?.references?.map((ref) => [ref?.contentful_id, ref]))
   const options = {
     renderNode: {
       ...RichTextOptions.renderNode,
