@@ -50,7 +50,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-google-tagmanager",
       options: {
-        id: "UA-128392128-1",
+        id: "AW-941166757",
 
         // Include GTM in development.
         // Defaults to false meaning GTM will only be loaded in production.
@@ -59,17 +59,17 @@ module.exports = {
       },
     },
 
-    // {
-    //   resolve: `gatsby-plugin-google-analytics`,
-    //   options: { 
-    //     // AW-941166757 - gTag
-    //     // UA-128392128-1 - GA
-    //     trackingId: "UA-128392128-1", // add your own tracking code
-    //     // this option places the tracking script into the head of the DOM
-    //     head: true,
-    //     // other options
-    //   },
-    // },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: { 
+        // AW-941166757 - gTag
+        // UA-128392128-1 - GA
+        trackingId: "UA-128392128-1", // add your own tracking code
+        // this option places the tracking script into the head of the DOM
+        head: true,
+        // other options
+      },
+    },
     // {
     //   resolve: `gatsby-source-instagram`,
     //   options: {
