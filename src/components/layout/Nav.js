@@ -86,7 +86,7 @@ const Nav = (props) => {
 
   const { navBar, navLogo } = contentfulSiteSettings
 
-  const [locationState, setLocationState] = useState(window?.location?.pathname)
+  const [locationState, setLocationState] = useState(undefined)
   const location = typeof window !== "undefined" && window.location.pathname
   const isProject = (locationState && locationState?.includes("project")) || false
   const isBlog =
