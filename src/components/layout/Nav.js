@@ -92,7 +92,7 @@ const Nav = (props) => {
   const isContactUs = (location && location?.includes("contact-us")) || false
 
   const [atTop, setAtTop] = React.useState(
-    isProject || isContactUs || isBlog ? false : true
+    (isProject || isContactUs || isBlog) ? false : true
   )
 
   const handleScroll = (e) => {
@@ -109,6 +109,8 @@ const Nav = (props) => {
 
     // return window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  console.log('atTop', atTop, 'isBlog', isBlog, 'isProject', isProject, 'isContactUs', isContactUs)
 
   return (
     <>
