@@ -111,10 +111,10 @@ const Nav = (props) => {
     // return window.removeEventListener('scroll', handleScroll)
   }, [pathName])
   React.useEffect(() => {
-    if (!locationState ) {
+    if (!locationState && typeof window !== "undefined" ) {
       setLocationState(window?.location?.pathname)
     }
-  }, [locationState])
+  }, [locationState, window])
 
   const isTopPage = (!isProject && !isContactUs && !isBlog)
   return (
