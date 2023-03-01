@@ -105,17 +105,15 @@ const Nav = (props) => {
   }
 
   React.useEffect(() => {
-    window.addEventListener("scroll", handleScroll)
-
+    typeof window !== 'undefined' && window.addEventListener("scroll", handleScroll)
     // return window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [pathName])
 
-  console.log('atTop', atTop, 'isBlog', isBlog, 'isProject', isProject, 'isContactUs', isContactUs)
-
+  const isTopPage = (!isProject && !isContactUs && !isBlog)
   return (
     <>
       <nav
-        className={` w-full fixed ${atTop ? "py-4" : "hidden"
+        className={` w-full fixed ${isTopPage && atTop ? "py-4" : "hidden"
           } transition-all duration-300 lg:px-0 z-[999]`}
       >
         <div className="flex px-4 mx-auto max-w-screen-2xl">
