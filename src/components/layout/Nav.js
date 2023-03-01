@@ -85,11 +85,13 @@ const Nav = (props) => {
   `)
 
   const { navBar, navLogo } = contentfulSiteSettings
+
+  const [locationState, setLocationState] = useState(window?.location?.pathname)
   const location = typeof window !== "undefined" && window.location.pathname
-  const isProject = (location && location?.includes("project")) || false
+  const isProject = (locationState && locationState?.includes("project")) || false
   const isBlog =
-    (location && location?.includes("blog") && location?.length > 5) || false
-  const isContactUs = (location && location?.includes("contact-us")) || false
+    (locationState && locationState?.includes("blog") && locationState?.length > 5) || false
+  const isContactUs = (locationState && locationState?.includes("contact-us")) || false
 
   const [atTop, setAtTop] = React.useState(
     (isProject || isContactUs || isBlog) ? false : true
@@ -108,6 +110,11 @@ const Nav = (props) => {
     typeof window !== 'undefined' && window.addEventListener("scroll", handleScroll)
     // return window.removeEventListener('scroll', handleScroll)
   }, [pathName])
+  React.useEffect(() => {
+    if (!locationState ) {
+      setLocationState(window?.location?.pathname)
+    }
+  }, [locationState])
 
   const isTopPage = (!isProject && !isContactUs && !isBlog)
   return (
