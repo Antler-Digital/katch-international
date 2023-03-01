@@ -39,6 +39,9 @@ if (process.env.CONTENTFUL_HOST) {
 }
 
 module.exports = {
+  flags: {
+    DEV_SRR: true,
+  },
   siteMetadata: {
     title: `Katch`,
     description: `Maximize your brand's visibility in the GCC with the help of our award-winning PR firm based in Dubai. Our services include press relations, social media strategy, and creative design to get you noticed.`,

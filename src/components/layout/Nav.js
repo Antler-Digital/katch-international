@@ -87,7 +87,7 @@ const Nav = (props) => {
   const { navBar, navLogo } = contentfulSiteSettings
 
   const [locationState, setLocationState] = useState(undefined)
-  const location = typeof window !== "undefined" && window.location.pathname
+  const awaitWindow = typeof window !== "undefined" ? window : undefined
   const isProject = (locationState && locationState?.includes("project")) || false
   const isBlog =
     (locationState && locationState?.includes("blog") && locationState?.length > 5) || false
@@ -114,7 +114,7 @@ const Nav = (props) => {
     if (!locationState && typeof window !== "undefined" ) {
       setLocationState(typeof window!== 'undefined' && window?.location?.pathname)
     }
-  }, [locationState, window])
+  }, [locationState, awaitWindow])
 
   const isTopPage = (!isProject && !isContactUs && !isBlog)
   return (
