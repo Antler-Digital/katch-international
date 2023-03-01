@@ -112,7 +112,7 @@ const Nav = (props) => {
   }, [pathName])
   React.useEffect(() => {
     if (!locationState && typeof window !== "undefined" ) {
-      setLocationState(window?.location?.pathname)
+      setLocationState(typeof window!== 'undefined' && window?.location?.pathname)
     }
   }, [locationState, window])
 
