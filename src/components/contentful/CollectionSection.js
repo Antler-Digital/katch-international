@@ -17,14 +17,12 @@ function CollectionSection({
 }) {
   const { blogPosts } = useStaticQuery(graphql`
     query Collections {
-      blogPosts: allContentfulBlogPost(
-        sort: { fields: datePosted, order: DESC }
-      ) {
-        cards: nodes {
-          ...ContentfulBlogPostFragment
-        }
-      }
+  blogPosts: allContentfulBlogPost(sort: {datePosted: DESC}) {
+    cards: nodes {
+      ...ContentfulBlogPostFragment
     }
+  }
+}
   `)
 
   const clientsClasses = "grid lg:grid-cols-10 md:grid-cols-8 grid-cols-4"
@@ -71,9 +69,8 @@ function CollectionSection({
   return (
     <section
       id={contentfulid}
-      className={`${
-        postType === "Blog Posts" ? "bg-primary" : "bg-gray-100"
-      }  py-12 lg:py-24`}
+      className={`${postType === "Blog Posts" ? "bg-primary" : "bg-gray-100"
+        }  py-12 lg:py-24`}
     >
       <div className="text-center max-w-screen-2xl mx-auto px-4">
         {header && (
