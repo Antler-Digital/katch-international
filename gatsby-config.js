@@ -49,28 +49,25 @@ module.exports = {
     siteUrl: 'https://katchinternational.com'
   },
   plugins: [
-
     {
-      resolve: "gatsby-plugin-google-tagmanager",
-      options: {
-        id: "AW-941166757",
-
-        // Include GTM in development.
-        // Defaults to false meaning GTM will only be loaded in production.
-        includeInDevelopment: false,
-        defaultDataLayer: { platform: "gatsby" },
-      },
-    },
-
-    {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: `gatsby-plugin-google-gtag`,
       options: { 
-        // AW-941166757 - gTag
-        // UA-128392128-1 - GA
-        trackingId: "UA-128392128-1", // add your own tracking code
-        // this option places the tracking script into the head of the DOM
-        head: true,
-        // other options
+        trackingIds: [
+          "G-18WB6K7M09", // Google Analytics / GA
+          "AW-941166757", // Google Ads / Adwords / AW
+        ],
+        // This object gets passed directly to the gtag config command
+        // This config will be shared across all trackingIds
+        gtagConfig: {
+          optimize_id: "OPT_CONTAINER_ID",
+          anonymize_ip: true,
+          cookie_expires: 0,
+        },
+        // This object is used for configuration specific to this plugin
+        pluginConfig: {
+          // Puts tracking script in the head instead of the body
+          head: true,
+        },
       },
     },
     // {

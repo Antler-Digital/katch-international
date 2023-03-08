@@ -1,5 +1,5 @@
 import React from "react"
-import { OutboundLink } from "gatsby-plugin-google-analytics"
+import { OutboundLink } from "gatsby-plugin-google-gtag"
 import { AnchorLink } from "gatsby-plugin-anchor-links";
 const Linked = ({ linkTo, children, style, className, underline = false }) => {
   const regex = RegExp("https?|wwww")
