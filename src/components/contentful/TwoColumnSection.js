@@ -16,10 +16,10 @@ function TwoColumnSection({
     return (
       <section>
         <div className="grid md:grid-cols-2 grid-rows-1">
-            {[...leftColumn].map((section, index) =>
+            {leftColumn.map((section, index) =>
               SectionSwitcher(section, "other", index)
             )}
-            {[...rightColumn, ...rightColumn].map((section, index) =>
+            {rightColumn.map((section, index) =>
              <div className="first:p-6 first:my-auto first:xl:px-24">
               { SectionSwitcher(section, "other", index) }
               </div>
