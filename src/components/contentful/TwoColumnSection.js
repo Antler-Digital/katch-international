@@ -15,17 +15,15 @@ function TwoColumnSection({
   if (rightColumn && leftColumn) {
     return (
       <section>
-        <div className="grid md:grid-cols-2">
-          <div>
-            {leftColumn.map((section, index) =>
+        <div className="grid md:grid-cols-2 grid-rows-1">
+            {[...leftColumn].map((section, index) =>
               SectionSwitcher(section, "other", index)
             )}
-          </div>
-          <div className="p-6 my-auto xl:px-24">
-            {rightColumn.map((section, index) =>
-              SectionSwitcher(section, "other", index)
+            {[...rightColumn, ...rightColumn].map((section, index) =>
+             <div className="first:p-6 first:my-auto first:xl:px-24">
+              { SectionSwitcher(section, "other", index) }
+              </div>
             )}
-          </div>
         </div>
       </section>
     )
@@ -57,11 +55,17 @@ export const ContentfulTwoColumnSectionFragment = graphql`
       raw
     }
     leftColumn {
+      ... on ContentfulTextSection {
+        ...ContentfulTextSectionFragment
+      }
       ... on ContentfulFullScreenImage {
         ...ContentfulFullScreenImageFragment
       }
     }
     rightColumn {
+      ... on ContentfulTextSection {
+        ...ContentfulTextSectionFragment
+      }
       ... on ContentfulContactForm {
         ...ContentfulContactFormFragment
       }

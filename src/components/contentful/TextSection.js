@@ -10,6 +10,8 @@ function TextSection({ text, align, includePadding = true }) {
       : align === "Right"
       ? "text-right"
       : "text-justify"
+
+  console.log(text, align, includePadding)
   return (
     <section className="py-4 text-black bg-gray-100">
       <div
