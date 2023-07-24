@@ -52,7 +52,7 @@ function SEO({ description, lang, meta, path, title, metaImage, article, twitter
       <meta name="description" content={metaDescription} />
       <meta name="google-site-verification" content="PD6tyitBu8QELW0ECvtmf5SyAecUyD7DBnuucSsr3gk" />
       <meta name="image" content={metaImageRender} />
-      <link rel="canonical" href={`${site.siteMetadata.siteUrl}${path && path.replace(/\/$/, '')}`} />
+      <link rel="canonical" href={`${site.siteMetadata.siteUrl}${path ?? ''}`} />
       {/* Facebook */}
       <meta property="og:url" content={`${site.siteMetadata.siteUrl}${path && `${path}`}`} />
       <meta property="og:type" content={article ? `article` : `website`} />
