@@ -18,24 +18,30 @@ require("dotenv").config({
 // Handles removing the robot crawlers from Netlify preview domains and improves SEO
 const {
   NODE_ENV,
-  URL: NETLIFY_SITE_URL = 'https://katchinternational.com',
+  URL: NETLIFY_SITE_URL = "https://katchinternational.com",
   DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
-  CONTEXT: NETLIFY_ENV = NODE_ENV
-} = process.env;
-const isNetlifyProduction = NETLIFY_ENV === 'production';
-const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
-const isDev = getEnv() !== 'production'
+  CONTEXT: NETLIFY_ENV = NODE_ENV,
+} = process.env
+const isNetlifyProduction = NETLIFY_ENV === "production"
+const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL
+const isDev = getEnv() !== "production"
 
 let contentfulConfig = {
   spaceId: process.env.CONTENTFUL_SPACE_ID,
   // Learn about environment variables: https://gatsby.dev/env-vars
-  accessToken: process.env.NODE_ENV === 'production' ? process.env.CONTENTFUL_ACCESS_TOKEN : process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN,
-  host: process.env.NODE_ENV === 'production' ? 'cdn.contentful.com' : 'preview.contentful.com',
+  accessToken:
+    process.env.NODE_ENV === "production"
+      ? process.env.CONTENTFUL_ACCESS_TOKEN
+      : process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN,
+  host:
+    process.env.NODE_ENV === "production"
+      ? "cdn.contentful.com"
+      : "preview.contentful.com",
 }
 // handle the preview environments
 if (process.env.CONTENTFUL_HOST) {
-  contentfulConfig.host = 'preview.contentful.com';
-  contentfulConfig.accessToken = process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN;
+  contentfulConfig.host = "preview.contentful.com"
+  contentfulConfig.accessToken = process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN
 }
 
 module.exports = {
@@ -46,15 +52,16 @@ module.exports = {
     title: `Katch`,
     description: `Maximize your brand's visibility in the GCC with the help of our award-winning PR firm based in Dubai. Our services include press relations, social media strategy, and creative design to get you noticed.`,
     author: `Sam Loyd`,
-    siteUrl: 'https://katchinternational.com'
+    siteUrl: "https://katchinternational.com",
   },
   plugins: [
     {
       resolve: `gatsby-plugin-google-gtag`,
-      options: { 
+      options: {
         trackingIds: [
           "G-18WB6K7M09", // Google Analytics / GA
           "AW-941166757", // Google Ads / Adwords / AW
+          "G-EBGLW844WN",
         ],
         // This object gets passed directly to the gtag config command
         // This config will be shared across all trackingIds
@@ -81,7 +88,7 @@ module.exports = {
     //     hashtags: false
     //   },
     // },
-    'gatsby-plugin-image',
+    "gatsby-plugin-image",
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -96,12 +103,12 @@ module.exports = {
     {
       resolve: "gatsby-plugin-anchor-links",
       // If you want to add options
-      // options: { 
+      // options: {
       //   offset: -50
       // }
     },
     {
-      resolve: `gatsby-plugin-postcss`
+      resolve: `gatsby-plugin-postcss`,
     },
     {
       resolve: "gatsby-plugin-hubspot",
@@ -114,7 +121,7 @@ module.exports = {
     // Uncomment to add in contentful
     {
       resolve: `gatsby-source-contentful`,
-      options: contentfulConfig
+      options: contentfulConfig,
     },
     {
       resolve: `gatsby-plugin-alias-imports`,
@@ -124,12 +131,10 @@ module.exports = {
           "@components": "src/components",
           "@elements": "src/components/elements",
         },
-        extensions: [
-          "js",
-        ],
-      }
+        extensions: ["js"],
+      },
     },
-    'gatsby-plugin-readingtime-contentful',
+    "gatsby-plugin-readingtime-contentful",
     {
       resolve: `gatsby-plugin-webfonts`,
       options: {
@@ -147,21 +152,22 @@ module.exports = {
         },
       },
     },
-    
+
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
     `gatsby-plugin-sitemap`,
     {
-      resolve: 'gatsby-plugin-sitemap',
+      resolve: "gatsby-plugin-sitemap",
     },
     {
-      resolve: 'gatsby-plugin-robots-txt',
+      resolve: "gatsby-plugin-robots-txt",
       options: {
         env: {
-          host: 'https://katchinternational.com',
+          host: "https://katchinternational.com",
           production: {
-            policy: [{ userAgent: '*' }]
+            sitemap: "https://katchinternational.com/sitemap.xml",
+            policy: [{ userAgent: "*" }],
           },
           // 'branch-deploy': {
           //   policy: [{ userAgent: '*', disallow: ['/'] }],
@@ -173,8 +179,8 @@ module.exports = {
           //   sitemap: null,
           //   host: null
           // }
-        }
-      }
+        },
+      },
     },
     {
       resolve: `gatsby-plugin-manifest`,
