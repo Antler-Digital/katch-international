@@ -117,6 +117,7 @@ const Nav = (props) => {
   }, [locationState, awaitWindow])
 
   const isTopPage = (!isProject && !isContactUs && !isBlog)
+
   return (
     <>
       <nav
@@ -165,7 +166,7 @@ const Nav = (props) => {
 
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className={`${!atTop ? "inline-block bg-white" : "md:hidden  "} ${!menuOpen ? "hover:text-black text-secondary " : "text-secondary"
+          className={`${(!atTop || isContactUs) ? "inline-block bg-white" : "md:hidden  "} ${!menuOpen ? "hover:text-black text-secondary " : "text-secondary"
             } z-[9999] ml-auto  mt-3 fixed top-0 md:right-20 right-5 duration-300 hover:animate-pulse w-14 h-14  flex justify-center items-center rounded-full`}
         >
           <svg

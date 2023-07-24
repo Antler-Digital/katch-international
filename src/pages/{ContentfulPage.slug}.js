@@ -128,6 +128,14 @@ const PageTemplate = ({ data: { contentfulPage }, location }) => {
   const restSections = sections.slice(2)
 
   const customSection = useCustomSection(slug, { extraImages })
+
+  const pathsForH1 = [
+    '/',
+    '/contact-us'
+  ]
+
+  const standardisedURL = location.pathname.replace(/\/$/, '')
+  const needsH1 = pathsForH1.includes(standardisedURL)
   return (
     <Layout>
       <SEO
@@ -137,7 +145,7 @@ const PageTemplate = ({ data: { contentfulPage }, location }) => {
         path={location.pathname}
       />
       <WhatsappIcon path={location.pathname} />
-      {location.pathname === '/' && <h1 className="absolute opacity-0">{metaTitle}</h1>}
+      {needsH1 && <h1 className="absolute opacity-0 -z-10">{metaTitle}</h1>}
       <div>
         {snapSections &&
           snapSections.map((section, index) =>
