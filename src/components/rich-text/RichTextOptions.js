@@ -12,9 +12,9 @@ const RichTextOptions = {
   //   [MARKS.CODE]: text => <pre className="text-gray-600 bg-gray-300 px-2 py-1 rounded mb-0" style={{ fontFamily: 'monospace' }}>  {text}</pre>,
   // },
   renderNode: {
-    // [BLOCKS.HEADING_1]: (node, children) => <h2>{children}</h2>,
-    // [BLOCKS.HEADING_2]: (node, children) => <h3>{children}</h3>,
-    // [BLOCKS.HEADING_3]: (node, children) => <h4>{children}</h4>,
+    [BLOCKS.HEADING_1]: (node, children) => <h2>{children}</h2>,
+    [BLOCKS.HEADING_2]: (node, children) => <h3>{children}</h3>,
+    [BLOCKS.HEADING_3]: (node, children) => <h4>{children}</h4>,
     [BLOCKS.PARAGRAPH]: (node, children) => (
       <p className="font-sans leading-relaxed">{children}</p>
     ),
