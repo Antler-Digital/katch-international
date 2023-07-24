@@ -130,7 +130,7 @@ const PageTemplate = ({ data: { contentfulPage }, location }) => {
   const customSection = useCustomSection(slug, { extraImages })
 
   const pathsForH1 = [
-    '/',
+    '',
     '/contact-us'
   ]
 

@@ -3,7 +3,7 @@ import React from "react"
 // To Do: update Rich Text to new form
 // https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-source-contentful/CHANGELOG.md#400-next0-2020-11-09
 
-import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types"
+import { BLOCKS, INLINES } from "@contentful/rich-text-types"
 import Linked from "../elements/Linked"
 
 const RichTextOptions = {
