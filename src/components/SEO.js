@@ -37,9 +37,7 @@ function SEO({ description, lang, meta, path, title, metaImage, article, twitter
   // const metaImage = `${site.siteMetadata.siteUrl}${image ? `${image}` : logo }` // placeholder logo here
   const metaTitle = title ? `${title} | ${contentfulSite.siteName}` : contentfulSite.siteName
 
-  const metaImageRender = metaImage ? `${metaImage}` : `${contentfulSite?.siteImage?.gatsbyImageData?.images.fallback?.src}` // placeholder logo here
-
-  const useCanonical = !path?.endsWith('/')
+  const metaImageRender = metaImage ? `${metaImage}` : `${contentfulSite?.siteImage?.gatsbyImageData?.images.fallback?.src}` // placeholder logo here 
 
   return (
     <Helmet
@@ -54,7 +52,7 @@ function SEO({ description, lang, meta, path, title, metaImage, article, twitter
       <meta name="description" content={metaDescription} />
       <meta name="google-site-verification" content="PD6tyitBu8QELW0ECvtmf5SyAecUyD7DBnuucSsr3gk" />
       <meta name="image" content={metaImageRender} />
-      {useCanonical && <link rel="canonical" href={`${site.siteMetadata.siteUrl}${path && `${path}`}`} />}
+      <link rel="canonical" href={`${site.siteMetadata.siteUrl}${path && path.replace(/\/$/, '')}`} />
       {/* Facebook */}
       <meta property="og:url" content={`${site.siteMetadata.siteUrl}${path && `${path}`}`} />
       <meta property="og:type" content={article ? `article` : `website`} />
