@@ -137,7 +137,6 @@ const PageTemplate = ({ data: { contentfulPage }, location }) => {
         path={location.pathname}
       />
       <WhatsappIcon path={location.pathname} />
-      {metaTitle && <h1 className="absolute opacity-0">{metaTitle}</h1>}
 
       <div>
         {snapSections &&
