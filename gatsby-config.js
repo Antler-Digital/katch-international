@@ -62,6 +62,7 @@ module.exports = {
           "G-18WB6K7M09", // Google Analytics / GA
           "AW-941166757", // Google Ads / Adwords / AW
           "G-EBGLW844WN",
+          'GTM-MGZBGFJ3'
         ],
         // This object gets passed directly to the gtag config command
         // This config will be shared across all trackingIds
