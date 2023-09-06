@@ -101,6 +101,7 @@ module.exports = {
     `gatsby-plugin-fontawesome-css`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-netlify`,
     {
       resolve: "gatsby-plugin-anchor-links",
       // If you want to add options
