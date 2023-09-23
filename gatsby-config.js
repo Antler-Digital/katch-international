@@ -27,6 +27,9 @@ if (process.env.CONTENTFUL_HOST) {
   contentfulConfig.accessToken = process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN
 }
 
+console.log(contentfulConfig)
+console.log(process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN)
+
 module.exports = {
   flags: {
     DEV_SRR: true,
