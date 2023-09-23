@@ -15,28 +15,11 @@ require("dotenv").config({
   path: `.env.${getEnv()}`,
 })
 
-// Handles removing the robot crawlers from Netlify preview domains and improves SEO
-const {
-  NODE_ENV,
-  URL: NETLIFY_SITE_URL = "https://katchinternational.com",
-  DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
-  CONTEXT: NETLIFY_ENV = NODE_ENV,
-} = process.env
-const isNetlifyProduction = NETLIFY_ENV === "production"
-const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL
-const isDev = getEnv() !== "production"
-
 let contentfulConfig = {
   spaceId: process.env.CONTENTFUL_SPACE_ID,
   // Learn about environment variables: https://gatsby.dev/env-vars
-  accessToken:
-    process.env.NODE_ENV === "production"
-      ? process.env.CONTENTFUL_ACCESS_TOKEN
-      : process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN,
-  host:
-    process.env.NODE_ENV === "production"
-      ? "cdn.contentful.com"
-      : "preview.contentful.com",
+  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+  host: "cdn.contentful.com"
 }
 // handle the preview environments
 if (process.env.CONTENTFUL_HOST) {
@@ -101,7 +84,6 @@ module.exports = {
     `gatsby-plugin-fontawesome-css`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    `gatsby-plugin-netlify`,
     {
       resolve: "gatsby-plugin-anchor-links",
       // If you want to add options
@@ -160,9 +142,6 @@ module.exports = {
     // `gatsby-plugin-offline`,
     `gatsby-plugin-sitemap`,
     {
-      resolve: "gatsby-plugin-sitemap",
-    },
-    {
       resolve: "gatsby-plugin-robots-txt",
       options: {
         env: {
@@ -194,18 +173,6 @@ module.exports = {
         theme_color: `#FA064A`,
         display: `minimal-ui`,
         icon: `src/images/favicon.png`, // This path is relative to the root of the site.
-      },
-    },
-    {
-      resolve: `gatsby-plugin-gatsby-cloud`,
-      options: {
-        // headers: {}, // option to add more headers. `Link` headers are transformed by the below criteria
-        // allPageHeaders: [], // option to add headers for all pages. `Link` headers are transformed by the below criteria
-        // mergeSecurityHeaders: true, // boolean to turn off the default security headers
-        // mergeLinkHeaders: true, // boolean to turn off the default gatsby js headers
-        // mergeCachingHeaders: true, // boolean to turn off the default caching headers
-        // transformHeaders: (headers, path) => headers, // optional transform for manipulating headers under each path (e.g.sorting), etc.
-        // generateMatchPathRewrites: true, // boolean to turn off automatic creation of redirect rules for client only paths
       },
     },
   ],
