@@ -14,8 +14,8 @@ const RelatedCaseStudiesSection = ({ caseStudies }) => {
             to={`/project/${slug}`}
           >
             <GatsbyImage
-              image={mainImage.gatsbyImageData}
-              alt={mainImage.title}
+              image={mainImage?.gatsbyImageData}
+              alt={mainImage?.title}
               className="absolute top-0 left-0 brightness-[85%] object-cover w-full h-full z-0 scale-110 duration-500 group-hover:scale-100"
             />
             <div className="absolute top-0 left-0 bg-secondary h-full w-full z-10 mix-blend-hard-light group-hover:opacity-100 opacity-0 duration-300" />

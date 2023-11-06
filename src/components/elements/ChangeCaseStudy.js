@@ -17,16 +17,16 @@ const ChangeCaseStudy = ({ prevCaseStudy, nextCaseStudy }) => {
         {prevCaseStudy?.mainImage && <GatsbyImage
           className="absolute h-18 w-full top-0"
           style={{ position: "absolute" }}
-          image={prevCaseStudy.mainImage.gatsbyImageData}
-          alt={prevCaseStudy.mainImage.title}
+          image={prevCaseStudy.mainImage?.gatsbyImageData}
+          alt={prevCaseStudy.mainImage?.title}
         />}
       </div>
       <div className="relative w-3/5  bg-primary  ">
         {nextCaseStudy?.mainImage && <GatsbyImage
           className="absolute h-18 w-full top-0"
           style={{ position: "absolute" }}
-          image={nextCaseStudy.mainImage.gatsbyImageData}
-          alt={nextCaseStudy.mainImage.title}
+          image={nextCaseStudy?.mainImage?.gatsbyImageData}
+          alt={nextCaseStudy?.mainImage?.title}
         />}
         <Linked linkTo={`/project/${nextCaseStudy.slug}`}>
           <button

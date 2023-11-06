@@ -65,7 +65,7 @@ const BlogPostTemplate = ({ data: { contentfulBlogPost }, location }) => {
         <article className="bg-white max-w-screen-md mx-auto p-8 relative z-10 prose">
           <div className="mx-auto max-w-content mb-12">
             <GatsbyImage
-              image={mainImage.gatsbyImageData}
+              image={mainImage?.gatsbyImageData}
               alt={mainImage.title}
             />
           </div>
