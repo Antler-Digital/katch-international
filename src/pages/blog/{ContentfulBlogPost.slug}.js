@@ -66,7 +66,7 @@ const BlogPostTemplate = ({ data: { contentfulBlogPost }, location }) => {
           <div className="mx-auto max-w-content mb-12">
             <GatsbyImage
               image={mainImage?.gatsbyImageData}
-              alt={mainImage.title}
+              alt={mainImage?.title}
             />
           </div>
           {body && documentToReactComponents(JSON.parse(body.raw), options)}
