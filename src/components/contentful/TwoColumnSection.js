@@ -54,22 +54,18 @@ export const ContentfulTwoColumnSectionFragment = graphql`
     rightColumnRichText {
       raw
     }
-    leftColumn {
-      ... on ContentfulTextSection {
-        ...ContentfulTextSectionFragment
-      }
-      ... on ContentfulFullScreenImage {
-        ...ContentfulFullScreenImageFragment
-      }
-    }
-    rightColumn {
-      ... on ContentfulTextSection {
-        ...ContentfulTextSectionFragment
-      }
-      ... on ContentfulContactForm {
-        ...ContentfulContactFormFragment
-      }
-    }
+    # leftColumn {
+    #   ... on ContentfulTextSection {
+    #     ...ContentfulTextSectionFragment
+    #   }
+
+    # }
+    # rightColumn {
+    #   ... on ContentfulTextSection {
+    #     ...ContentfulTextSectionFragment
+    #   }
+
+    # }
     header
     includeHeader
     internal {
@@ -77,3 +73,9 @@ export const ContentfulTwoColumnSectionFragment = graphql`
     }
   }
 `
+
+// # ... on ContentfulFullScreenImage {
+//   #   ...ContentfulFullScreenImageFragment
+//   # }      # ... on ContentfulContactForm {
+//     #   ...ContentfulContactFormFragment
+//     # }
