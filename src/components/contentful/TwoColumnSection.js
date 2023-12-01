@@ -16,14 +16,14 @@ function TwoColumnSection({
     return (
       <section>
         <div className="grid md:grid-cols-2 grid-rows-1">
-            {leftColumn.map((section, index) =>
-              SectionSwitcher(section, "other", index)
-            )}
-            {rightColumn.map((section, index) =>
-             <div className="first:p-6 first:my-auto first:xl:px-24">
-              { SectionSwitcher(section, "other", index) }
-              </div>
-            )}
+          {leftColumn.map((section, index) =>
+            SectionSwitcher(section, "other", index)
+          )}
+          {rightColumn.map((section, index) =>
+            <div className="first:p-6 first:my-auto first:xl:px-24">
+              {SectionSwitcher(section, "other", index)}
+            </div>
+          )}
         </div>
       </section>
     )
@@ -54,18 +54,23 @@ export const ContentfulTwoColumnSectionFragment = graphql`
     rightColumnRichText {
       raw
     }
-    # leftColumn {
+    leftColumn {
+      ... on ContentfulFullScreenImage {
+        ... ContentfulFullScreenImageFragment
+      }
+    #   ... on ContentfulTextSection {
+    #     ...ContentfulTextSectionFragment
+      }
+
+    # }
+    rightColumn {
     #   ... on ContentfulTextSection {
     #     ...ContentfulTextSectionFragment
     #   }
-
-    # }
-    # rightColumn {
-    #   ... on ContentfulTextSection {
-    #     ...ContentfulTextSectionFragment
-    #   }
-
-    # }
+    ...on ContentfulContactForm {
+        ...ContentfulContactFormFragment
+         }
+    }
     header
     includeHeader
     internal {
@@ -73,9 +78,3 @@ export const ContentfulTwoColumnSectionFragment = graphql`
     }
   }
 `
-
-// # ... on ContentfulFullScreenImage {
-//   #   ...ContentfulFullScreenImageFragment
-//   # }      # ... on ContentfulContactForm {
-//     #   ...ContentfulContactFormFragment
-//     # }

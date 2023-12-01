@@ -38,6 +38,7 @@ export default function HubspotForm({ footnote, type }) {
   const pageName = isBrowser ? document.title : null
 
   const onSubmit = async (data) => {
+
     if (
       data?.captcha?.trim() !== `${captchaFirstNumber + captchaSecondNumber}`
     ) {
@@ -48,14 +49,7 @@ export default function HubspotForm({ footnote, type }) {
       })
     }
 
-    if (data.company !== "") {
-      return setFormSubmitted({
-        success: true,
-        message: "Thanks for submitting.",
-        submitted: true,
-      })
-    }
-
+  
     const finalData = {
       submittedAt: Date.now(),
       fields: [
@@ -86,24 +80,25 @@ export default function HubspotForm({ footnote, type }) {
     const url = `https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/${formId}`
 
     const res = await fetch(url, {
-      method: "post",
+      method: "POST",
       body: JSON.stringify(finalData),
       headers: new Headers({
         "Content-Type": "application/json",
         Accept: "application/json, application/xml, text/plain, text/html, *.*",
       }),
     })
+    // console.log(res)
 
     const response = await res.json()
-
-    if (response.inlineMessage) {
+    // console.log(response)
+    if (response.message) {
 
       //  report conversion
       gtag_report_conversion()
 
       setFormSubmitted({
         success: true,
-        message: response.inlineMessage,
+        message: response.message,
         submitted: true,
       })
     }
@@ -113,10 +108,10 @@ export default function HubspotForm({ footnote, type }) {
     "p-8 focus:outline-none border-none !ring-0 text-primary bg-gray-200 font-sans font-normal placeholder:font-sans placeholder:font-normal"
 
   return formSubmitted.submitted ? (
-    <div className="min-h-[400px]">
+    <div className="min-h-[400px] p-8">
       {formSubmitted.success ? (
         <p>
-          {formSubmitted.inlineMessage ||
+          {formSubmitted.message ||
             "Thank you for submitting the form we will be in touch soon."}
         </p>
       ) : (
@@ -181,6 +176,7 @@ export default function HubspotForm({ footnote, type }) {
           Submit
         </button>
       </div>
+      { formSubmitted.message && <p className="text-sm p-8">{formSubmitted.message}</p>}
       {footnote && footnote?.raw && <p className="text-sm">{renderRichText(footnote, RichTextOptions)}</p>}
     </form>
   )
