@@ -90,7 +90,7 @@ export default function HubspotForm({ footnote, type }) {
     // console.log(res)
 
     const response = await res.json()
-    console.log(response)
+
     if (response.inlineMessage) {
 
       //  report conversion
