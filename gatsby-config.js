@@ -46,33 +46,15 @@ module.exports = {
           "G-18WB6K7M09", // Google Analytics / GA
           "AW-941166757", // Google Ads / Adwords / AW
           "G-EBGLW844WN",
-          'GTM-MGZBGFJ3'
+          // 'GTM-MGZBGFJ3', // old tracking code 
+          'GTM-T8CBJQ8L' // new code from Hari
         ],
-        // This object gets passed directly to the gtag config command
-        // This config will be shared across all trackingIds
-        gtagConfig: {
-          optimize_id: "OPT_CONTAINER_ID",
-          anonymize_ip: true,
-          cookie_expires: 0,
-        },
-        // This object is used for configuration specific to this plugin
         pluginConfig: {
           // Puts tracking script in the head instead of the body
           head: true,
         },
       },
     },
-    // {
-    //   resolve: `gatsby-source-instagram`,
-    //   options: {
-    //     username: !isDev ? `1450358585` : "",
-    //     access_token: process.env.INSTAGRAM_ACCESS_TOKEN,
-    //     instagram_id: "17841401637572661",
-    //     paginate: 100,
-    //     maxPosts: 1000,
-    //     hashtags: false
-    //   },
-    // },
     "gatsby-plugin-image",
     {
       resolve: `gatsby-source-filesystem`,
